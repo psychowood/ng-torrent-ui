@@ -61,5 +61,9 @@ Not in a specific order.
 
 Screenshots
 ===========
-![Desktop view](screenshots/responsive.png?raw=true "Desktop view")
+
+### Desktop view
+![Desktop view](screenshots/desktop.png?raw=true "Desktop view")
+
+### Responsive view
 ![Responsive view](screenshots/responsive.png?raw=true "Responsive view")
