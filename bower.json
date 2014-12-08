@@ -1,7 +1,7 @@
 {
   "name": "ng-torrent-ui",
   "description": "Angular + (flat) Boostrap (μ)Torrent Web UI",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "angular": "~1.3.3",
     "json3": "~3.3.1",

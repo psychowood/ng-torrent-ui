@@ -13,7 +13,7 @@ Development status
 
 ### Notes
 
-Current version is developed on μTorrent 2.2.1 (build 25302) with the latest version of Chrome, since it is not working well with the official WebUI and it is still very used in the community (possibly more than the latest version). Newer versions will be supported at a later time.
+Current version is developed on the latest version of Chrome, with μTorrent 2.2.1 (build 25302), since it is not working well with the official WebUI and it is still very used in the community (possibly more than the latest version). Newer versions will be supported at a later time.
 
 Right now the app is not ready to be embedded in uTorrent as-is: you need to it can be run locally with
 
@@ -41,10 +41,10 @@ Not in a specific order.
 - [x] Add torrent by url (http and magnet)
 - [x] Ctrl/Cmd multiple selection
 - [x] Sortable headers (queue, name, downloaded %, size, up speed, down speed)
+- [X] Travis builds integration
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
-- [ ] Travis builds integration
 - [ ] Settings page
 - [ ] Better error handling
 - [ ] Show torrent details and properties
@@ -59,6 +59,11 @@ Not in a specific order.
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Any ideas? Tell me :)
+
+
+Screenshots
+===========
+
 
 
 Screenshots
