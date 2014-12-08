@@ -25,6 +25,9 @@ module.exports = function (grunt) {
   // package.json data in the app
   grunt.loadNpmTasks('grunt-string-replace');
 
+  // Create the web.zip archive for distribution
+  grunt.loadNpmTasks('grunt-contrib-compress');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -137,7 +140,7 @@ module.exports = function (grunt) {
     'string-replace': {
       version: {
         files: {
-          'dist/index.html': 'dist/index.html',
+          '<%= yeoman.dist %>/index.html': '<%= yeoman.dist %>/index.html',
           '.tmp/index.html': 'app/index.html',
         },
         options: {
