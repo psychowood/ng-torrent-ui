@@ -28,7 +28,6 @@ Not in a specific order.
 - [x] Basic operations (start/pause/stop/force/remove/queue moving)
 - [x] Multiple selection of torrents, even on different searches, to apply batch operations
 - [x] Add torrent by url (http and magnet)
-
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
