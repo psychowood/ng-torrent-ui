@@ -419,7 +419,7 @@ grunt.registerTask('build', [
 
 grunt.registerTask('default', [
   'newer:jshint',
-  'test',
+  //'test',
   'build'
   ]);
 
