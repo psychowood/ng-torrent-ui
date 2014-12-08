@@ -41,13 +41,13 @@
 /*
   .directive('resizable', function($window) {
         return function($scope) {
-          
+
         // On window resize => resize the app
         $scope.initializeWindowSize = function() {
             $scope.windowHeight = $window.innerHeight;
             $scope.windowWidth = $window.innerWidth;
         };
-        
+
         angular.element($window).bind('resize', function() {
             $scope.initializeWindowSize();
             $scope.$apply();
@@ -58,4 +58,6 @@
     };
   })
 */
-  .controller('NavController', function(/* $scope */){ });
+  .controller('NavController', function($scope){
+    $scope.version = 'v0.1.0'  
+  });
