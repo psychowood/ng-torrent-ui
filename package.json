@@ -32,6 +32,7 @@
     "grunt-svgmin": "^0.4.0",
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
+    "grunt-zip": "^0.16.2",
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.24",
     "karma-jasmine": "^0.1.5",

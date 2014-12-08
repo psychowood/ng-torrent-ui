@@ -25,8 +25,8 @@ module.exports = function (grunt) {
   // package.json data in the app
   grunt.loadNpmTasks('grunt-string-replace');
 
-  // Create the web.zip archive for distribution
-  grunt.loadNpmTasks('grunt-contrib-compress');
+  // Create the zip for distribution
+  grunt.loadNpmTasks('grunt-zip');
 
   // Configurable paths for the application
   var appConfig = {
@@ -149,6 +149,15 @@ module.exports = function (grunt) {
             replacement: 'v'+appConfig.version
           }]
         }
+      }
+    },
+
+    zip: {
+      'utorrent': {
+        cwd: '<%= yeoman.dist %>',
+        src: '<%= yeoman.dist %>/**/*',
+        dest: 'releases/utorrent/webui.zip',
+        dot: true
       }
     },
 
@@ -448,7 +457,8 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
     'newer:jshint',
     //'test',
-    'build'
+    'build',
+    'zip'
     ]);
 
   };
