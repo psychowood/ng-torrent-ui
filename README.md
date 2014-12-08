@@ -7,11 +7,20 @@ The use of virtual scrolling removes the need for paging even on a hige list (te
 It is mainly focused on remote controlling the download list instead of trying to replicate each and every feature of the desktop application.
 
 Development status
-=======
+==================
 
 ### Notes
 
 Current version is developed on μTorrent 2.2.1 (build 25302) with the latest version of Chrome, since it is not working well with the official WebUI and it is still very used in the community (possibly more than the latest version). Newer versions will be supported at a later time.
+
+Right now the app is not ready to be embedded in uTorrent as-is: you need to it can be run locally with
+
+```bash
+grunt serve --torrent-host=localhost --torrent-port=8055
+```
+
+Replace 'hostname' and '8055' with your utorrent hostname and port.
+
 
 Project created with [Yeoman](http://yeoman.io).
 
@@ -28,6 +37,8 @@ Not in a specific order.
 - [x] Basic operations (start/pause/stop/force/remove/queue moving)
 - [x] Multiple selection of torrents, even on different searches, to apply batch operations
 - [x] Add torrent by url (http and magnet)
+- [x] Ctrl/Cmd multiple selection
+- [x] Sortable headers (queue, name, downloaded %, size, up speed, down speed)
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
@@ -46,3 +57,9 @@ Not in a specific order.
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Any ideas? Tell me :)
+
+
+Screenshots
+===========
+![Desktop view](screenshots/responsive.png?raw=true "Desktop view")
+![Responsive view](screenshots/responsive.png?raw=true "Responsive view")

@@ -27,6 +27,9 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var torrentHost = grunt.option('torrent-host') || 'localhost';
+  var torrentPort = grunt.option('torrent-port') || 58055;
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -80,8 +83,8 @@ livereload: {
       proxies: [
       {
         context: '/gui',
-        host: 'localhost',
-        port: 58055,
+        host: torrentHost,
+        port: torrentPort,
         https: false,
         xforward: false
       }
