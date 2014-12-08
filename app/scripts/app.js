@@ -59,5 +59,5 @@
   })
 */
   .controller('NavController', function($scope){
-    $scope.version = 'v0.1.0'  
+    $scope.version = 'v0.1.0';
   });
