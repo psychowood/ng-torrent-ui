@@ -1,4 +1,4 @@
-<div class="input-group input-group-sm torrent-row" >
+<div class="input-group input-group-sm torrent-row" ng-class="{'selected':item.selected}">
   <span class="input-group-addon">
     <input type="checkbox" ng-model="item.selected" ng-change="updateSelected()" >
   </span>
@@ -8,7 +8,7 @@
   <span class="input-group-addon status" title="{{statusTitle}}" >
     <span class="glyphicon {{statusClass}} {{statusColor}}"></span>
   </span>
-  <input readonly type="text" title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash)"  ng-value="item.decodedName" />
+  <input readonly type="text" title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)"  ng-value="item.decodedName" />
   <div class="input-group-addon selectable size">
     <span class="byte-value">{{item.getSizeStrArr()[0]}}</span> <span class="byte-uom">{{item.getSizeStrArr()[1]}}</span><div class="download-progress" ng-style="{'width':item.getPercentStr()}" ng-class="{'btn-warning':(item.percent < 250), 'btn-info':(item.percent < 999), 'btn-success':(item.percent > 999)}"></div></div>
     <span class="input-group-addon selectable speed hide-on-md">

@@ -332,9 +332,9 @@
 			$scope.refreshing = false;
 
 		});
-};
+  };
 
-$scope.updateSelected = function() {
+  $scope.updateSelected = function() {
  		/*
  		var i;
  		for (i =0; i<$scope.torrents.length; i++) {
@@ -347,21 +347,30 @@ $scope.updateSelected = function() {
  		$scope.selectedtorrents = getSelected($scope.torrents);
  	};
 
- 	$scope.setSelected = function(hash) {
- 		var i;
+ 	$scope.setSelected = function(hash,event) {
+ 		var add = event.ctrlKey || event.metaKey;
+    var i;
  		for (i =0; i<$scope.torrents.length; i++) {
- 			var sel = ($scope.torrents[i].hash === hash);
- 			$scope.torrents[i].selected = sel;
+ 			var same = ($scope.torrents[i].hash === hash);
+ 			if (!add) {
+         $scope.torrents[i].selected = same;
+       } else {
+         if (same) {
+           $scope.torrents[i].selected = !$scope.torrents[i].selected;
+         }
+       }
  		}
- 		$scope.selectedtorrents = getSelected($scope.torrents);
+ 		$scope.updateSelected();
  	};
+
  	$scope.selectCheckbox = false;
- 	$scope.$watch( 'selectCheckbox', function ( isChecked ) {
+
+  $scope.$watch( 'selectCheckbox', function ( isChecked ) {
  		var i;
  		for (i =0; i<$scope.filteredtorrents.length; i++) {
  			$scope.filteredtorrents[i].selected = isChecked;
  		}
- 		$scope.selectedtorrents = getSelected($scope.torrents);
+    $scope.updateSelected();
  	});
 
  	$scope.$on('$destroy', function() {

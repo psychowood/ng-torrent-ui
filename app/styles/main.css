@@ -7,7 +7,7 @@
 select {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
-  background: url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==") no-repeat 95% 50% !important;
+  background: url("data:image/png;base64,R0lGODlhDwAUAIABAAAAAP///yH5BAEAAAEALAAAAAAPABQAAAIXjI+py+0Po5wH2HsXzmw//lHiSJZmUAAAOw==") no-repeat 99% 50% !important;
   padding-right: 30px !important;
 }
 
@@ -343,4 +343,13 @@ body {
 
 .torrent > *  {
   border-top-width: 1px;
+}
+
+.torrent .selected,
+.torrent .torrent-header {
+  background-color: #eee;
+}
+
+.torrent .input-group-addon {
+  background-color: inherit;
 }
