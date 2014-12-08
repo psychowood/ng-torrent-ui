@@ -58,6 +58,4 @@
     };
   })
 */
-  .controller('NavController', function($scope){
-    $scope.version = 'v0.1.0';
-  });
+  .controller('NavController', function(){});

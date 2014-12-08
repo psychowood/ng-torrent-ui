@@ -28,6 +28,7 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
+    version: require('./bower.json').version || require('./package.json').version || 'version missing',
     dist: 'dist'
   };
 
@@ -129,6 +130,21 @@ module.exports = function (grunt) {
         options: {
           open: true,
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    'string-replace': {
+      version: {
+        files: {
+          'dist/index.html': 'dist/index.html',
+          '.tmp/index.html': 'app/index.html',
+        },
+        options: {
+          replacements: [{
+            pattern: /{{VERSION}}/g,
+            replacement: 'v'+appConfig.version
+          }]
         }
       }
     },
@@ -385,6 +401,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'string-replace',
       'wiredep',
       'configureProxies:server',
       'concurrent:server',
@@ -416,6 +433,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'string-replace',
     'cdnify',
     'cssmin',
     'uglify',
