@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/psychowood/ng-torrent-ui.svg?branch=master)](https://travis-ci.org/psychowood/ng-torrent-ui)
-
 ng-torrent-ui
 =============
 
@@ -16,25 +15,20 @@ Download latest webui.zip from the [releases](../../releases) tab and copy it in
 Development status
 ==================
 
-### Notes
+## Notes
 
-Current version is developed on the latest version of Chrome, with μTorrent 2.2.1 (build 25302), since it is not working well with the official WebUI and it is still very used in the community (possibly more than the latest version). Newer versions will be supported at a later time.
+Current version is developed on the latest version of Chrome, with μTorrent 2.2.1 (build 25302). Newer uTorrent versions will be supported at a later time, as for (possibly) other torrent applications.
 
-Right now the app is not ready to be embedded in uTorrent as-is: you need to it can be run locally with
+If, for dev purposes, you want to test the app from sources without installing in uTorrent, you need to run
 
 ```bash
 grunt serve --torrent-host=localhost --torrent-port=8055
 ```
+replacing 'hostname' and '8055' with your utorrent hostname and port.
 
-Replace 'hostname' and '8055' with your utorrent hostname and port.
+## Release History
 
-
-Project created with [Yeoman](http://yeoman.io).
-
-### Supported features and to dos
-
-Not in a specific order.
-
+### v0.1.0
 - [x] Generinc information os download status (progress, size, current speed, queue position)
 - [x] Custimizable auto-refresh time
 - [x] Non-paged list (virtual scrolling, on-demand rendering of a row, supports for high number of rows with limited impact)
@@ -46,7 +40,12 @@ Not in a specific order.
 - [x] Add torrent by url (http and magnet)
 - [x] Ctrl/Cmd multiple selection
 - [x] Sortable headers (queue, name, downloaded %, size, up speed, down speed)
-- [X] Travis builds integration
+- [x] Travis builds integration
+
+## To dos
+
+Not in a specific order.
+
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
@@ -63,14 +62,16 @@ Not in a specific order.
 - [ ] Use a fake-torrent in list to save client settings
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
+- [ ] Code cleanup
 - [ ] Any ideas? Tell me :)
-
 
 Various
 ===========
 
+The base project was scaffolded with [Yeoman](http://yeoman.io).
+
 ### Privacy
-The main page includes a Google Analytics tag. It is used just to count app loads, it is just a counter (nothing else is tracked, neither the downloads nor anything else). The tag can be easily removed from index.html, if you believe this could be a problem just let me know.
+The main page includes a Google Analytics tag. It is just a counter for statistic usage (nothing else is tracked, neither the downloads nor anything else). The tag can be easily removed from index.html, if you believe this could be a problem just let me know.
 
 ### Donations
 This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :) 
