@@ -70,7 +70,7 @@ Various
 ===========
 
 ### Privacy
-The main page includes a Google Analytics tag. It is used just to count pageviews, **nothing else is tracked**. The tag can be easily removed from index.html by hand if you believe this could be a problem.
+The main page includes a Google Analytics tag. It is used just to count app loads, it is just a counter (nothing else is tracked, neither the downloads nor anything else). The tag can be easily removed from index.html, if you believe this could be a problem just let me know.
 
 ### Donations
 This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :) 
