@@ -61,10 +61,15 @@ Not in a specific order.
 - [ ] Any ideas? Tell me :)
 
 
-Screenshots
+Various
 ===========
 
+### Privacy
+The main page includes a Google Analytics tag. It is used just to count pageviews, **nothing else is tracked**. The tag can be easily removed from index.html by hand if you believe this could be a problem.
 
+### Donations
+This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :) 
+You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84LH348H27CN6) or [usd](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z88PRASGESGQ).
 
 Screenshots
 ===========
