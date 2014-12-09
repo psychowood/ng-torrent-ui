@@ -8,6 +8,11 @@ The use of virtual scrolling removes the need for paging even on a hige list (te
 
 It is mainly focused on remote controlling the download list instead of trying to replicate each and every feature of the desktop application.
 
+Installation
+============
+
+Download latest webui.zip from the [releases](releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
+
 Development status
 ==================
 
