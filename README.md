@@ -11,7 +11,7 @@ It is mainly focused on remote controlling the download list instead of trying t
 Installation
 ============
 
-Download latest webui.zip from the [releases](releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
+Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
 
 Development status
 ==================
