@@ -30,6 +30,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ### v0.1.0
 - [x] Generinc information os download status (progress, size, current speed, queue position)
+- [x] Reponsive design (mobile and desktop views)
 - [x] Custimizable auto-refresh time
 - [x] Non-paged list (virtual scrolling, on-demand rendering of a row, supports for high number of rows with limited impact)
 - [x] Name filtering with l33t support ('arrow' finds both 'ARROW' and '4RR0W')
