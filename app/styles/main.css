@@ -32,7 +32,15 @@ body {
 /* Make the masthead heading the same height as the navigation */
 .top-bar .header {
   margin-top: 0;
-  line-height: 40px;
+  line-height: 32px;
+  height: 40px;
+  background: transparent url('/favicon.png') no-repeat left;
+  padding-left: 35px;
+  margin-bottom: 10px;
+}
+
+.top-bar .nav-tabs {
+  border-bottom: none;
 }
 
 /* Custom page footer */
