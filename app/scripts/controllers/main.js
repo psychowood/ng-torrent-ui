@@ -257,6 +257,10 @@
 	};
 
 	$scope.reload = function(manual) {
+    if (refreshing) {
+      return;
+    }
+    
 		$scope.refreshing = true;
 		$timeout.cancel(reloadTimeout);
 		$log.info('reload torrents');
