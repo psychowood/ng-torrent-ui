@@ -28,6 +28,9 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### v0.2.0
+- [x] Handle multiple selection with Shift modifier
+
 ### v0.1.0
 - [x] Generinc information os download status (progress, size, current speed, queue position)
 - [x] Reponsive design (mobile and desktop views)
@@ -75,7 +78,7 @@ The base project was scaffolded with [Yeoman](http://yeoman.io).
 The main page includes a Google Analytics tag. It is just a counter for statistic usage (nothing else is tracked, neither the downloads nor anything else). The tag can be easily removed from index.html, if you believe this could be a problem just let me know.
 
 ### Donations
-This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :) 
+This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :)
 You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84LH348H27CN6) or [usd](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z88PRASGESGQ).
 
 Screenshots

@@ -257,7 +257,7 @@
 	};
 
 	$scope.reload = function(manual) {
-    if (refreshing) {
+    if ($scope.refreshing) {
       return;
     }
     
