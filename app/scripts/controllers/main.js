@@ -10,7 +10,7 @@
  angular.module('utorrentNgwebuiApp')
  .controller('TorrentsCtrl', function ($scope,$window,$filter,$timeout,$log,uTorrentService,Torrent,toastr) {
 
-   		$scope.headerHeight = 350;
+        $scope.headerHeight = 350;
         // On window resize => resize the app
         $scope.setListHeight = function() {
             $scope.listHeight = $window.innerHeight - 200;// - $scope.headerHeight;
@@ -347,19 +347,59 @@
  		$scope.selectedtorrents = getSelected($scope.torrents);
  	};
 
+  var lastSelectedHash = null;
  	$scope.setSelected = function(hash,event) {
- 		var add = event.ctrlKey || event.metaKey;
-    var i;
- 		for (i =0; i<$scope.torrents.length; i++) {
- 			var same = ($scope.torrents[i].hash === hash);
- 			if (!add) {
-         $scope.torrents[i].selected = same;
-       } else {
-         if (same) {
+ 		var ctrl = event.ctrlKey || event.metaKey;
+    var shift = event.shiftKey;
+    var i,j=0;
+
+    if (shift) {
+      var selIndex = -1;
+      var lastSelIndex = -1;
+      for (i=0; i<$scope.filteredtorrents.length; i++) {
+        if (selIndex === -1 && $scope.filteredtorrents[i].hash === hash) {
+          selIndex = i;
+        }
+        if (lastSelIndex === -1 && $scope.filteredtorrents[i].hash === lastSelectedHash) {
+          lastSelIndex = i;
+        }
+        if (selIndex !== -1 && lastSelIndex !== -1) {
+          break;
+        }
+      }
+
+      if (selIndex === lastSelIndex) {
+        return
+      }
+
+      if (lastSelIndex === -1) {
+        lastSelIndex = 0;
+      }
+
+      if (selIndex > lastSelIndex) {
+        j = selIndex + 1;
+        i = lastSelIndex;
+      } else {
+        j = lastSelIndex + 1;
+        i = selIndex;
+      }
+
+      for (; i<j; i++) {
+          $scope.filteredtorrents[i].selected = true;
+      }
+    } else if (ctrl) {
+       for (i=0; i<$scope.torrents.length; i++) {
+         if (($scope.torrents[i].hash === hash)) {
            $scope.torrents[i].selected = !$scope.torrents[i].selected;
          }
        }
- 		}
+     } else {
+      for (i=0; i<$scope.torrents.length; i++) {
+        var same = ($scope.torrents[i].hash === hash);
+        $scope.torrents[i].selected = same;
+      }
+    }
+    lastSelectedHash = hash;
  		$scope.updateSelected();
  	};
 
