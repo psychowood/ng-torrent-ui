@@ -198,6 +198,12 @@ body {
   width: 120px;
 }
 
+.torrent .peers {
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 100px;
+}
+
 .torrent .queue {
   padding-left: 2px;
   padding-right: 2px;

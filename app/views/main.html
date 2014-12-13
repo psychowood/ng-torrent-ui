@@ -130,6 +130,15 @@
         <span class="glyphicon" ng-show="sorter.field === 'downloadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
+    <span class="input-group-addon selectable sorter text-center peers hide-on-md" >
+      <span ng-click="sortBy('seedsInSwarm')">Seeds
+        <span class="glyphicon" ng-show="sorter.field === 'seedsInSwarm'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
+      </span>
+      -
+      <span ng-click="sortBy('peersInSwarm')">Peers
+        <span class="glyphicon" ng-show="sorter.field === 'peersInSwarm'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
+      </span>
+    </span>
 
     <!-- <span class="input-group-addon actions sorter">
       Actions
