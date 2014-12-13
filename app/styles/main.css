@@ -278,7 +278,7 @@ body {
 
 .sorter,
 .selectable {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .torrent-header .sorter {
