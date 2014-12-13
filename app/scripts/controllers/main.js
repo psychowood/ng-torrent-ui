@@ -129,7 +129,6 @@
 		filters: {
 			name: '',
 			label: '',
-			l33t: true
 			l33t: true,
 			selected: false
 		}
@@ -200,11 +199,16 @@
 	};
 
 	var doFilterTimer;
+  $scope.notL33table = false;
 	$scope.doFilter = function(wait) {
+
+    $scope.notL33table = $scope.filters.name.search(/^[a-z0-9 ]+$/i) === -1;
+
 		$timeout.cancel(doFilterTimer);
 		var doFilter = function() {
 			$log.info('filtering');
 			var filters = {};
+      var i,c,l;
 
 			if ($scope.filters.label === null) {
 				delete filters.label;
@@ -220,12 +224,15 @@
 				var name = $scope.filters.name.split(' ').join('.');
 				filters.name = name;
 
-				if ($scope.filters.l33t === true) {
-					filters.nameL33ted = '|' + $window.L33t.Translate(name);
-				} else {
-					filters.nameL33ted = '';
+				if (!$scope.notL33table && $scope.filters.l33t === true) {
+          var leetedName = '';
+          for (i=0; i<name.length; i++) {
+            c = name.charAt(i);
+            l = $window.L33t.Translate(c);
+            leetedName += '[' + c + l + ']';
+          }
+          filters.name = leetedName;
 				}
-
 			}
 
 			$scope.filteredtorrents = $filter('filter')($scope.torrents,
@@ -239,7 +246,7 @@
           }
 					if (matches && filters.name && filters.name !== '') {
 						var name = torrent.name;
-						matches = name.search(new RegExp(filters.name + filters.nameL33ted,'i')) > -1;
+						matches = name.search(new RegExp(filters.name,'i')) > -1;
 					}
 					return matches;
 				}
@@ -267,7 +274,7 @@
     if ($scope.refreshing) {
       return;
     }
-    
+
 		$scope.refreshing = true;
 		$timeout.cancel(reloadTimeout);
 		$log.info('reload torrents');
