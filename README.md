@@ -7,6 +7,8 @@ The use of virtual scrolling removes the need for paging even on a huge list (te
 
 It is mainly focused on remote controlling the download list instead of trying to replicate each and every feature of the desktop application.
 
+If you want to discuss or get support, [here's](https://plus.google.com/communities/102445612191587383590) the Google Community.
+
 Installation
 ============
 
@@ -29,7 +31,14 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 ## Release History
 
 ### v0.2.0
-- [x] Handle multiple selection with Shift modifier
+- [x] Got a brand new logo. Deserved a version bump. :)
+- [x] Reference to G+ page
+- [x] Multiple selection with Shift key modifier
+- [X] New filter: Show only selected torrents
+- [X] New filter: Filter by status (downloading, seeding, paused, ...)
+- [x] L33t filter rewrite
+- [x] Angular version upgraded to 1.3.6
+- [x] Pruned unused dependencies
 
 ### v0.1.0
 - [x] Generinc information os download status (progress, size, current speed, queue position)
@@ -59,7 +68,7 @@ Not in a specific order.
 - [ ] Changing priorities of files in a torrent
 - [ ] Show labels and tags of a torrent
 - [ ] Show seeds/peers of a torrent
-- [ ] Show only selected torrents
+- [ ] Apply multiple name filters at the same time
 - [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
 - [ ] Local storage (saving searches and custom settings)
 - [ ] Scene name parsing, estraction of tags (file format, languages, etc)
@@ -67,6 +76,7 @@ Not in a specific order.
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Code cleanup
+- [ ] Find a cool name
 - [ ] Any ideas? Tell me :)
 
 Various
