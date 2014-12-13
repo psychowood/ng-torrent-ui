@@ -417,7 +417,7 @@
       }
 
       if (selIndex === lastSelIndex) {
-        return
+        return;
       }
 
       if (lastSelIndex === -1) {
