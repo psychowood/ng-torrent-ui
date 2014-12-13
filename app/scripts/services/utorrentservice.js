@@ -340,6 +340,21 @@ function formatBytes(bytes) {
         },
         forcestart: {
           params: { action:'forcestart'}
+        },
+        recheck: {
+          params: { action:'recheck'}
+        },
+        queueup: {
+          params: { action:'queueup'}
+        },
+        queuedown: {
+          params: { action:'queuedown'}
+        },
+        getprops: {
+          params: { action:'getprops'}
+        },
+        getfiles: {
+          params: { action:'getfiles'}
         }
       });
     }
