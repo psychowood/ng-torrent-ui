@@ -377,6 +377,8 @@
 			if(manual !== true && $scope.autoreloadTimeout > -1) {
 				reloadTimeout = $timeout($scope.reload,$scope.autoreloadTimeout);
 			}
+      $scope.torrentsMap = torrentsMap;
+      $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
 			$scope.refreshing = false;
 
 		});
@@ -396,6 +398,8 @@
  	};
 
   var lastSelectedHash = null;
+  var lastTorrentDetails = null;
+
  	$scope.setSelected = function(hash,event) {
  		var ctrl = event.ctrlKey || event.metaKey;
     var shift = event.shiftKey;
@@ -448,6 +452,7 @@
       }
     }
     lastSelectedHash = hash;
+    $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
  		$scope.updateSelected();
  	};
 
