@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/psychowood/ng-torrent-ui.svg?branch=master)](https://travis-ci.org/psychowood/ng-torrent-ui)
-ng-torrent-ui
+![Logo](app/favicon.png?raw=true "Logo") ng-torrent-ui
 =============
 
 ng-torrent-ui is born as a replacement for the uTorrent WebUI, focusing on download management and responsiveness instead of covering each and every functionality.
