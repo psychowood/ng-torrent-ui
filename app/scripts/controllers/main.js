@@ -130,7 +130,8 @@
 			name: '',
 			label: '',
 			l33t: true,
-			selected: false
+			selected: false,
+      status: ''
 		}
 	};
 
@@ -216,6 +217,12 @@
 				filters.label = $scope.filters.label;
 			}
 
+			if ($scope.filters.status === null) {
+				delete filters.status;
+			} else {
+				filters.status = $scope.filters.status;
+			}
+
 			filters.selected = $scope.filters.selected;
 
 			if ($scope.filters.name === null || $scope.filters.name === '') {
@@ -243,6 +250,29 @@
 					}
           if (filters.selected) {
             matches = torrent.selected === true;
+          }if (filters.status) {
+            switch(filters.status) {
+              case 'completed': {
+                matches = torrent.isStatusCompleted();
+                break;
+              }
+              case 'downloading': {
+                matches = torrent.isStatusDownloading();
+                break;
+              }
+              case 'paused': {
+                matches = torrent.isStatusPaused();
+                break;
+              }
+              case 'queued': {
+                matches = torrent.isStatusQueued();
+                break;
+              }
+              case 'seeding': {
+                matches = torrent.isStatusSeeding();
+                break;
+              }
+            }
           }
 					if (matches && filters.name && filters.name !== '') {
 						var name = torrent.name;

@@ -31,25 +31,45 @@
     </div>
     <div class="form-group">
       <div class="input-group input-group-sm filter-name">
-        <input type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="Filter torrents by name" class="form-control">
-        <button type="button" ng-hide="filters.name === ''" ng-click="filters.name = '';doFilter()" class="btn btn-link btn-clear" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> </input> <span>l33t</span></span>
+        <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="Filter by name">
+        <span class="input-group-btn">
+          <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+        </span>
       </div>
     </div>
     <div class="form-group">
       <div class="input-group input-group-sm filter-label">
         <select ng-model="filters.label" ng-change="doFilter()" class="form-control" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
-          <option value="">Any label</option>
+          <option value="">Filter by label</option>
         </select>
+        <span class="input-group-btn">
+          <button class="btn" type="button" ng-disabled="filters.label === ''" ng-click="filters.label = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+        </span>
       </div>
     </div>
     <div class="form-group">
-      <div class="input-group input-group-sm filter-label">
+      <div class="input-group input-group-sm filter-selected">
+        <span class="form-control selectable" ng-click="filters.selected = !filters.selected; doFilter()">
+          Show selected
+        </span>
         <span class="input-group-addon input-group-sm">
           <input type="checkbox" ng-model="filters.selected" ng-change="doFilter()">
         </span>
-        <span class="form-control selectable" ng-click="filters.selected = !filters.selected; doFilter()">
-          Show selected
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group input-group-sm filter-status">
+        <select ng-model="filters.status" ng-change="doFilter()" class="form-control squared">
+          <option value="">Filter by status</option>
+          <option value="completed">Completed</option>
+          <option value="downloading">Downloading</option>
+          <option value="paused">Paused</option>
+          <option value="queued">Queued</option>
+          <option value="seeding">Seeding</option>
+        </select>
+        <span class="input-group-btn">
+          <button class="btn" type="button" ng-disabled="filters.status === ''" ng-click="filters.status = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
       </div>
     </div>
