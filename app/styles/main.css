@@ -11,6 +11,21 @@ select {
   padding-right: 30px !important;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #555 !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #555 !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #555 !important;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #555 !important;
+}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
