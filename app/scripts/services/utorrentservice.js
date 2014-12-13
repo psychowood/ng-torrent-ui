@@ -157,7 +157,7 @@ Torrent.prototype.isStatusPaused = function () {
   return this.getStatusFlag(32);
 };
 Torrent.prototype.isStatusQueued = function () {
-  return this.getStatusFlag(64);
+  return this.getStatusFlag(64) && !this.isStatusDownloading();
 };
 Torrent.prototype.isStatusLoaded = function () {
   return this.getStatusFlag(128);
