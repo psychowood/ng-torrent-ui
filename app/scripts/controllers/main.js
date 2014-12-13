@@ -130,6 +130,8 @@
 			name: '',
 			label: '',
 			l33t: true
+			l33t: true,
+			selected: false
 		}
 	};
 
@@ -210,6 +212,8 @@
 				filters.label = $scope.filters.label;
 			}
 
+			filters.selected = $scope.filters.selected;
+
 			if ($scope.filters.name === null || $scope.filters.name === '') {
 				delete filters.name;
 			} else {
@@ -230,6 +234,9 @@
 					if (filters.label) {
 						matches = torrent.label === filters.label;
 					}
+          if (filters.selected) {
+            matches = torrent.selected === true;
+          }
 					if (matches && filters.name && filters.name !== '') {
 						var name = torrent.name;
 						matches = name.search(new RegExp(filters.name + filters.nameL33ted,'i')) > -1;

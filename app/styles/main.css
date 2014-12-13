@@ -141,7 +141,6 @@ body {
 
 .torrent .selectable {
   background-color: transparent;
-  cursor:pointer;
   border-right:0;
 }
 
@@ -277,8 +276,12 @@ body {
 
 }
 
+.sorter,
+.selectable {
+    cursor: pointer;
+}
+
 .torrent-header .sorter {
-  cursor: pointer;
   font-weight: bold;
   text-align: center;
 /*

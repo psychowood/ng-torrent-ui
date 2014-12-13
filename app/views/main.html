@@ -43,6 +43,16 @@
         </select>
       </div>
     </div>
+    <div class="form-group">
+      <div class="input-group input-group-sm filter-label">
+        <span class="input-group-addon input-group-sm">
+          <input type="checkbox" ng-model="filters.selected" ng-change="doFilter()">
+        </span>
+        <span class="form-control selectable" ng-click="filters.selected = !filters.selected; doFilter()">
+          Show selected
+        </span>
+      </div>
+    </div>
     <div class="form-group input-group-sm">
       <span type="text" value="" class="form-control">Torrents: {{torrents.length}} total - {{filteredtorrents.length}} matching filters - {{selectedtorrents.length}} selected</span>
     </div>
