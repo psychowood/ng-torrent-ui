@@ -18,7 +18,6 @@
   'ngTouch',
   'ui.bootstrap',
   'vs-repeat',
-  'ng-context-menu',
   'toastr'
   ]).config(function ($routeProvider) {
     $routeProvider
