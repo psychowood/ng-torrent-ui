@@ -237,7 +237,12 @@
           for (i=0; i<name.length; i++) {
             c = name.charAt(i);
             l = $window.L33t.Translate(c);
-            leetedName += '[' + c + l + ']';
+            if (c === l) {
+              leetedName += c;
+            } else {
+              leetedName += '[' + c + l + ']';
+            }
+
           }
           filters.name = leetedName;
 				}
@@ -298,7 +303,7 @@
 	};
 
 	var cleanName = function(name) {
-		return name.replace(/\./g,' ').replace(/(\[[^\]]*\])(.*)$/,'$2 $1').trim();
+		return name.replace(/[\._]/g,' ').replace(/(\[[^\]]*\])(.*)$/,'$2 $1').trim();
 	};
 
 	$scope.reload = function(manual) {
