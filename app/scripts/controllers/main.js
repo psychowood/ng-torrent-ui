@@ -391,7 +391,7 @@
       torrent.jobdetails = $scope.doAction('getprops',torrent);
       torrent.files = $scope.doAction('getfiles',torrent);
     }
-  }
+  };
 
   $scope.updateSelected = function() {
  		/*
@@ -407,7 +407,6 @@
  	};
 
   var lastSelectedHash = null;
-  var lastTorrentDetails = null;
 
  	$scope.setSelected = function(hash,event) {
  		var ctrl = event.ctrlKey || event.metaKey;

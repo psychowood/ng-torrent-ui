@@ -247,7 +247,7 @@ function formatBytes(bytes) {
     } else {
       return '';
     }
-  }
+  };
 
   /**
    * Static method, assigned to class
