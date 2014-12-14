@@ -232,6 +232,23 @@ function formatBytes(bytes) {
     return this.downSpeedStrArr;
   };
 
+  Torrent.prototype.getLabels = function () {
+    if (typeof this.label === 'string') {
+      return [this.label];
+    } else {
+      return this.label;
+    }
+  };
+
+  Torrent.prototype.getMainLabel = function() {
+    var labels = this.getLabels();
+    if (labels && labels.length > 0){
+      return labels[0];
+    } else {
+      return '';
+    }
+  }
+
   /**
    * Static method, assigned to class
    * Instance ('this') is not available in static context

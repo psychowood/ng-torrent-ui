@@ -8,7 +8,9 @@
   <span class="input-group-addon status" title="{{statusTitle}}" >
     <span class="glyphicon {{statusClass}} {{statusColor}}"></span>
   </span>
-  <div title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)" >{{item.decodedName}}</div>
+  <div class="tag-label input-group-addon">{{item.getMainLabel()}}</div>
+  <div title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)" >{{item.decodedName}}
+  </div>
   <div class="input-group-addon selectable size">
     <span class="byte-value">{{item.getSizeStrArr()[0]}}</span> <span class="byte-uom">{{item.getSizeStrArr()[1]}}</span><div class="download-progress" ng-style="{'width':item.getPercentStr()}" ng-class="{'btn-warning':(item.percent < 250), 'btn-info':(item.percent < 999), 'btn-success':(item.percent > 999)}"></div></div>
     <span class="input-group-addon selectable speed hide-on-md">
