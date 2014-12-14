@@ -30,6 +30,12 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### v0.2.1
+- [x] Show primary label the grid
+- [x] Show seeds/peers in grid
+- [x] Fixed name filter with spaces
+- [x] Fixed non working actions (queue up/down, recheck)
+
 ### v0.2.0
 - [x] Got a brand new logo. Deserved a version bump. :)
 - [x] Reference to G+ page
@@ -76,6 +82,7 @@ Not in a specific order.
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Code cleanup
+- [ ] Toolbar auto fit width
 - [ ] Find a cool name
 - [ ] Any ideas? Tell me :)
 
