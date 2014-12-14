@@ -23,6 +23,8 @@ angular.module('utorrentNgwebuiApp')
         var statusClass,statusTitle,statusColor;
         var btnClass,btnIcon,btnAction;
 
+        item.getStatuses();
+
         if(item.isStatusError() && !item.isStatusCompleted()) {
           statusClass = 'exclamation-sign';
           statusTitle = 'Error';
@@ -88,61 +90,11 @@ angular.module('utorrentNgwebuiApp')
         scope.statusColor = statusColor;
         scope.btnClass = 'btn-' + btnClass;
         scope.btnIcon = 'glyphicon-' + btnIcon;
-        scope.$doDefaultAction = function() {
 
-        };
-
-        item.getStatuses();
       } else {
         console.log('undefined');
       }
-      //$compile(element)(scope);
     }
   };
 
-  /*
-
-  <span class="input-group-addon">
-  <input type="checkbox" ng-model="item.selected" ng-change="updateSelected()">
-  </span>
-  <span class="input-group-addon queue" >
-  {{item.getQueueStr()}}
-  </span>
-  <span class="input-group-addon status">
-  <torrent-status ng-model="item" />
-  </span>
-  <input readonly type="text" title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash)"  ng-value="item.decodedName" />
-  <div class="input-group-addon selectable size">
-  <span class="byte-value">{{item.getSizeStrArr()[0]}}</span> <span class="byte-uom">{{item.getSizeStrArr()[1]}}</span><div class="download-progress" ng-style="{'width':item.getPercentStr()}" ng-class="{'btn-warning':(item.percent < 250), 'btn-info':(item.percent < 999), 'btn-success':(item.percent > 999)}"></div></div>
-
-  <span class="input-group-addon selectable speed hide-on-small">
-  <span class="byte-value">{{item.getUpSpeedStrArr()[0]}}</span> <span class="byte-uom">{{item.getUpSpeedStrArr()[1]}}</span>
-  -
-  <span class="byte-value">{{item.getDownSpeedStrArr()[0]}}</span> <span class="byte-uom">{{item.getDownSpeedStrArr()[1]}}</span>
-  </span>
-  <span class="input-group-btn hide-on-small">
-  <button class="btn" ng-class="!item.isStatusStarted() ? 'btn-success' : 'btn-warning'" ng-click="doAction('start',item)">
-  <span class="glyphicon" ng-class="!item.isStatusStarted() ? 'glyphicon-play-circle' : 'glyphicon-pause'"></span>
-  </button>
-  <button class="btn btn-danger hide-on-small" >
-  <span class="glyphicon" ng-class="item.isStatusStarted() ? 'glyphicon-stop' : 'glyphicon-remove-sign'"></span>
-  </button>
-  </span>
-
-  <span class="glyphicon" ng-class="
-  {
-  'glyphicon-download': item.isStatusDownloading(),
-  'glyphicon-refresh': item.isStatusChecking(),
-  '': item.isStatusStartAfterCheck(),
-  '': item.isStatusChecked(),
-  'glyphicon-exclamation-sign': item.isStatusError(),
-  '': item.isStatusPaused(),
-  '': item.isStatusQueued(),
-  '': item.isStatusLoaded(),
-  'glyphicon-ok-sign': item.isStatusCompleted(),
-  'glyphicon-upload': item.isStatusSeeding()
-}
-">
-
-*/
 });
