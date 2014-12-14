@@ -229,7 +229,7 @@
 			if ($scope.filters.name === null || $scope.filters.name === '') {
 				delete filters.name;
 			} else {
-				var name = $scope.filters.name;
+				var name = $scope.filters.name.split(' ').join('.');
 				filters.name = name;
 
 				if (!$scope.notL33table && $scope.filters.l33t === true) {
