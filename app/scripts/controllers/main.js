@@ -119,6 +119,7 @@
 			ts.$promise.then(function() {
 			//console.log(arguments);
 			});
+      return ts;
 		} else {
 			toastr.warning('Action ' + action + ' not yet supported',null,{timeOut: 1000});
 		}
@@ -379,10 +380,18 @@
 			}
       $scope.torrentsMap = torrentsMap;
       $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
+      updateTorrentDetails($scope.lastTorrentDetails);
 			$scope.refreshing = false;
 
 		});
   };
+
+  var updateTorrentDetails = function(torrent) {
+    if(torrent){
+      torrent.jobdetails = $scope.doAction('getprops',torrent);
+      torrent.files = $scope.doAction('getfiles',torrent);
+    }
+  }
 
   $scope.updateSelected = function() {
  		/*
@@ -453,6 +462,7 @@
     }
     lastSelectedHash = hash;
     $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
+    updateTorrentDetails($scope.lastTorrentDetails);
  		$scope.updateSelected();
  	};
 
