@@ -318,6 +318,7 @@ Torrent.prototype.formatBytes = function(bytes) {
   };
 
   return {
+    cacheMap: {},
     conf: data,
     getToken: function(callback) {
       $log.info('get token');

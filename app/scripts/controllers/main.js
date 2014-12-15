@@ -66,7 +66,7 @@
 	$scope.filteredtorrents = [];
 	$scope.selectedtorrents = [];
 
-	var torrentsMap = null;
+	var torrentsMap = uTorrentService.cacheMap;
 	var reloadTimeout;
 	$scope.autoreloadTimeout = 5000;
 
@@ -327,11 +327,9 @@
 		ts.$promise.then(function() {
 			var changed = false;
 			var i,torrent;
-			var firstRun = false;
 			$scope.labels = ts.label;
 
 			if (torrentsMap === null) {
-				firstRun = true;
 				torrentsMap = {};
 			}
 
@@ -375,9 +373,8 @@
 				angular.forEach(torrentsMap, function(value /* , key */) {
 					$scope.torrents.push(value);
 				});
-
 				$scope.doFilter();
-
+        uTorrentService.cacheMap = torrentsMap;
 				$scope.selectedtorrents = getSelected($scope.torrents);
 			} else {
 				$log.debug('no changes');
@@ -416,11 +413,7 @@
       size: 'lg',
       resolve: {
         torrent: function () {
-          if (item) {
-            return item
-          } else {
-            return $scope.lastTorrentDetails;
-          }
+          return $scope.lastTorrentDetails;
         }
       }
     });
@@ -511,4 +504,9 @@
  	},function() {
      $log.error('error', arguments);
    });
+
+  $scope.$on('$routeChangeStart', function(/* scope, next, current */){
+    //Prevent multiple reload timers when switching tabs
+    $timeout.cancel(reloadTimeout);
+  });
  });
