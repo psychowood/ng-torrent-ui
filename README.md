@@ -30,7 +30,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
-### v0.2.1
+### v0.2.5
 - [x] Show primary label the grid
 - [x] Show seeds/peers in grid
 - [x] Show torrent details with properties and files list
