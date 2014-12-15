@@ -1,0 +1,100 @@
+<div class="modal-header details-header">
+  <h3 class="modal-title">{{torrent.decodedName}}</h3>
+    <div class="details-progress">
+      <progressbar max="torrent.size" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.size-torrent.remaining">{{torrent.percent/10}}% </progressbar>
+    </div>
+</div>
+<div class="modal-body details-body">
+  <!-- <div><b>ETA:</b> {{torrent.eta}}</div> -->
+  <div><b>Real torrent name:</b> {{torrent.name}}</div>
+  <div><b>Hash:</b> {{torrent.hash}}</div>
+  <div><b>Size:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
+  <div><b>Statuses:</b>  <i ng-repeat="status in torrent.statusesCached">
+      {{ status }}<span ng-if="!$last">,</span>
+    </i></div>
+  <div><b>Labels:</b>  <i ng-repeat="label in torrent.getLabels()">
+      {{ label }}<span ng-if="!$last">,</span>
+    </i></div>
+  <div><b>Clients:</b>
+    {{torrent.seedsInSwarm}} seeds<span ng-if="torrent.seedsInSwarm > 0"> ({{torrent.seedsConnected}} connected)</span>,
+    {{torrent.peersInSwarm}} peers<span ng-if="torrent.peersInSwarm > 0"> ({{torrent.peersConnected}} connected)</span>,
+    sharing ratio {{torrent.ratio/1000}}%
+  </div>
+  <div><b>Transfers:</b>
+    {{torrent.formatBytes(torrent.uploaded)}} uploaded,
+    {{torrent.formatBytes(torrent.downloaded)}} downloaded
+  </div>
+  <div><b>Files:</b>
+    <ul>
+      <li ng-repeat="file in torrent.files">
+      <i>{{ file[0] }}</i> - {{ torrent.formatBytes(file[1]) }} - {{ file[2]/file[1]*100 }}%
+    </li>
+    </ul></div>
+  <!-- <pre>
+    {{torrent | json}}
+  </pre> -->
+</div>
+
+<!--
+{
+----  "selected": true,
+----  "hash": "17BC73F2DDF0B5EC6A54123232AFC690129914B3",
+----  "status": 136,
+----  "name": "I Borgia S03e09-12",
+--  "size": 1956813049,
+----  "sizeStrArr": ["1.8", "GB"],
+--  "percent": 0,
+--  "downloaded": 0,
+--  "uploaded": 0,
+--  "ratio": 0,
+  "uploadSpeed": 0,
+  "upSpeedStrArr": [0, "B/s"],
+  "downloadSpeed": 0,
+  "downSpeedStrArr": [0, "B/s"],
+  "eta": 0,
+--  "label": "Telefilm",
+--  "peersConnected": 0,
+--  "peersInSwarm": 0,
+--  "seedsConnected": 0,
+--  "seedsInSwarm": 0,
+  "availability": 0,
+----  "torrentQueueOrder": 6895,
+--  "remaining": 1956813049,
+  "additionalData": null,
+--  "decodedName": "I Borgia S03e09-12",
+--  "statusesCached": ["loaded", "checked"],
+  "props": {
+    "hash": "C96DF8439C183AE7B432D695B04C23A04F088250",
+    "trackers": "http://tracker.tntvillage.scambioetico.org:2710/announce\r\nudp://tracker.tntvillage.scambioetico.org:2710/announce\r\n\r\nudp://tracker.coppersurfer.tk:6969/announce\r\n\r\nudp://tracker.openbittorrent.com:80/announce\r\n\r\nudp://tracker.publicbt.com:80\r\n\r\nudp://tracker.istole.it:80\r\n\r\nudp://open.demonii.com:1337/announce\r\n",
+    "ulrate": 0,
+    "dlrate": 0,
+    "superseed": 0,
+    "dht": 1,
+    "pex": 1,
+    "seed_override": 0,
+    "seed_ratio": 10,
+    "seed_time": 60,
+    "ulslots": 0
+  },
+  "files": [
+    [
+--      "Beauty.and.the.Beast.2012.2X20.Sotto.Copertura.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
+--      1480783803,
+--      0,
+      2
+    ],
+    [
+--      "Beauty.and.the.Beast.2012.2X21.Finto.Appuntamento.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
+--      1447231910,
+--      0,
+      2
+    ],
+    [
+--      "Beauty.and.the.Beast.2012.2X22.Deja.Vu.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
+--      1449519516,
+--      0,
+      2
+    ]
+  ]
+}
+-->

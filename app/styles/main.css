@@ -383,3 +383,15 @@ body {
 .torrent .input-group-addon {
   background-color: inherit;
 }
+
+.details-header {
+  padding-bottom: 0px;
+}
+
+.details-header .details-progress .progress {
+  margin-bottom: 5px;
+}
+
+.details-header .details-progress .progress-bar {
+  color: #ccc;
+}

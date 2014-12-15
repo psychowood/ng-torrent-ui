@@ -8,7 +8,7 @@
  * Controller of the utorrentNgwebuiApp
  */
  angular.module('utorrentNgwebuiApp')
- .controller('TorrentsCtrl', function ($scope,$window,$filter,$timeout,$log,uTorrentService,Torrent,toastr) {
+ .controller('TorrentsCtrl', function ($scope,$window,$modal,$filter,$timeout,$log,uTorrentService,Torrent,toastr) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -384,17 +384,54 @@
 				reloadTimeout = $timeout($scope.reload,$scope.autoreloadTimeout);
 			}
       $scope.torrentsMap = torrentsMap;
-      $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
+      $scope.lastTorrentDetails = $scope.torrentsMap[$scope.lastSelectedHash];
       updateTorrentDetails($scope.lastTorrentDetails);
 			$scope.refreshing = false;
 
 		});
   };
 
+  $scope.showDetails = function() {
+    var modalInstance = $modal.open({
+      templateUrl: 'views/details-dialog.html',
+      controller: 'DetailsDialogCtrl',
+      backdrop: true,
+      size: 'lg',
+      resolve: {
+        torrent: function () {
+          return $scope.lastTorrentDetails;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.$watch( 'lastSelectedHash', function ( isChecked ) {
+ 		if ($scope.lastSelectedHash) {
+        $scope.showDetails();
+     }
+ 	});
+
   var updateTorrentDetails = function(torrent) {
     if(torrent){
-      torrent.jobdetails = $scope.doAction('getprops',torrent);
-      torrent.files = $scope.doAction('getfiles',torrent);
+      var calls = 2;
+      $scope.doAction('getprops',torrent).$promise.then(function(res) {
+          torrent.props = res.props[0];
+          // if (--calls === 0) {
+          //   $scope.$apply();
+          // }
+      });
+      $scope.doAction('getfiles',torrent).$promise.then(function(res) {
+          torrent.files = res.files[1];
+          // if (--calls === 0) {
+          //   $scope.$apply();
+          // }
+      });
     }
   };
 
@@ -411,7 +448,7 @@
  		$scope.selectedtorrents = getSelected($scope.torrents);
  	};
 
-  var lastSelectedHash = null;
+  $scope.lastSelectedHash = null;
 
  	$scope.setSelected = function(hash,event) {
  		var ctrl = event.ctrlKey || event.metaKey;
@@ -425,7 +462,7 @@
         if (selIndex === -1 && $scope.filteredtorrents[i].hash === hash) {
           selIndex = i;
         }
-        if (lastSelIndex === -1 && $scope.filteredtorrents[i].hash === lastSelectedHash) {
+        if (lastSelIndex === -1 && $scope.filteredtorrents[i].hash === $scope.lastSelectedHash) {
           lastSelIndex = i;
         }
         if (selIndex !== -1 && lastSelIndex !== -1) {
@@ -464,8 +501,8 @@
         $scope.torrents[i].selected = same;
       }
     }
-    lastSelectedHash = hash;
-    $scope.lastTorrentDetails = $scope.torrentsMap[lastSelectedHash];
+    $scope.lastSelectedHash = hash;
+    $scope.lastTorrentDetails = $scope.torrentsMap[$scope.lastSelectedHash];
     updateTorrentDetails($scope.lastTorrentDetails);
  		$scope.updateSelected();
  	};
