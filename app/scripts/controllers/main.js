@@ -411,7 +411,7 @@
     });
   };
 
-  $scope.$watch( 'lastSelectedHash', function ( isChecked ) {
+  $scope.$watch( 'lastSelectedHash', function () {
  		if ($scope.lastSelectedHash) {
         $scope.showDetails();
      }
@@ -419,18 +419,11 @@
 
   var updateTorrentDetails = function(torrent) {
     if(torrent){
-      var calls = 2;
       $scope.doAction('getprops',torrent).$promise.then(function(res) {
           torrent.props = res.props[0];
-          // if (--calls === 0) {
-          //   $scope.$apply();
-          // }
       });
       $scope.doAction('getfiles',torrent).$promise.then(function(res) {
           torrent.files = res.files[1];
-          // if (--calls === 0) {
-          //   $scope.$apply();
-          // }
       });
     }
   };
