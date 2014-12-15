@@ -14,6 +14,11 @@ Installation
 
 Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
 
+I feel brave, but I still need the old one!
+===========================================
+
+Just in case you don't feel comfortable enough to completely leave the old way, or you are used to some features you don't want to leave (yet ;) ), the classic WebUI, v0.388 (latest version found in the official uTorrent forum) is embedded. It can be reached at _/gui/classic/index.html_ and is also linked in the 'About' tab.
+
 Development status
 ==================
 
@@ -30,7 +35,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
-### x0.2.6
+### v0.2.6
 - [x] Embedded the classic WebUI, v0.388, the latest version found in the official uTorrent forum. It can be reached at _/gui/classic/index.html_ and is also linked in the 'About' tab), just in case you don't feel comfortable enough to completely leave the old way :) .
 - [x] Minor graphical glitches fixed
 
