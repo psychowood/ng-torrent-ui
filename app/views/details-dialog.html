@@ -1,7 +1,7 @@
 <div class="modal-header details-header">
   <h3 class="modal-title">{{torrent.decodedName}}</h3>
     <div class="details-progress">
-      <progressbar max="torrent.size" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.size-torrent.remaining">{{torrent.percent/10}}% </progressbar>
+      <progressbar max="torrent.size" ng-class="{'progress-striped active':(torrent.uploadSpeed !== 0 || torrent.downloadSpeed !== 0)}" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.size-torrent.remaining">{{torrent.percent/10}}% </progressbar>
     </div>
 </div>
 <div class="modal-body details-body">
@@ -9,7 +9,7 @@
   <div><b>Real torrent name:</b> {{torrent.name}}</div>
   <div><b>Hash:</b> {{torrent.hash}}</div>
   <div><b>Size:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
-  <div><b>Statuses:</b>  <i ng-repeat="status in torrent.statusesCached">
+  <div><b>Statuses:</b> <i ng-repeat="status in torrent.statusesCached">
       {{ status }}<span ng-if="!$last">,</span>
     </i></div>
   <div><b>Labels:</b>  <i ng-repeat="label in torrent.getLabels()">
@@ -21,13 +21,13 @@
     sharing ratio {{torrent.ratio/1000}}%
   </div>
   <div><b>Transfers:</b>
-    {{torrent.formatBytes(torrent.uploaded)}} uploaded,
-    {{torrent.formatBytes(torrent.downloaded)}} downloaded
+    {{torrent.formatBytes(torrent.uploaded)}} uploaded ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
+    {{torrent.formatBytes(torrent.downloaded)}} downloaded ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
   </div>
   <div><b>Files:</b>
     <ul>
       <li ng-repeat="file in torrent.files">
-      <i>{{ file[0] }}</i> - {{ torrent.formatBytes(file[1]) }} - {{ file[2]/file[1]*100 }}%
+      <i>{{ file[0] }}</i> - {{ torrent.formatBytes(file[1]) }} - {{ file[2]/file[1]*100 | number : 2 }}%
     </li>
     </ul></div>
   <!-- <pre>
@@ -47,10 +47,10 @@
 --  "downloaded": 0,
 --  "uploaded": 0,
 --  "ratio": 0,
-  "uploadSpeed": 0,
-  "upSpeedStrArr": [0, "B/s"],
-  "downloadSpeed": 0,
-  "downSpeedStrArr": [0, "B/s"],
+--  "uploadSpeed": 0,
+--  "upSpeedStrArr": [0, "B/s"],
+--  "downloadSpeed": 0,
+--  "downSpeedStrArr": [0, "B/s"],
   "eta": 0,
 --  "label": "Telefilm",
 --  "peersConnected": 0,
