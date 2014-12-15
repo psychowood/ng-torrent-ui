@@ -15,7 +15,6 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-
   // Require the proxy package  https://github.com/drewzboto/grunt-connect-proxy
   // to test locally outside uTorrent
 
@@ -25,6 +24,9 @@ module.exports = function (grunt) {
   // package.json data in the app
   grunt.loadNpmTasks('grunt-string-replace');
 
+  //Gzip files for utorrent archive
+  grunt.loadNpmTasks('grunt-contrib-compress');
+
   // Create the zip for distribution
   grunt.loadNpmTasks('grunt-zip');
 
@@ -32,7 +34,9 @@ module.exports = function (grunt) {
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     version: require('./bower.json').version || require('./package.json').version || 'version missing',
-    dist: 'dist'
+    distRoot: 'dist',
+    dist: 'dist/app',
+    distUtorrent: 'dist/utorrent'
   };
 
   var torrentHost = grunt.option('torrent-host') || 'localhost';
@@ -85,7 +89,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: '0.0.0.0',
+        hostname: 'localhost',
         livereload: 35729
       },
       proxies: [
@@ -153,11 +157,29 @@ module.exports = function (grunt) {
     },
 
     zip: {
-      'utorrent': {
-        cwd: '<%= yeoman.dist %>',
-        src: '<%= yeoman.dist %>/**/*',
+      utorrent: {
+        cwd: '<%= yeoman.distUtorrent %>',
+        src: '<%= yeoman.distUtorrent %>/**/*',
         dest: 'releases/utorrent/webui.zip',
         dot: true
+      }
+    },
+
+    compress: {
+      utorrent: {
+        options: {
+          mode: 'gzip'
+        },
+        files: [
+          // Each of the files in the src/ folder will be output to
+          // the dist/ folder each with the extension .gz.js
+          // {expand: true, src: ['<%= yeoman.dist %>/**/*.js'], dest: '<%= yeoman.distUtorrent %>', ext: '.js.gz'},
+          // {expand: true, src: ['<%= yeoman.dist %>/**/*.html'], dest: '<%= yeoman.distUtorrent %>', ext: '.html.gz'},
+          // {expand: true, src: ['<%= yeoman.dist %>/**/*.css'], dest: '<%= yeoman.distUtorrent %>', ext: '.css.gz'}
+          {expand: true, cwd: '<%= yeoman.dist %>',src: '**/*', dest: '<%= yeoman.distUtorrent %>/', filter: 'isFile', rename: function(dest, src) {
+            return dest + src + '.gz';
+          }}
+        ]
       }
     },
 
@@ -188,8 +210,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
           '.tmp',
-          '<%= yeoman.dist %>/{,*/}*',
-          '!<%= yeoman.dist %>/.git*'
+          '<%= yeoman.distRoot %>'
           ]
         }]
       },
@@ -458,7 +479,8 @@ module.exports = function (grunt) {
     'newer:jshint',
     //'test',
     'build',
-    'zip'
+    'compress:utorrent',
+    'zip:utorrent',
     ]);
 
   };
