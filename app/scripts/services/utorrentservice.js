@@ -63,15 +63,12 @@
     this.status = status;
     this.name = name;
     this.size = size;
-    this.sizeStrArr = [];
     this.percent = percent;
     this.downloaded = downloaded;
     this.uploaded = uploaded;
     this.ratio = ratio;
     this.uploadSpeed = uploadSpeed;
-    this.upSpeedStrArr = [];
     this.downloadSpeed = downloadSpeed;
-    this.downSpeedStrArr = [];
     this.eta = eta;
     this.label = label;
     this.peersConnected = peersConnected;
@@ -207,15 +204,33 @@ function formatBytes(bytes) {
     return [val, uom];
   }
 
+Torrent.prototype.formatBytes = function(bytes) {
+  return formatBytes(bytes).join('');
+};
+
+  Torrent.prototype.getDownloadedStrArr = function () {
+    if (!this.downloadedStrArr) {
+      this.downloadedStrArr = formatBytes(this.downloaded);
+    }
+    return this.downloadedStrArr;
+  };
+
+  Torrent.prototype.getUploadedStrArr = function () {
+    if (!this.uploadedStrArr) {
+      this.uploadedStrArr = formatBytes(this.uploaded);
+    }
+    return this.uploadedStrArr;
+  };
+
   Torrent.prototype.getSizeStrArr = function () {
-    if (this.sizeStrArr.length === 0) {
+    if (!this.sizeStrArr) {
       this.sizeStrArr = formatBytes(this.size);
     }
     return this.sizeStrArr;
   };
 
   Torrent.prototype.getUpSpeedStrArr = function () {
-    if (this.upSpeedStrArr.length === 0) {
+    if (!this.upSpeedStrArr) {
       var res = formatBytes(this.uploadSpeed);
       res[1] = res[1] + '/s';
       this.upSpeedStrArr = res;
@@ -224,7 +239,7 @@ function formatBytes(bytes) {
   };
 
   Torrent.prototype.getDownSpeedStrArr = function () {
-    if (this.downSpeedStrArr.length === 0) {
+    if (!this.downSpeedStrArr) {
       var res = formatBytes(this.downloadSpeed);
       res[1] = res[1] + '/s';
       this.downSpeedStrArr = res;
