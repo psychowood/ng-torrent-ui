@@ -36,7 +36,8 @@ module.exports = function (grunt) {
     version: require('./bower.json').version || require('./package.json').version || 'version missing',
     distRoot: 'dist',
     dist: 'dist/app',
-    distUtorrent: 'dist/utorrent'
+    distUtorrent: 'dist/utorrent',
+    utorrentClassicWebUIArchive: 'resources/utorrent-webui.2013052820184444.zip'
   };
 
   var torrentHost = grunt.option('torrent-host') || 'localhost';
@@ -156,12 +157,20 @@ module.exports = function (grunt) {
       }
     },
 
+
     zip: {
       utorrent: {
         cwd: '<%= yeoman.distUtorrent %>',
         src: '<%= yeoman.distUtorrent %>/**/*',
         dest: 'releases/utorrent/webui.zip',
         dot: true
+      }
+    },
+
+    unzip: {
+      utorrent: {
+        src: '<%= yeoman.utorrentClassicWebUIArchive %>',
+        dest: '<%= yeoman.distUtorrent %>/classic'
       }
     },
 
@@ -480,6 +489,7 @@ module.exports = function (grunt) {
     //'test',
     'build',
     'compress:utorrent',
+    'unzip:utorrent',
     'zip:utorrent',
     ]);
 

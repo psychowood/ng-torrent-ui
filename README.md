@@ -30,6 +30,10 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### x0.2.6
+- [x] Embedded the classic WebUI, v0.388, the latest version found in the official uTorrent forum. It can be reached at _/gui/classic/index.html_ and is also linked in the 'About' tab), just in case you don't feel comfortable enough to completely leave the old way :) .
+- [x] Minor graphical glitches fixed
+
 ### v0.2.5
 - [x] Show primary label the grid
 - [x] Show seeds/peers in grid
