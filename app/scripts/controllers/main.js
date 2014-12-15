@@ -112,6 +112,11 @@
 	$scope.doAction = function(action,item) {
 		var hashes = getSelectedHashes(item);
 
+    if (action === 'info') {
+      $scope.showDetails(item);
+      return;
+    }
+
 		var service = uTorrentService.actions()[action];
 
 		if (service) {
