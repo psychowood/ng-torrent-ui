@@ -49,7 +49,7 @@ body {
   margin-top: 0;
   line-height: 32px;
   height: 40px;
-  background: transparent url('/favicon.png') no-repeat left;
+  background: transparent url('../favicon.png') no-repeat left;
   padding-left: 35px;
   margin-bottom: 10px;
 }
