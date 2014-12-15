@@ -66,15 +66,13 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 Not in a specific order.
 
+- [ ] New versions check
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
 - [ ] Settings page
 - [ ] Better error handling
-- [ ] Show torrent details and properties
 - [ ] Changing priorities of files in a torrent
-- [ ] Show labels and tags of a torrent
-- [ ] Show seeds/peers of a torrent
 - [ ] Apply multiple name filters at the same time
 - [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
 - [ ] Local storage (saving searches and custom settings)
