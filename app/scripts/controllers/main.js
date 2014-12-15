@@ -335,8 +335,7 @@
 				$log.debug('"torrents" key with ' + ts.torrents.length + ' elements');
 				var newTorrentsMap = {};
 				for (i =0; i<ts.torrents.length; i++) {
-					var data = null; //ptn(ts.torrents[i][2])
-					torrent = Torrent.build(ts.torrents[i],data/* ,angular.toJson(data) */,cleanName(ts.torrents[i][2]));
+					torrent = Torrent.build(ts.torrents[i],null /* ptn(ts.torrents[i][2]) */,cleanName(ts.torrents[i][2]));
 					if (torrentsMap[torrent.hash]) {
 						torrent.selected = torrentsMap[torrent.hash].selected;
 					}
@@ -349,7 +348,8 @@
 				changed = true;
 				$log.debug('"torrentp" key with ' + ts.torrentp.length + ' elements');
 				for (i =0; i<ts.torrentp.length; i++) {
-					torrent = Torrent.build(ts.torrentp[i]);
+
+  					torrent = Torrent.build(ts.torrentp[i],null /* ptn(ts.torrentp[i][2]) */,cleanName(ts.torrentp[i][2]));
 					if (torrentsMap[torrent.hash]) {
 						torrent.selected = torrentsMap[torrent.hash].selected;
 					}
