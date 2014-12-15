@@ -389,38 +389,11 @@
 				reloadTimeout = $timeout($scope.reload,$scope.autoreloadTimeout);
 			}
       $scope.torrentsMap = torrentsMap;
-      $scope.lastTorrentDetails = $scope.torrentsMap[$scope.lastSelectedHash];
       updateTorrentDetails($scope.lastTorrentDetails);
 			$scope.refreshing = false;
 
 		});
   };
-
-  $scope.showDetails = function() {
-    var modalInstance = $modal.open({
-      templateUrl: 'views/details-dialog.html',
-      controller: 'DetailsDialogCtrl',
-      backdrop: true,
-      size: 'lg',
-      resolve: {
-        torrent: function () {
-          return $scope.lastTorrentDetails;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
-
-  $scope.$watch( 'lastSelectedHash', function () {
- 		if ($scope.lastSelectedHash) {
-        $scope.showDetails();
-     }
- 	});
 
   var updateTorrentDetails = function(torrent) {
     if(torrent){
@@ -433,16 +406,33 @@
     }
   };
 
-  $scope.updateSelected = function() {
- 		/*
- 		var i;
- 		for (i =0; i<$scope.torrents.length; i++) {
- 			if ($scope.torrents[i].hash === item.hash) {
- 				$scope.torrents[i].selected = item.;
- 			}
+  $scope.showDetails = function(item) {
+    $scope.lastTorrentDetails = item;
+    updateTorrentDetails(item);
+    var modalInstance = $modal.open({
+      templateUrl: 'views/details-dialog.html',
+      controller: 'DetailsDialogCtrl',
+      backdrop: true,
+      size: 'lg',
+      resolve: {
+        torrent: function () {
+          if (item) {
+            return item
+          } else {
+            return $scope.lastTorrentDetails;
+          }
+        }
+      }
+    });
 
- 		}
- 		*/
+    modalInstance.result.then(function () {
+
+    }, function () {
+      $scope.lastTorrentDetails = null;
+    });
+  };
+
+  $scope.updateSelected = function() {
  		$scope.selectedtorrents = getSelected($scope.torrents);
  	};
 
@@ -500,8 +490,6 @@
       }
     }
     $scope.lastSelectedHash = hash;
-    $scope.lastTorrentDetails = $scope.torrentsMap[$scope.lastSelectedHash];
-    updateTorrentDetails($scope.lastTorrentDetails);
  		$scope.updateSelected();
  	};
 
