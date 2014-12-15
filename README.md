@@ -33,6 +33,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 ### v0.2.1
 - [x] Show primary label the grid
 - [x] Show seeds/peers in grid
+- [x] Show torrent details with properties and files list
 - [x] Fixed name filter with spaces
 - [x] Fixed non working actions (queue up/down, recheck)
 
@@ -82,6 +83,7 @@ Not in a specific order.
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Code cleanup
+- [ ] Desktop notifications for supported browsers
 - [ ] Toolbar auto fit width
 - [ ] Find a cool name
 - [ ] Any ideas? Tell me :)
