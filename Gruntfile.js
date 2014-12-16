@@ -33,6 +33,9 @@ module.exports = function (grunt) {
   // ProcessHtml for demo build
   grunt.loadNpmTasks('grunt-processhtml');
 
+  // Rename to move dist/app to dist/demo
+  grunt.loadNpmTasks('grunt-contrib-rename');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -40,6 +43,7 @@ module.exports = function (grunt) {
     distRoot: 'dist',
     dist: 'dist/app',
     distUtorrent: 'dist/utorrent',
+    distDemo: 'dist/demo',
     utorrentClassicWebUIArchive: 'resources/utorrent-webui.2013052820184444.zip'
   };
 
@@ -104,6 +108,14 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.dist %>/index.html': ['<%= yeoman.app %>/index.html']
         }
+      }
+    },
+
+    rename: {
+      demo: {
+        files: [
+              {src: ['<%= yeoman.dist %>'], dest: '<%= yeoman.distDemo %>'}
+            ]
       }
     },
 
@@ -554,7 +566,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'rename:demo'
     ]);
 
   };
