@@ -280,6 +280,11 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
+      },
+      demo: {
+        src: ['<%= yeoman.app %>/index.html'],
+        ignorePath:  /\.\.\//,
+        devDependencies: true
       }
     },
 
@@ -486,7 +491,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'string-replace',
-      'wiredep',
+      'wiredep:app',
       'configureProxies:server',
       'concurrent:server',
       'autoprefixer',
@@ -510,7 +515,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+    'wiredep:app',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -538,7 +543,7 @@ module.exports = function (grunt) {
     grunt.registerTask('serve-demo', [
      'clean:server',
      'string-replace',
-     'wiredep',
+     'wiredep:demo',
      'configureProxies:server',
      'processhtml:demo',
      'concurrent:server',
@@ -551,7 +556,7 @@ module.exports = function (grunt) {
     'newer:jshint',
     //'test',
     'clean:dist',
-    'wiredep',
+    'wiredep:demo',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
