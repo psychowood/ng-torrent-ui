@@ -37,6 +37,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ### v0.2.6
 - [x] Embedded the classic WebUI, v0.388, the latest version found in the official uTorrent forum. It can be reached at _/gui/classic/index.html_ and is also linked in the 'About' tab), just in case you don't feel comfortable enough to completely leave the old way :) .
+- [x] Added demo build process
 - [x] GZipped files in the uTorrent release (less than half of the previous archive size)
 - [x] Minor graphical glitches fixed
 
