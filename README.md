@@ -14,6 +14,11 @@ Installation
 
 Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
 
+Demo
+====
+If you want to see it in action, you can test it on the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/).
+It's just a demo with a randomly generated download queue, without a real backend. You can play with the frontend, just don't expect the downloads to change status or to complete :)
+
 I feel brave, but I still need the old one!
 ===========================================
 
