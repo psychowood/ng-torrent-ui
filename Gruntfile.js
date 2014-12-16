@@ -30,6 +30,9 @@ module.exports = function (grunt) {
   // Create the zip for distribution
   grunt.loadNpmTasks('grunt-zip');
 
+  // ProcessHtml for demo build
+  grunt.loadNpmTasks('grunt-processhtml');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -73,15 +76,34 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      demo: {
+        files: ['<%= yeoman.app %>/demo/{,*/}*'],
+        tasks: ['processhtml:demo']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
         '<%= yeoman.app %>/{,*/}*.html',
+        '<%= yeoman.app %>/demo/{,*/}*',
         '.tmp/styles/{,*/}*.css',
         '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      }
+    },
+
+    // Demo setup with e2e
+    processhtml: {
+      demo: {
+        files: {
+          '.tmp/demo.html': ['<%= yeoman.app %>/index.html']
+        }
+      },
+      demodist: {
+        files: {
+          '<%= yeoman.dist %>/index.html': ['<%= yeoman.app %>/index.html']
+        }
       }
     },
 
@@ -90,7 +112,7 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       proxies: [
@@ -403,6 +425,14 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>'
         }]
       },
+      demo: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'demo/*',
+        }]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -491,6 +521,40 @@ module.exports = function (grunt) {
     'compress:utorrent',
     'unzip:utorrent',
     'zip:utorrent',
+    ]);
+
+    grunt.registerTask('serve-demo', [
+     'clean:server',
+     'string-replace',
+     'wiredep',
+     'configureProxies:server',
+     'processhtml:demo',
+     'concurrent:server',
+     'autoprefixer',
+     'connect:livereload',
+     'watch'
+     ]);
+
+   grunt.registerTask('build-demo', [
+    'newer:jshint',
+    //'test',
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'copy:demo',
+    'processhtml:demodist',
+    'string-replace',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
     ]);
 
   };
