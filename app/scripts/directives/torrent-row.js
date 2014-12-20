@@ -33,10 +33,18 @@ angular.module('utorrentNgwebuiApp')
           statusClass = 'warning-sign';
           statusTitle = 'Torrent not loaded';
           statusColor = 'text-danger';
+        } else if(item.isStatusChecking()) {
+          statusClass = 'repeat';
+          statusTitle = 'Checking';
+          statusColor = 'text-info';
         } else if(!item.isStatusChecked()) {
           statusClass = 'warning-sign';
           statusTitle = 'Torrent needs checking';
           statusColor = 'text-warning';
+        } else if(item.isStatusPaused()) {
+          statusClass = 'pause';
+          statusTitle = 'Paused';
+          statusColor = 'text-info';
         } else if(item.isStatusSeeding()) {
           statusClass = 'collapse-up';
           statusTitle = 'Seeding';
@@ -48,17 +56,9 @@ angular.module('utorrentNgwebuiApp')
           btnClass = 'warning';
           btnIcon = 'pause';
           btnAction = 'pause';
-        } else if(item.isStatusChecking()) {
-          statusClass = 'repeat';
-          statusTitle = 'Checking';
-          statusColor = 'text-info';
         } else if(item.isStatusStartAfterCheck()) {
           statusClass = 'repeat';
           statusTitle = 'Start after checking';
-          statusColor = 'text-info';
-        } else if(item.isStatusPaused()) {
-          statusClass = 'pause';
-          statusTitle = 'Paused';
           statusColor = 'text-info';
         } else if(item.isStatusQueued()) {
           statusClass = 'time';
