@@ -86,7 +86,15 @@
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="hide-on-sm">Force start</span></button>
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="hide-on-sm">Recheck</span></button>
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="hide-on-sm">Remove</span></button>
+        <div class="btn-group btn-group-sm dropdown">
+          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="hide-on-sm">Remove</span></button>
+          <button type="button" class="btn dropdown-toggle">
+            <span class="caret"></span>
+          </button>
+        <div class="dropdown-menu btn-group-sm" role="menu">
+          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> <span class="hide-on-sm">Remove (with data)</span></button>
+        </div>
+        </div>
       </div>
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="hide-on-md">Queue Up</span></button>

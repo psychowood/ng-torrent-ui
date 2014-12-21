@@ -314,14 +314,10 @@ body {
   cursor: default;
 }
 
-.actions-menu .dropdown-menu {
-  top: 20px;
-  right: 0px;
-  left: inherit;
-}
-
-.actions-menu .dropdown-menu .glyphicon {
-  top: 2px;
+.action-toolbar .dropdown-menu {
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .accordion-toggle, .batch-actions .input-group-addon {

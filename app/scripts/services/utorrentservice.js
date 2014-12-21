@@ -375,6 +375,9 @@ Torrent.prototype.formatBytes = function(bytes) {
         remove: {
           params: { action:'remove'}
         },
+        removedata: {
+          params: { action:'removedata'}
+        },
         forcestart: {
           params: { action:'forcestart'}
         },
