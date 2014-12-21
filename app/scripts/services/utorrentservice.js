@@ -197,7 +197,7 @@ function formatBytes(bytes) {
   } else if (bytes < 1073741824) {
     val = (bytes/1048576).toFixed(1);
     uom = 'MB';
-    } else { //if (bytes < 1099511627776) {
+    } else {
       val = (bytes/1073741824).toFixed(1);
       uom = 'GB';
     }
@@ -337,10 +337,6 @@ Torrent.prototype.formatBytes = function(bytes) {
     torrent: function(){
       return $resource(data.url + '.' + '?token=:token&:action:opt:data&t=:t', {token:data.token,t:Date.now()}, {
         add: {
-          //gui/?token=alxQ05h0NrHUFzvsAZVMoBmg5I7Y8G8jSnGAOdhZofkNxZ-eblR8A8Q8TFQ=
-          //&action=add-url
-          //&s=http%3A%2F%2Fforum.tntvillage.scambioetico.org%2Findex.php%3Fact%3DAttach%26type%3Dpost%26id%3D13755747
-          //&t=1414282473848
           method:'GET',
           params: { action:'action=add-url', opt:'&s='},
           isArray:false
