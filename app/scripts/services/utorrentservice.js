@@ -184,7 +184,11 @@ Torrent.prototype.getData = function () {
   return this.additionalData;
 };
 
+var formatBytesCache = {};
 function formatBytes(bytes) {
+  if (formatBytesCache[bytes]) {
+    return formatBytesCache[bytes];
+  }
   var val;
   var uom;
 
@@ -203,6 +207,10 @@ function formatBytes(bytes) {
     }
     return [val, uom];
   }
+
+Torrent.prototype.formatBytesStrArr = function(bytes) {
+  return formatBytes(bytes);
+};
 
 Torrent.prototype.formatBytes = function(bytes) {
   return formatBytes(bytes).join('');
