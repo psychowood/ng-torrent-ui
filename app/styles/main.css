@@ -32,6 +32,20 @@ body {
   padding-bottom: 20px;
 }
 
+.action-toolbar[disabled] select,
+.action-toolbar[disabled] button {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65) !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65 !important;
+}
+
+.action-toolbar * {
+  color: #000;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
