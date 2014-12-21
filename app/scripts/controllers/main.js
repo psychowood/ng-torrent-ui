@@ -488,6 +488,14 @@
 
  	$scope.selectCheckbox = false;
 
+  $scope.clearSelected = function () {
+ 		var i;
+ 		for (i =0; i<$scope.selectedtorrents.length; i++) {
+ 			$scope.selectedtorrents[i].selected = false;
+ 		}
+    $scope.updateSelected();
+ 	};
+
   $scope.$watch( 'selectCheckbox', function ( isChecked ) {
  		var i;
  		for (i =0; i<$scope.filteredtorrents.length; i++) {
