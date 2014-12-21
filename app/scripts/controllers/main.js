@@ -130,6 +130,22 @@
 		}
 	};
 
+	$scope.setProp = function(property,value,item) {
+		var hashes = getSelectedHashes(item);
+
+		var service = uTorrentService.setProps()[property];
+
+		if (service) {
+			var ts = service({hash: hashes, value: value});
+			ts.$promise.then(function() {
+			     toastr.info('Property ' + property + ' set to ' + value,null,{timeOut: 2500});
+			});
+      return ts;
+		} else {
+			toastr.warning('Property ' + property + ' not supported',null,{timeOut: 1000});
+		}
+	};
+
 	$scope.filterspanel = {
 		open: true,
 		filters: {

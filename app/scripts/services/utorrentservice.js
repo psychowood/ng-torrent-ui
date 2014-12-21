@@ -397,6 +397,14 @@ Torrent.prototype.formatBytes = function(bytes) {
           params: { action:'getfiles'}
         }
       });
+    },
+    setProps: function(){
+      return $resource(data.url + '.' + '?token=:token&action=setprops&s=:prop&hash=:hash&v=:value&t=:t', {token:data.token,cid:data.cid,t:Date.now()}, {
+        label: {
+          params: { prop:'label'}
+        }
+      });
+    },
     }
   };
 });

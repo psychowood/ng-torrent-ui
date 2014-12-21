@@ -100,6 +100,11 @@
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="hide-on-md">Queue Up</span></button>
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> <span class="hide-on-md">Queue Down</span></button>
       </div>
+      <div class="btn-group input-group-sm">
+        <select ng-model="labelToSet" ng-change="setProp('label',labelToSet);labelToSet=''" class="form-control action-label" ng-disabled="selectedtorrents.length < 1" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
+          <option value="">Set label</option>
+        </select>
+      </div>
     </fieldset>
   </form>
 
