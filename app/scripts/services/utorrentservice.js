@@ -394,7 +394,23 @@ Torrent.prototype.formatBytes = function(bytes) {
           params: { action:'getprops'}
         },
         getfiles: {
-          params: { action:'getfiles'}
+          params: { action:'getfiles'},
+          transformResponse: function (response) {
+              var i,file;
+              var fileArr = angular.fromJson(response).files[1];
+              var files = [];
+              for (i=0; i<fileArr.length; i++) {
+                file = fileArr[i];
+                files.push({
+                  hash: i,
+                  name: file[0],
+                  size: file[1],
+                  percent: (file[2]/file[1]*100).toFixed(2),
+                  priority: file[3]
+                });
+              }
+              return {files:files};
+            }
         }
       });
     },

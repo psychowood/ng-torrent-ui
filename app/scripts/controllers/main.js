@@ -357,6 +357,7 @@
 					torrent = Torrent.build(ts.torrents[i],null /* ptn(ts.torrents[i][2]) */,cleanName(ts.torrents[i][2]));
 					if (torrentsMap[torrent.hash]) {
 						torrent.selected = torrentsMap[torrent.hash].selected;
+            torrent.files = torrentsMap[torrent.hash].files;
 					}
 					newTorrentsMap[torrent.hash] = torrent;
 				}
@@ -371,6 +372,7 @@
   					torrent = Torrent.build(ts.torrentp[i],null /* ptn(ts.torrentp[i][2]) */,cleanName(ts.torrentp[i][2]));
 					if (torrentsMap[torrent.hash]) {
 						torrent.selected = torrentsMap[torrent.hash].selected;
+            torrent.files = torrentsMap[torrent.hash].files;
 					}
 					torrentsMap[torrent.hash] = torrent;
 				}
@@ -414,7 +416,7 @@
           torrent.props = res.props[0];
       });
       $scope.doAction('getfiles',torrent).$promise.then(function(res) {
-          torrent.files = res.files[1];
+          torrent.files = res.files;
       });
     }
   };

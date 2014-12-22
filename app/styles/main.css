@@ -405,3 +405,23 @@ body {
 .details-header .details-progress .progress-bar {
   color: #555;
 }
+
+.details-body .head {
+  text-align: center;
+}
+
+.details-body .details-file-priority {
+  padding: 0px;
+  height: 20px;
+}
+
+.details-body .details-files-header,
+.details-body .torrent,
+.details-body .torrent-row {
+  width: 100%;
+}
+
+.filter-label,
+.action-label {
+  width: 200px !important;
+}
