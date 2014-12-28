@@ -108,6 +108,11 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.dist %>/index.html': ['<%= yeoman.app %>/index.html']
         }
+      },
+      analytics: {
+        files: {
+          '<%= yeoman.dist %>/index.html': ['<%= yeoman.dist %>/index.html']
+        }
       }
     },
 
@@ -354,6 +359,12 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
+    uglify: {
+      dist: {
+        options: { preserveComments: false }
+      }
+    },
+
     imagemin: {
       dist: {
         files: [{
@@ -535,6 +546,7 @@ module.exports = function (grunt) {
     'newer:jshint',
     //'test',
     'build',
+    'processhtml:analytics',
     'compress:utorrent',
     'unzip:utorrent',
     'zip:utorrent',
@@ -565,6 +577,7 @@ module.exports = function (grunt) {
     'copy:dist',
     'copy:demo',
     'processhtml:demodist',
+    'processhtml:analytics',
     'string-replace',
     'cdnify',
     'cssmin',
