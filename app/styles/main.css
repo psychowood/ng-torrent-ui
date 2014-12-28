@@ -196,6 +196,13 @@ body {
   */
 }
 
+.torrent .priority {
+  width: 80px;
+  padding-left:0px;
+  padding-right:5px;
+  padding-bottom: 2px;
+}
+
 .torrent .size {
   width: 65px;
   text-align: right;
@@ -421,7 +428,7 @@ body {
   width: 100%;
 }
 
-.filter-label,
-.action-label {
-  width: 200px !important;
+.modal-details .modal-dialog {
+  width: 97%;
+  max-width: 990px;
 }

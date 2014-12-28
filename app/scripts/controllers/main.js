@@ -84,10 +84,6 @@
 	}
 
 	$scope.addTorrent = function() {
-    // /gui/?token=KJHeg4Abwc-i-i2UHmZrAgIrNi36WIoa1yuGbocKSfeD7_ejwHl3ZrNqg1Q=&action=add-url&s=magnet%3A%3Fxt%3Durn%3Abtih%3ASNRDTJN77AU5COCRBKXQBWG5L77IGOYZ&t=1417898807570"
-    // /gui/?token=jOEl8ys6LWcpDenYVCdoyJYTbFwwBs3a5yOxT5LQKCj49x3cdba88AZwg1Q=&action=add-url&s=magnet:%3Fxt=urn:btih:SNRDTJN77AU5COCRBKXQBWG5L77IGOYZ&t=1417900081345
-    // /gui/?token=w3IwxidfdGblIuS4oiBN_lAszYIsMDlpEIQUKTQYa_CL5YcyPxqe-QNsg1Q=&action=add-url&s=magnet%253A%253Fxt%253Durn%253Abtih%253ASNRDTJN77AU5COCRBKXQBWG5L77IGOYZ&t=1417899044969
-    //var url = encodeURIComponent($scope.newtorrent);
     var url = $scope.newtorrent;
 		var ts = uTorrentService.torrent().add({data:url});
 		ts.$promise.then(function() {
@@ -416,7 +412,14 @@
           torrent.props = res.props[0];
       });
       $scope.doAction('getfiles',torrent).$promise.then(function(res) {
-          torrent.files = res.files;
+          var i;
+          var files = res.files;
+          if (torrent.files) {
+            for (i=0;i<torrent.files.length; i++) {
+              files[i].selected = torrent.files[i].selected;
+            }
+          }
+          torrent.files = files;
       });
     }
   };
@@ -427,8 +430,8 @@
     var modalInstance = $modal.open({
       templateUrl: 'views/details-dialog.html',
       controller: 'DetailsDialogCtrl',
+      windowClass: 'modal-details',
       backdrop: true,
-      size: 'lg',
       resolve: {
         torrent: function () {
           return $scope.lastTorrentDetails;

@@ -1,7 +1,7 @@
 <div class="modal-header details-header">
   <h3 class="modal-title">{{torrent.decodedName}}</h3>
     <div class="details-progress">
-      <progressbar max="torrent.size" ng-class="{'progress-striped active':(torrent.uploadSpeed !== 0 || torrent.downloadSpeed !== 0)}" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.size-torrent.remaining">{{torrent.percent/10}}% </progressbar>
+      <progressbar max="1000" ng-class="{'progress-striped active':(torrent.uploadSpeed !== 0 || torrent.downloadSpeed !== 0)}" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.percent">{{torrent.percent/10}}% </progressbar>
     </div>
 </div>
 <div class="modal-body details-body">
@@ -24,41 +24,75 @@
     {{torrent.formatBytes(torrent.uploaded)}} uploaded ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
     {{torrent.formatBytes(torrent.downloaded)}} downloaded ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
   </div>
+  <p></p>
+      <form role="form" ng-submit="doFilter()" class="form-inline actions-form action-toolbar">
+        <div class="form-group">
+          <div class="input-group input-group-sm filter-name">
+            <input class="form-control" type="text" ng-model="filters.name" placeholder="Filter by name">
+            <span class="input-group-btn">
+              <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = ''" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+            </span>
+          </div>
+        </div>
+    <div class="form-group">
+      <div class="input-group input-group-sm action-priority">
+          <select ng-model="priorityToSet" class="form-control squared" ng-disabled="hasSelection === false" ng-change="setPriority()">
+            <option value="" disabled selected>Set priority</option>
+            <option value="0">Skip</option>
+            <option value="1">Low</option>
+            <option value="2">Normal</option>
+            <option value="3">High</option>
+          </select>
+        </div>
+      </div>
+      </form>
+  <p></p>
   <div class="torrent">
   <div class="input-group input-group-sm torrent-header details-files-header">
-    <span class="form-control name sorter text-center" ng-click="sortBy('name')">Name
+    <span class="input-group-addon">
+      <input type="checkbox" ng-model="selectCheckbox" ng-change="toggleSelection()" >
+    </span>
+    <span class="form-control name sorter text-center" ng-click="sorter.field = 'name'; sorter.descending=!sorter.descending">Name
+      <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
     </span>
     <span class="input-group-addon size sorter text-center" >
-      %
+      <span ng-click="sorter.field = 'percent'; sorter.descending=!sorter.descending">%
+        <span class="glyphicon" ng-show="sorter.field === 'percent'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
+      </span>
       -
-      Size
+      <span ng-click="sorter.field = 'size'; sorter.descending=!sorter.descending">Size
+        <span class="glyphicon" ng-show="sorter.field === 'size'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
+      </span>
     </span>
-    <!-- <span class="input-group-addon priority sorter text-center" >Priority
-    </span> -->
+    <span class="input-group-addon priority sorter text-center" ng-click="sorter.field = 'priority'; sorter.descending=!sorter.descending">Priority
+      <span class="glyphicon" ng-show="sorter.field === 'priorità'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
+    </span>
   </div>
 </div>
 <p></p>
 
 <div class="separator"></div>
 <div vs-repeat="30" vs-autoresize class="repeater-container" ng-style="{ height: listHeight + 'px'}">
-  <div ng-repeat="file in torrent.files" class="torrent" data-toggle="context" >
-    <div class="input-group input-group-sm torrent-row" ng-class="{'selected':item.selected}">
-      <!-- <span class="input-group-addon">
-        <input type="checkbox" ng-model="item.selected" ng-change="updateSelected()" >
-      </span> -->
-      <div class="form-control name">{{ file.name }}
+  <div ng-repeat="file in ($parent.filteredFiles = (torrent.files | filter:{name:filters.name} | orderBy:sorter.field:sorter.descending))" class="torrent" data-toggle="context" >
+    <div class="input-group input-group-sm torrent-row selectable" ng-class="{'selected':file.selected}" ng-click="toggleSelection(file)">
+      <span class="input-group-addon">
+        <input type="checkbox" ng-model="file.selected" ng-click="checkSelected();$event.stopPropagation()" >
+      </span>
+      <div class="form-control selectable name" >{{ file.name }}
       </div>
       <div class="input-group-addon size">
         <span class="byte-value">{{ torrent.formatBytesStrArr(file.size)[0] }}</span> <span class="byte-uom">{{ torrent.formatBytesStrArr(file.size)[1] }}</span><div class="download-progress" ng-style="{'width':file.percent+'%'}" ng-class="{'btn-warning':(file.percent < 25), 'btn-info':(file.percent < 99), 'btn-success':(file.percent > 98)}"></div>
       </div>
-      <!-- <div class="input-group-addon input-group-sm priority">
-        <select ng-model="file.priority" class="form-control squared">
-          <option value="0">Skip</option>
-          <option value="1">Low</option>
-          <option value="2">Normal</option>
-          <option value="3">High</option>
-        </select>
-      </div> -->
+      <div class="input-group-addon input-group-sm priority text-center">
+      <span class="animate-switch-container"
+        ng-switch on="file.priority">
+          <span ng-switch-when="0">Skip</span>
+          <span ng-switch-when="1">Low</span>
+          <span ng-switch-when="2">Normal</span>
+          <span ng-switch-when="3">High</span>
+          <span ng-switch-default>Unknown</span>
+      </span>
+      </div>
     </div>
   </div>
 </div>
@@ -90,70 +124,9 @@
 </div> -->
 <div class="separator"></div>
   <!-- <pre>
+  <code>
+    {{filteredFiles | json}}
+  </code>
     {{torrent | json}}
   </pre> -->
 </div>
-
-<!--
-{
-----  "selected": true,
-----  "hash": "17BC73F2DDF0B5EC6A54123232AFC690129914B3",
-----  "status": 136,
-----  "name": "I Borgia S03e09-12",
---  "size": 1956813049,
-----  "sizeStrArr": ["1.8", "GB"],
---  "percent": 0,
---  "downloaded": 0,
---  "uploaded": 0,
---  "ratio": 0,
---  "uploadSpeed": 0,
---  "upSpeedStrArr": [0, "B/s"],
---  "downloadSpeed": 0,
---  "downSpeedStrArr": [0, "B/s"],
-  "eta": 0,
---  "label": "Telefilm",
---  "peersConnected": 0,
---  "peersInSwarm": 0,
---  "seedsConnected": 0,
---  "seedsInSwarm": 0,
-  "availability": 0,
-----  "torrentQueueOrder": 6895,
---  "remaining": 1956813049,
-  "additionalData": null,
---  "decodedName": "I Borgia S03e09-12",
---  "statusesCached": ["loaded", "checked"],
-  "props": {
-    "hash": "C96DF8439C183AE7B432D695B04C23A04F088250",
-    "trackers": "http://tracker.tntvillage.scambioetico.org:2710/announce\r\nudp://tracker.tntvillage.scambioetico.org:2710/announce\r\n\r\nudp://tracker.coppersurfer.tk:6969/announce\r\n\r\nudp://tracker.openbittorrent.com:80/announce\r\n\r\nudp://tracker.publicbt.com:80\r\n\r\nudp://tracker.istole.it:80\r\n\r\nudp://open.demonii.com:1337/announce\r\n",
-    "ulrate": 0,
-    "dlrate": 0,
-    "superseed": 0,
-    "dht": 1,
-    "pex": 1,
-    "seed_override": 0,
-    "seed_ratio": 10,
-    "seed_time": 60,
-    "ulslots": 0
-  },
-  "files": [
-    [
---      "Beauty.and.the.Beast.2012.2X20.Sotto.Copertura.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
---      1480783803,
---      0,
-      2
-    ],
-    [
---      "Beauty.and.the.Beast.2012.2X21.Finto.Appuntamento.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
---      1447231910,
---      0,
-      2
-    ],
-    [
---      "Beauty.and.the.Beast.2012.2X22.Deja.Vu.ITA.ENG.720p.WEB-DLMux.H.264-iGM+GiuseppeTnT.mkv",
---      1449519516,
---      0,
-      2
-    ]
-  ]
-}
--->

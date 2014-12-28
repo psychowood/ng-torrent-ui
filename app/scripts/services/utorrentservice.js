@@ -421,6 +421,12 @@ Torrent.prototype.formatBytes = function(bytes) {
         }
       });
     },
+    filePriority: function(){
+      return $resource(data.url + '.' + '?token=:token&action=setprio&hash=:hash&t=:t&p=:priority', {token:data.token,t:Date.now()}, {
+        set: {
+          method: 'GET'
+        }
+      });
     }
   };
 });
