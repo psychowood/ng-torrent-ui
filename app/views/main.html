@@ -161,7 +161,7 @@
 <p></p>
 
 <div class="separator"></div>
-<div vs-repeat="30" vs-autoresize class="repeater-container" ng-style="{ height: listHeight + 'px'}">
+<div vs-repeat="30" vs-autoresize vs-excess="20" class="repeater-container" ng-style="{ height: listHeight + 'px'}">
   <div ng-repeat="item in filteredtorrents" class="torrent" data-toggle="context" >
     <torrent-row />
   </div>
