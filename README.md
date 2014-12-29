@@ -40,6 +40,11 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### v0.2.7
+- [x] Added: change file priority and files filter in torrent details
+- [x] Added: Global speed tracking
+- [x] Better responsive reflowing
+
 ### v0.2.6
 - [x] Embedded the classic WebUI, v0.388, the latest version found in the official uTorrent forum. It can be reached at _/gui/classic/index.html_ and is also linked in the 'About' tab), just in case you don't feel comfortable enough to completely leave the old way :) .
 - [x] Added demo build process
@@ -99,6 +104,7 @@ Not in a specific order.
 - [ ] Code cleanup
 - [ ] Desktop notifications for supported browsers
 - [ ] Toolbar auto fit width
+- [ ] Embed search engines
 - [ ] Find a cool name
 - [ ] Any ideas? Tell me :)
 
