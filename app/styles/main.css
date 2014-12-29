@@ -105,6 +105,10 @@ select[disabled] {
   .modal-details .actions-form .action-priority {
     width: 100%;
   }
+
+  .actions-form .input-group-addon:first-child {
+    width: 100px;
+  }
 }
 
 .form-inline > div,

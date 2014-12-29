@@ -69,6 +69,7 @@
 	var torrentsMap = uTorrentService.cacheMap;
 	var reloadTimeout;
 	$scope.autoreloadTimeout = 5000;
+  $scope.autoreloadEnabled = ($scope.autoreloadTimeout > 0);
 
 	$scope.newtorrent = '';
 
@@ -400,7 +401,7 @@
 			//toastr.info('Refreshing done!',null,{timeOut: 1500});
 			//toastr.clear(reloadingMsg);
 
-			if(manual !== true && $scope.autoreloadTimeout > -1) {
+			if(manual !== true && $scope.autoreloadEnabled === true && $scope.autoreloadTimeout > -1) {
 				reloadTimeout = $timeout($scope.reload,$scope.autoreloadTimeout);
 			}
       $scope.torrentsMap = torrentsMap;

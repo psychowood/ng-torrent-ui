@@ -17,12 +17,12 @@
   <form role="form" ng-submit="doFilter()" class="form-inline actions-form">
     <div class="form-group">
       <div class="input-group input-group-sm">
-        <span class="input-group-addon">Autoreload:</span>
-        <select ng-model="autoreloadTimeout" ng-change="reload()" class="form-control squared">
-          <option value="-1">Disabled</option>
+        <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> Autoreload</span>
+        <select ng-model="autoreloadTimeout" ng-change="reload()" class="form-control squared" ng-disabled="autoreloadEnabled === false">
           <option value="1000">1 sec</option>
           <option value="5000">5 sec</option>
           <option value="10000">10 sec</option>
+          <option value="30000">30 sec</option>
         </select>
         <span class="input-group-btn">
           <button type=submit class="btn" ng-click="reload()" ng-disabled="refreshing"><span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-animate-spin':refreshing}"></span></button>
@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
       <div class="input-group input-group-sm filter-name">
-        <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> </input> <span>l33t</span></span>
+        <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> l33t</span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="Filter by name">
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
