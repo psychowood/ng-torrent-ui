@@ -47,9 +47,7 @@ select[disabled] {
   color: #000;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
-.marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
@@ -135,46 +133,6 @@ select[disabled] {
   }
 
 }
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
 
 .torrent-table td {
   overflow:hidden;
@@ -209,9 +167,6 @@ select[disabled] {
   padding-right: 0px;
   padding-top: 0px;
   overflow: hidden;
-  /*
-  border-width: 1px 0px 1px 0px;
-  */
 }
 
 .torrent .priority {
@@ -250,32 +205,6 @@ select[disabled] {
 .torrent .download-progress {
   height: 3px;
 }
-/*
-.torrent .btn,
-.torrent input,
-.torrent .input-group-addon {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  height: 20px;
-}
-*/
-/*
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-*/
 
 .byte-value {
 
@@ -314,6 +243,7 @@ select[disabled] {
   right: 55px;
 }
 
+/*
 .input-group-xs>.form-control,
 .input-group-xs>.input-group-addon,
 .input-group-xs>.input-group-btn>.btn {
@@ -322,6 +252,7 @@ select[disabled] {
   font-size: 12px;
   line-height: 1.5;
 }
+*/
 
 .download-progress {
   height: 4px;
