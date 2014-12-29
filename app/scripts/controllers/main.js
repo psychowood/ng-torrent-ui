@@ -72,14 +72,18 @@
 
 	$scope.newtorrent = '';
 
-	function getSelected(torrentsArr) {
-		var i;
+	function getSelectedAndUpdateGlobals(torrentsArr) {
+		var i,upSpeed=0,downSpeed=0;
 		var sel = [];
 		for (i =0; i<torrentsArr.length; i++) {
 			if (torrentsArr[i].selected) {
 				sel.push(torrentsArr[i]);
 			}
+      upSpeed += torrentsArr[i].uploadSpeed;
+      downSpeed += torrentsArr[i].downloadSpeed;
 		}
+    $scope.uploadSpeed = upSpeed;
+    $scope.downloadSpeed = downSpeed;
 		return sel;
 	}
 
@@ -389,7 +393,7 @@
 				});
 				$scope.doFilter();
         uTorrentService.cacheMap = torrentsMap;
-				$scope.selectedtorrents = getSelected($scope.torrents);
+				$scope.selectedtorrents = getSelectedAndUpdateGlobals($scope.torrents);
 			} else {
 				$log.debug('no changes');
 			}
@@ -447,7 +451,7 @@
   };
 
   $scope.updateSelected = function() {
- 		$scope.selectedtorrents = getSelected($scope.torrents);
+ 		$scope.selectedtorrents = getSelectedAndUpdateGlobals($scope.torrents);
  	};
 
   $scope.lastSelectedHash = null;

@@ -77,6 +77,9 @@
       <span type="text" ng-show="torrents.length > 0" class="form-control status-text">Torrents: {{torrents.length}} total - {{filteredtorrents.length}} matching filters - {{selectedtorrents.length}} selected (<u class="selectable" ng-click="clearSelected()">clear</u>)</span>
       <span type="text" ng-show="torrents.length === 0" class="form-control">No torrents available</span>
     </div>
+    <div class="form-group input-group-sm">
+      <span type="text" ng-show="torrents.length > 0" class="form-control status-text">Speed: <span class="glyphicon glyphicon-chevron-up"></span> {{uploadSpeed | formatBytes}}/s - <span class="glyphicon glyphicon-chevron-down"></span> {{downloadSpeed | formatBytes}}/s</span>
+    </div>
     <fieldset class="form-group btn-toolbar action-toolbar" ng-disabled="selectedtorrents.length < 1">
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="show-on-lg">Start</span></button>
