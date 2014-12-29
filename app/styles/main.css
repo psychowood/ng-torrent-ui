@@ -87,15 +87,16 @@ select[disabled] {
 
 
 @media (max-width: 1024px) {
-  .show-on-lg {
-    display: none;
-  }
   .actions-form .status-text {
     width: 500px:
   }
 }
 
 @media (max-width: 768px) {
+  .show-on-lg {
+    display: none;
+  }
+
   .batch-actions {
     width: 100%;
   }
@@ -107,6 +108,7 @@ select[disabled] {
   .actions-form .input-group-addon:first-child {
     width: 100px;
   }
+
 }
 
 .form-inline > div,
@@ -114,9 +116,25 @@ select[disabled] {
   margin-bottom: 5px !important;
 }
 
-@media (min-width: 768px) {
-  .container {
+.container-narrow > hr {
+  margin: 30px 0;
+}
 
+/* Responsive: Portrait tablets and up */
+@media (min-width: 768px) {
+  .hide-on-lg {
+    display: none;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
   }
 
   .batch-actions {
@@ -161,11 +179,10 @@ select[disabled] {
 }
 
 .torrent .name {
-  height: 31px;
-  line-height: 31px;
   padding-left: 5px;
   padding-right: 0px;
   padding-top: 0px;
+  line-height: 30px;
   overflow: hidden;
 }
 
@@ -348,6 +365,7 @@ select[disabled] {
 
 .torrent .input-group-addon {
   background-color: inherit;
+  border: 0;
 }
 
 .details-header {
