@@ -88,8 +88,7 @@
 		return sel;
 	}
 
-	$scope.addTorrent = function() {
-    var url = $scope.newtorrent;
+	$scope.addTorrent = function(url) {
 		var ts = uTorrentService.torrent().add({data:url});
 		ts.$promise.then(function() {
       toastr.info('Torrent added succesfully',null,{timeOut: 1000});

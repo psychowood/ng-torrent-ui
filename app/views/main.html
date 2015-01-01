@@ -1,7 +1,7 @@
 <div class="container-fluid" >
   <!-- <h2>My torrents</h2> -->
 
-  <form role="form" ng-submit="addTorrent()">
+  <form role="form" ng-submit="addTorrent(newtorrent)">
     <div class="input-group input-group-sm">
       <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
       <button type="button" ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn btn-link btn-clear" ><span class="glyphicon glyphicon-remove-circle"></span></button>
