@@ -17,7 +17,8 @@
   'ngSanitize',
   'ui.bootstrap',
   'vs-repeat',
-  'toastr'
+  'toastr',
+  'angularFileUpload'
   ]).config(function ($routeProvider) {
     $routeProvider
     .when('/', {

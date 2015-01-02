@@ -72,6 +72,9 @@
   $scope.autoreloadEnabled = ($scope.autoreloadTimeout > 0);
 
 	$scope.newtorrent = '';
+  $scope.newtorrentfiles = [];
+  $scope.uploadDropSupported = true;
+
 
 	function getSelectedAndUpdateGlobals(torrentsArr) {
 		var i,upSpeed=0,downSpeed=0;
@@ -89,12 +92,45 @@
 	}
 
 	$scope.addTorrent = function(url) {
-		var ts = uTorrentService.torrent().add({data:url});
+		var ts = uTorrentService.torrent().addUrl({data:url});
 		ts.$promise.then(function() {
       toastr.info('Torrent added succesfully',null,{timeOut: 1000});
       $scope.newtorrent = '';
 		});
 	};
+
+	$scope.addTorrentFiles = function(files) {
+    var i,success = 0;
+    var callback = function(/* data, status, headers, config */) {
+      success++;
+      if (i === files.length -1) {
+        toastr.info(success + ' torrent added succesfully',null,{timeOut: 2500});
+        $scope.newtorrentfiles = [];
+      }
+    };
+    for (i = 0; i < files.length; i++) {
+      var file = files[i];
+      uTorrentService.uploadTorrent(file).success(callback);
+    }
+	};
+
+  $scope.addTorrentFilesChanged = function(files, event, rejectedFiles) {
+      var rejected = 0;
+      var i;
+      if (rejectedFiles && rejectedFiles.length > 0) {
+        for (i=0; i<rejectedFiles.length; i++) {
+          rejected++;
+        }
+      }
+      for (i=0; i<files.length; i++) {
+        if (files[i].name.search(/^.*\.torrent$/i) === -1) {
+            rejected++;
+        }
+      }
+      if (rejected > 0) {
+        toastr.warning(rejected + ' files ignored (not .torrent files)',null,{timeOut: 2500});
+      }
+  };
 
 	function getSelectedHashes(item) {
 		var hashes = [];

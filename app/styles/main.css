@@ -150,6 +150,10 @@ select[disabled] {
     max-width: 175px !important;
   }
 
+  .addtorrent-form .upload-url,
+  .addtorrent-form .upload-file {
+    width: 380px;
+  }
 }
 
 .torrent-table td {
@@ -248,16 +252,6 @@ select[disabled] {
 }
 .repeater-container > .row:nth-child(2n+1) {
   background-color: #FAFAFA;
-}
-
-.btn-clear {
-  position: absolute;
-  right: 30px;
-  z-index: 2;
-}
-
-.filter-name .btn-clear {
-  right: 55px;
 }
 
 /*
@@ -398,4 +392,13 @@ select[disabled] {
 .modal-details .modal-dialog {
   width: 97%;
   max-width: 990px;
+}
+
+
+.addtorrent-form .form-control .clearable {
+  padding-left: 25px;
+}
+
+.drop-box {
+  cursor:pointer;
 }

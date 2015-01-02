@@ -40,6 +40,10 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### v0.3.0
+  [x] Upload of torrent files (not supported for uTorrent 2.X)
+  [x] Tested with uTorrent 3
+
 ### v0.2.7
 - [x] Added: change file priority and files filter in torrent details
 - [x] Added: Global speed tracking
@@ -87,13 +91,14 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 Not in a specific order.
 
+  [ ] Support for current versions of uTorrent
+  [ ] Multi language interface
 - [ ] New versions check
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
 - [ ] Settings page
 - [ ] Better error handling
-- [ ] Changing priorities of files in a torrent
 - [ ] Apply multiple name filters at the same time
 - [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
 - [ ] Local storage (saving searches and custom settings)

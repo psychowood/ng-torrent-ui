@@ -1,12 +1,27 @@
 <div class="container-fluid" >
-  <!-- <h2>My torrents</h2> -->
 
-  <form role="form" ng-submit="addTorrent(newtorrent)">
-    <div class="input-group input-group-sm">
-      <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
-      <button type="button" ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn btn-link btn-clear" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+  <form role="form" class="form-inline addtorrent-form">
+    <div class="input-group input-group-sm upload-file" >
+      <div ng-file-drop ng-model="newtorrentfiles" class="drop-box form-control"
+          drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
+          multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" accept="application/x-bittorrent" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
+          <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" accept="application/x-bittorrent" ng-file-change="addTorrentFilesChanged($files, $event, [])">
+              <span >Click or drag and drop files to add</span>
+              <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} selected)</span>
+          </div>
+          </div>
+
       <span class="input-group-btn">
-        <button type=submit ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+        <button type=button ng-hide="newtorrentfiles.length === 0" ng-click="newtorrentfiles = []" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+        <button type=button ng-click="addTorrentFiles(newtorrentfiles)" ng-disabled="newtorrentfiles.length === 0" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+      </span>
+    </div>
+
+    <div class="input-group input-group-sm upload-url" >
+      <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
+      <span class="input-group-btn">
+        <button type=button ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+        <button type=button ng-click="addTorrent(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
       </span>
     </div>
   </form>

@@ -307,7 +307,7 @@ Torrent.prototype.formatBytes = function(bytes) {
    */
    return Torrent;
  })
-.factory('uTorrentService', function ($http,$resource,$log) {
+.service('uTorrentService', function ($http,$resource,$log,$upload) {
 
   var data = {
     url: '/gui/',
@@ -329,27 +329,50 @@ Torrent.prototype.formatBytes = function(bytes) {
     cacheMap: {},
     conf: data,
     getToken: function(callback) {
-      $log.info('get token');
-      $http.get(data.url + 'token.html?t=' + Date.now()).
-      success(function(str) {
-        var match = str.match(/>([^<]+)</);
-        if (match) {
-          data.token = match[match.length - 1];
-          $log.info('got token ' + data.token);
-        }
+      if (data.token) {
+        $log.info('token already cached');
         if (callback) {
-          callback();
+          callback(data.token);
         }
-      });
+      } else {
+        $log.info('get token');
+        $http.get(data.url + 'token.html?t=' + Date.now()).
+        success(function(str) {
+          var match = str.match(/>([^<]+)</);
+          if (match) {
+            data.token = match[match.length - 1];
+            $log.info('got token ' + data.token);
+          }
+          if (callback) {
+            callback(data.token);
+          }
+        });
+      }
     },
     torrent: function(){
       return $resource(data.url + '.' + '?token=:token&:action:opt:data&t=:t', {token:data.token,t:Date.now()}, {
-        add: {
+        addUrl: {
           method:'GET',
           params: { action:'action=add-url', opt:'&s='},
           isArray:false
         }
       });
+
+    },
+    uploadTorrent: function(file) {
+        return $upload.upload({
+          url: data.url + '?token=' + data.token + '&action=add-file&download_dir=0',
+          method: 'POST',
+          //headers: {'Authorization': 'xxx'}, // only for html5
+          //withCredentials: true,
+          // data: {myObj: $scope.myModelObj},
+          file: file, // single file or a list of files. list is only for html5
+          //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
+          fileFormDataName: 'torrent_file', // file formData name ('Content-Disposition'), server side request form name
+                                      // could be a list of names for multiple files (html5). Default is 'file'
+          //formDataAppender: function(formData, key, val){}  // customize how data is added to the formData.
+                                                              // See #40#issuecomment-28612000 for sample code
+        });
     },
     torrents: function(){
       return $resource(data.url + '.' + '?:action:data&token=:token&cid=:cid:opt&t=:t', {token:data.token,cid:data.cid,t:Date.now()}, {
