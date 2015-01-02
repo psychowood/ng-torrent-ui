@@ -42,6 +42,7 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ### v0.3.0
   [x] Upload of torrent files (not supported for uTorrent 2.X)
+  [x] Close button in torrent details modal
   [x] Tested with uTorrent 3
 
 ### v0.2.7
