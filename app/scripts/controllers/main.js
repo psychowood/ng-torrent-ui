@@ -482,6 +482,10 @@
     modalInstance.result.then(function () {
 
     }, function () {
+      var i;
+      for (i=0; i<item.files.length; i++) {
+        item.files[i].selected = false;
+      }
       $scope.lastTorrentDetails = null;
     });
   };
