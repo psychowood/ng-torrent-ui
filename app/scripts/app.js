@@ -15,7 +15,6 @@
   'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ngTouch',
   'ui.bootstrap',
   'vs-repeat',
   'toastr'
