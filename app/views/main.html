@@ -104,9 +104,9 @@
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="show-on-lg">Force start</span></button>
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="show-on-lg">Recheck</span></button>
-        <div class="btn-group btn-group-sm dropdown">
+        <div class="btn-group btn-group-sm dropdown" dropdown>
           <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">Remove</span></button>
-          <button type="button" class="btn dropdown-toggle">
+          <button type="button" class="btn dropdown-toggle" dropdown-toggle>
             <span class="caret"></span>
           </button>
         <div class="dropdown-menu btn-group-sm" role="menu">
