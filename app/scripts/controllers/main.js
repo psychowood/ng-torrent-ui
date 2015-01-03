@@ -158,7 +158,6 @@
 		if (service) {
 			var ts = service({hash: hashes});
 			ts.$promise.then(function() {
-			//console.log(arguments);
 			});
       return ts;
 		} else {
@@ -166,21 +165,37 @@
 		}
 	};
 
-	$scope.setProp = function(property,value,item) {
+  $scope.setLabel = function(value,item) {
 		var hashes = getSelectedHashes(item);
 
-		var service = uTorrentService.setProps()[property];
+		var service = uTorrentService.setLabel;
+    $scope.labelToSet = '';
 
 		if (service) {
-			var ts = service({hash: hashes, value: value});
-			ts.$promise.then(function() {
-			     toastr.info('Property ' + property + ' set to ' + value,null,{timeOut: 2500});
+			var ts = service(hashes, value);
+			ts.success(function() {
+			     toastr.info('Label set to "' + value + '"',null,{timeOut: 2500});
 			});
       return ts;
 		} else {
-			toastr.warning('Property ' + property + ' not supported',null,{timeOut: 1000});
+			toastr.warning('Setting label not supported',null,{timeOut: 1000});
 		}
-	};
+  };
+
+  $scope.setNewLabel = function(item) {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'newLabelModal.html',
+      backdrop: true
+    });
+
+    modalInstance.result.then(function (newLabel) {
+      return $scope.setLabel(newLabel,item);
+    }, function () {
+
+    });
+
+  };
 
 	$scope.filterspanel = {
 		open: true,

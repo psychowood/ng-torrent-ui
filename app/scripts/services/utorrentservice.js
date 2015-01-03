@@ -437,10 +437,15 @@ Torrent.prototype.formatBytes = function(bytes) {
         }
       });
     },
-    setProps: function(){
-      return $resource(data.url + '.' + '?token=:token&action=setprops&s=:prop&hash=:hash&v=:value&t=:t', {token:data.token,cid:data.cid,t:Date.now()}, {
-        label: {
-          params: { prop:'label'}
+    setLabel: function(hashes,label){
+      var encodedQuery = '';
+      var i;
+      for (i=0; i<hashes.length; i++) {
+        encodedQuery += '&' + ['hash='+hashes[i],'s=label','v=' + encodeURIComponent(label)].join('&');
+      }
+      return $http.get(data.url + '?token=' + data.token + '&action=setprops' + encodedQuery, {
+        params: {
+          t:Date.now()
         }
       });
     },
