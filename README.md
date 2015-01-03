@@ -29,7 +29,7 @@ Development status
 
 ## Notes
 
-Current version is developed on the latest version of Chrome, with μTorrent 2.2.1 (build 25302). Newer uTorrent versions will be supported at a later time, as for (possibly) other torrent applications.
+Current version is developed and tested on the latest version of Chrome, with μTorrent 2.2.1 (build 25302). Newer uTorrent versions will be supported at a later time, as for (possibly) other torrent applications.
 
 If, for dev purposes, you want to test the app from sources without installing in uTorrent, you need to run
 
@@ -40,9 +40,13 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
-### v0.3.0
-  [x] Upload of torrent files (not supported for uTorrent 2.X)
-  [x] Close button in torrent details modal
+### v0.2.8
+  [x] Fixed: touch not recognized on mobile devices in torrent details modal
+  [x] Added: Remove label
+  [x] Added: Create new label
+  [x] Fixed: Set label for multiple torrents
+  [x] Added: upload of torrent files (not supported for uTorrent 2.X)
+  [x] Added: close button in torrent details modal
   [x] Tested with uTorrent 3
 
 ### v0.2.7
@@ -111,7 +115,8 @@ Not in a specific order.
 - [ ] Desktop notifications for supported browsers
 - [ ] Toolbar auto fit width
 - [ ] Embed search engines
-- [ ] Find a cool name
+  [ ] Support for multiple labels per torrent
+- [ ] Find a more 'personal' name
 - [ ] Any ideas? Tell me :)
 
 Various
