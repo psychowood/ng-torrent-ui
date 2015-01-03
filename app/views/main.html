@@ -1,28 +1,31 @@
 <div class="container-fluid" >
 
-  <form role="form" class="form-inline addtorrent-form">
-    <div class="input-group input-group-sm upload-file" >
-      <div ng-file-drop ng-model="newtorrentfiles" class="drop-box form-control"
-          drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
-          multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" accept="application/x-bittorrent" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
-          <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" accept="application/x-bittorrent" ng-file-change="addTorrentFilesChanged($files, $event, [])">
-              <span >Click or drag and drop files to add</span>
-              <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} selected)</span>
-          </div>
-          </div>
+  <form role="form" class="form-inline" id="addtorrent-form">
+    <div class="form-group">
+      <div class="input-group input-group-sm upload-file" >
+        <div ng-file-drop ng-model="newtorrentfiles" class="drop-box form-control"
+            drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
+            multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" accept="application/x-bittorrent" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
+            <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" accept="application/x-bittorrent" ng-file-change="addTorrentFilesChanged($files, $event, [])">
+                <span >Click or drag and drop files to add</span>
+                <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} selected)</span>
+            </div>
+            </div>
 
-      <span class="input-group-btn">
-        <button type=button ng-hide="newtorrentfiles.length === 0" ng-click="newtorrentfiles = []" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
-        <button type=button ng-click="addTorrentFiles(newtorrentfiles)" ng-disabled="newtorrentfiles.length === 0" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
-      </span>
+        <span class="input-group-btn">
+          <button type=button ng-hide="newtorrentfiles.length === 0" ng-click="newtorrentfiles = []" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+          <button type=button ng-click="addTorrentFiles(newtorrentfiles)" ng-disabled="newtorrentfiles.length === 0" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+        </span>
+      </div>
     </div>
-
-    <div class="input-group input-group-sm upload-url" >
-      <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
-      <span class="input-group-btn">
-        <button type=button ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
-        <button type=button ng-click="addTorrent(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
-      </span>
+    <div class="form-group">
+      <div class="input-group input-group-sm upload-url" >
+        <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
+        <span class="input-group-btn">
+          <button type=button ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+          <button type=button ng-click="addTorrent(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+        </span>
+      </div>
     </div>
   </form>
   <p></p>
@@ -118,10 +121,12 @@
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="show-on-lg">Queue Up</span></button>
         <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> <span class="show-on-lg">Queue Down</span></button>
       </div>
-      <div class="btn-group input-group-sm">
-        <select ng-model="labelToSet" ng-change="setProp('label',labelToSet);labelToSet=''" class="form-control action-label" ng-disabled="selectedtorrents.length < 1" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
           <option value="">Set label</option>
         </select>
+        <span class="input-group-btn">
+          <button type=button ng-click="setLabel('')" ng-disabled="selectedtorrents.length < 1" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+          <button type=button ng-click="setNewLabel()" ng-disabled="selectedtorrents.length < 1" class="btn" ><span class="glyphicon glyphicon-plus"></span></button>
+        </span>
       </div>
     </fieldset>
   </form>

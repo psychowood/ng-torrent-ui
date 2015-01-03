@@ -150,9 +150,9 @@ select[disabled] {
     max-width: 175px !important;
   }
 
-  .addtorrent-form .upload-url,
-  .addtorrent-form .upload-file {
-    width: 380px;
+#addtorrent-form .form-control
+   {
+    width: 315px;
   }
 }
 
