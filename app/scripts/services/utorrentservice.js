@@ -307,8 +307,9 @@ Torrent.prototype.formatBytes = function(bytes) {
    */
    return Torrent;
  })
-.service('uTorrentService', function ($http,$resource,$log,$upload) {
+.service('uTorrentService', function ($http,$resource,$log,$upload,$q) {
 
+  var loading = null;
   var data = {
     url: '/gui/',
     password: null,
@@ -328,26 +329,34 @@ Torrent.prototype.formatBytes = function(bytes) {
   return {
     cacheMap: {},
     conf: data,
-    getToken: function(callback) {
+    init: function() {
       if (data.token) {
         $log.info('token already cached');
-        if (callback) {
-          callback(data.token);
-        }
-      } else {
-        $log.info('get token');
-        $http.get(data.url + 'token.html?t=' + Date.now()).
-        success(function(str) {
-          var match = str.match(/>([^<]+)</);
-          if (match) {
-            data.token = match[match.length - 1];
-            $log.info('got token ' + data.token);
-          }
-          if (callback) {
-            callback(data.token);
-          }
-        });
+        loading.resolve(data.token);
+        return loading.promise;
       }
+
+      if (loading !== null) {
+        $log.info('token load in progress. Deferring callback');
+        return loading.promise;
+      } else {
+        loading = $q.defer();
+      }
+
+      $log.info('get token');
+      $http.get(data.url + 'token.html?t=' + Date.now()).
+      success(function(str) {
+        var match = str.match(/>([^<]+)</);
+        if (match) {
+          data.token = match[match.length - 1];
+          loading.resolve(data.token);
+          $log.info('got token ' + data.token);
+        }
+      }).error(function() {
+        loading.reject('Error loading token');
+        $log.error(arguments);
+      });
+      return loading.promise;
     },
     torrent: function(){
       return $resource(data.url + '.' + '?token=:token&:action:opt:data&t=:t', {token:data.token,t:Date.now()}, {

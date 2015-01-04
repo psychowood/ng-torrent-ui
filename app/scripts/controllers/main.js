@@ -587,7 +587,7 @@
  	$scope.$on('$destroy', function() {
  	});
 
- 	uTorrentService.getToken(function() {
+ 	uTorrentService.init().then(function() {
  		$scope.reload();
  	},function() {
      $log.error('error', arguments);
