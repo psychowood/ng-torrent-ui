@@ -29,7 +29,7 @@ Development status
 
 ## Notes
 
-Current version is developed and tested on the latest version of Chrome, with μTorrent 2.2.1 (build 25302). Newer uTorrent versions will be supported at a later time, as for (possibly) other torrent applications.
+Current version is developed and tested on the latest version of Chrome with μTorrent 2.2.1 (build 25302), and tested for the main functionalities also on the current μTorrent version, 3.4.2. At a later time (possibly) other torrent applications will be supported.
 
 If, for dev purposes, you want to test the app from sources without installing in uTorrent, you need to run
 
