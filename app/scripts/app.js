@@ -57,7 +57,22 @@
     };
   })
 */
-  .controller('NavController', function(){})
+  .controller('NavController', function($scope,uTorrentService){
+    $scope.alerts = [];
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
+
+    uTorrentService.init().then(function() {
+      var ts = uTorrentService.actions().getsettings();
+      ts.$promise.then(function() {
+        $scope.serverVersion = uTorrentService.getVersion();
+      });
+      return ts;
+    }, function() {
+      $scope.alerts.push({ type: 'danger', msg: 'Service unavailable' });
+    });
+  })
   .directive('focusMe', function ($timeout) {
   return {
     priority: 1,

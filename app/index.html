@@ -27,6 +27,7 @@
       <![endif]-->
 
       <div class="container-fluid" ng-controller="NavController">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
         <div class="top-bar">
           <tabset class="pull-right">
             <li><a ng-href="#/">Home</a></li>
