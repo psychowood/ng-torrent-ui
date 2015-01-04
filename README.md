@@ -41,13 +41,14 @@ replacing 'hostname' and '8055' with your utorrent hostname and port.
 ## Release History
 
 ### v0.2.8
-  [x] Fixed: touch not recognized on mobile devices in torrent details modal
-  [x] Added: Remove label
-  [x] Added: Create new label
-  [x] Fixed: Set label for multiple torrents
-  [x] Added: upload of torrent files (not supported for uTorrent 2.X)
-  [x] Added: close button in torrent details modal
-  [x] Tested with uTorrent 3
+- [x] Added: Report issue in the About tab
+- [x] Fixed: Touch not recognized on mobile devices in torrent details modal
+- [x] Added: Remove label
+- [x] Added: Create new label
+- [x] Fixed: Set label for multiple torrents
+- [x] Added: upload of torrent files (not supported for uTorrent 2.X)
+- [x] Added: close button in torrent details modal
+- [x] First tests with the current uTorrent (v3.4.2 build 37594)
 
 ### v0.2.7
 - [x] Added: change file priority and files filter in torrent details
@@ -115,7 +116,7 @@ Not in a specific order.
 - [ ] Desktop notifications for supported browsers
 - [ ] Toolbar auto fit width
 - [ ] Embed search engines
-  [ ] Support for multiple labels per torrent
+  [ ] Support for multiple labels per torrent (undocumented API?)
 - [ ] Find a more 'personal' name
 - [ ] Any ideas? Tell me :)
 
