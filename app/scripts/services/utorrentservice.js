@@ -314,7 +314,8 @@ Torrent.prototype.formatBytes = function(bytes) {
     url: '/gui/',
     password: null,
     token: null,
-    cid: 0
+    cid: 0,
+    build: -1
   };
 
   var updateCidInterceptor = {
@@ -344,7 +345,7 @@ Torrent.prototype.formatBytes = function(bytes) {
       }
 
       $log.info('get token');
-      $http.get(data.url + 'token.html?t=' + Date.now()).
+      $http.get(data.url + 'token.html?t=' + Date.now(), {timeout:1000}).
       success(function(str) {
         var match = str.match(/>([^<]+)</);
         if (match) {
@@ -443,6 +444,28 @@ Torrent.prototype.formatBytes = function(bytes) {
               }
               return {files:files};
             }
+        },
+        getsettings: {
+          params: { action:'getsettings'},
+          isArray: true,
+          transformResponse: function (response) {
+              var responseData = angular.fromJson(response);
+              data.build = responseData.build;
+              responseData = responseData.settings;
+              var settings = [];
+              var i,val;
+              var types = ['int','bool','string'];
+              for (i=0; i<responseData.length; i++) {
+                val = {
+                  name: responseData[i][0],
+                  type: types[responseData[i][1]],
+                  value: responseData[i][2],
+                  others: (responseData[i].length > 2)?responseData[i][3]:undefined
+                };
+                settings.push(val);
+              }
+              return settings;
+            }
         }
       });
     },
@@ -464,6 +487,19 @@ Torrent.prototype.formatBytes = function(bytes) {
           method: 'GET'
         }
       });
+    },
+    getVersion: function() {
+      var buildVersionStr = function() {
+        var prefix = 'μTorrent';
+        var preBuild = 'build';
+        return [prefix,preBuild,data.build].join(' ');
+      };
+
+      if (data.build === -1) {
+        return '';
+      }
+      return buildVersionStr();
+
     }
   };
 });
