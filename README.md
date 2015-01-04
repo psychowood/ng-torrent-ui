@@ -36,7 +36,7 @@ If, for dev purposes, you want to test the app from sources without installing i
 ```bash
 grunt serve --torrent-host=localhost --torrent-port=8055
 ```
-replacing 'hostname' and '8055' with your utorrent hostname and port.
+replacing 'localhost' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
