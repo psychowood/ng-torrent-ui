@@ -1,7 +1,7 @@
 {
   "name": "ng-torrent-ui",
   "description": "Angular + (flat) Boostrap (μ)Torrent Web UI",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/psychowood/ng-torrent-ui.git"

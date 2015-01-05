@@ -40,6 +40,10 @@ replacing 'localhost' and '8055' with your utorrent hostname and port.
 
 ## Release History
 
+### v0.2.9
+- [x] Added: Report issue via mail
+- [x] Added: Online new version check (using GitHub API to check releases)
+
 ### v0.2.8
 - [x] Added: Report issue in the About tab
 - [x] Fixed: Touch not recognized on mobile devices in torrent details modal
@@ -97,8 +101,8 @@ replacing 'localhost' and '8055' with your utorrent hostname and port.
 
 Not in a specific order.
 
-  [ ] Support for current versions of uTorrent
-  [ ] Multi language interface
+- [ ] Support for current versions of uTorrent
+- [ ] Multi language interface
 - [ ] New versions check
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
