@@ -57,11 +57,50 @@
     };
   })
 */
-  .controller('NavController', function($scope,uTorrentService){
+  .controller('NavController', function($scope,uTorrentService,$http,$cookies,$log){
     $scope.alerts = [];
     $scope.closeAlert = function(index) {
       $scope.alerts.splice(index, 1);
     };
+    var lastUpdateCheck = $cookies.lastUpdateCheck;
+    var now = new Date().getTime();
+    if (lastUpdateCheck === undefined || (now - lastUpdateCheck) > 36000000) {
+
+      $http({
+        method: 'GET',
+        url: 'https://api.github.com/repos/psychowood/ng-torrent-ui/releases?per_page=1',
+        headers: {
+         'Accept': 'application/vnd.github.v3+json'
+        }
+      }).then(function(response) {
+        $cookies.lastUpdateCheck = now;
+        if (response.data && response.data.length > 0) {
+          var data = response.data[0];
+          var versionAttr = 'tag_name';
+          var latest = data[versionAttr];
+
+          $http.get('bower.json').then(function(res) {
+            var currentVersion = 'v' + res.data.version;
+            $scope.currentVersion = currentVersion;
+            if (latest !== currentVersion) {
+              if ($cookies.updatedVersion !== latest) {
+                $scope.alerts.push({ type: 'info', msg: 'New version available: ' + latest });
+                $cookies.updatedVersion = latest;
+              }
+            } else {
+              delete $cookies.updatedVersion;
+            }
+          });
+
+        } else {
+          $log.warning('can\'t check latest release');
+        }
+
+      });
+    } else {
+      $log.info('Version already checked in the last hour');
+    }
+    $scope.updatedVersion = $cookies.updatedVersion;
 
     uTorrentService.init().then(function() {
       var ts = uTorrentService.actions().getsettings();

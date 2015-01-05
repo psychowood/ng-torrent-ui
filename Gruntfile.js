@@ -451,6 +451,8 @@ module.exports = function (grunt) {
           cwd: 'bower_components/flatstrap-css-only',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          '<%= yeoman.dist %>/bower.json':'bower.json'
         }]
       },
       demo: {
@@ -466,13 +468,19 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      bower: {
+        files: {
+          '.tmp/bower.json':'bower.json'
+        }
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-      'copy:styles'
+      'copy:styles',
+      'copy:bower'
       ],
       test: [
       'copy:styles'
