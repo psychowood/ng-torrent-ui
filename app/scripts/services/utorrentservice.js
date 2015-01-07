@@ -345,7 +345,7 @@ Torrent.prototype.formatBytes = function(bytes) {
       }
 
       $log.info('get token');
-      $http.get(data.url + 'token.html?t=' + Date.now(), {timeout:1000}).
+      $http.get(data.url + 'token.html?t=' + Date.now(), {timeout:5000}).
       success(function(str) {
         var match = str.match(/>([^<]+)</);
         if (match) {
