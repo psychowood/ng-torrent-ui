@@ -10,7 +10,7 @@
   </span>
   <div title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)" >{{item.decodedName}}
   </div>
-  <div class="tag-label input-group-addon show-on-lg">[{{item.getMainLabel()}}]</div>
+  <div class="tag-label input-group-addon show-on-lg"><span ng-hide="item.getMainLabel() === ''">[{{item.getMainLabel()}}]</span></div>
   <span class="info-button input-group-btn selectable">
     <button class="btn btn-link" ng-click="doAction('info',item)">
       <span class="glyphicon glyphicon-info-sign"></span>
