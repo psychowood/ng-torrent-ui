@@ -67,16 +67,20 @@
   .controller('NavController', function($scope,uTorrentService,$http,$cookies,$log,$translate,translationsLoader){
 
     translationsLoader('getoptions').then(function(options) {
+      var lang;
       $scope.languages = options.languages;
 
-      if ($cookies.language) {
-        $translate.use($cookies.language);
-        $scope.language = $cookies.language;
+      lang = $cookies.language;
+      if (lang) {
+        $translate.use(lang);
+        $scope.language = lang;
       } else {
-        $scope.language = $translate.use();
+        lang =  $translate.preferredLanguage().split('_')[0];
+        $translate.use(lang);
+        $scope.language = lang;
       }
 
-      $scope.languageDesc = $scope.languages[$scope.language];
+      $scope.languageDesc = $scope.languages[lang];
 
       $scope.changeLanguage = function (langKey) {
         if (langKey !== $translate.use()) {
