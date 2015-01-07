@@ -38,7 +38,65 @@ grunt serve --torrent-host=localhost --torrent-port=8055
 ```
 replacing 'localhost' and '8055' with your utorrent hostname and port.
 
+
+## Translations
+
+I managed to get many of the ui texts from the original uTorrent WebUI, this means that most of the interface is available in the following languages:
+
+ - Albanian
+ - Arabic
+ - Belarusian
+ - Bosnian
+ - Bulgarian
+ - Catalan
+ - Chinese (Simplified)
+ - Chinese (Traditional)
+ - Czech
+ - Danish
+ - Dutch
+ - English
+ - Estonian
+ - Finnish
+ - French
+ - Frisian
+ - Gaeilge
+ - Galician
+ - Georgian
+ - German
+ - Greek
+ - Hebrew
+ - Hungarian
+ - Icelandic
+ - Italian
+ - Japanese
+ - Korean
+ - Latvian
+ - Lithuanian
+ - Norwegian
+ - Norwegian Nynorsk
+ - Polish
+ - Portuguese (Brazil)
+ - Portuguese (Portugal)
+ - Romanian
+ - Russian
+ - Serbian (Cyrillic)
+ - Slovak
+ - Slovenian
+ - Spanish
+ - Swedish
+ - Taiwan
+ - Thai
+ - Turkish
+ - Ukrainian
+ - Valencian
+ - Vietnamese
+
+There are parts not translated yet, and I'll need help because I don't speak nor write most them (except for italian and english). If you think you can help, contact me.
+
 ## Release History
+
+### v0.3.0
+- [x] Added: Inherited translations from uTorrent resource files. Jump to 47 supported languages :) (Various strings missing, I'll need help from the community to complete the translations).
 
 ### v0.2.9
 - [x] Added: Report issue via mail
