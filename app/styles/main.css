@@ -111,6 +111,7 @@ select[disabled] {
 
   .actions-form .input-group-addon:first-child {
     width: 100px;
+    text-align: left;
   }
 
 }
@@ -195,7 +196,7 @@ select[disabled] {
 }
 
 .torrent .priority {
-  width: 80px;
+  width: 150px;
   padding-left:0px;
   padding-right:5px;
   padding-bottom: 2px;
@@ -283,6 +284,19 @@ select[disabled] {
 .sorter,
 .selectable {
     cursor: pointer !important;
+}
+
+.torrent-header {
+  height: 60px;
+}
+
+.torrent-header .name{
+  line-height: 60px;
+  height: 60px;
+}
+
+.torrent-header .tag-label {
+  padding-right: 30px;
 }
 
 .torrent-header .sorter {
@@ -398,11 +412,15 @@ select[disabled] {
   max-width: 990px;
 }
 
-
-.addtorrent-form .form-control .clearable {
-  padding-left: 25px;
-}
-
 .drop-box {
   cursor:pointer;
+}
+
+.languages {
+  margin-top: 3px;
+}
+
+.languages ul {
+  height: 350px;
+  overflow-y: scroll;
 }

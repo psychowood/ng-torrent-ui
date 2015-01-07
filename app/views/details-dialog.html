@@ -6,29 +6,29 @@
 </div>
 <div class="modal-body details-body">
   <!-- <div><b>ETA:</b> {{torrent.eta}}</div> -->
-  <div><b>Real torrent name:</b> {{torrent.name}}</div>
-  <div><b>Hash:</b> {{torrent.hash}}</div>
-  <div><b>Size:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
-  <div><b>Statuses:</b> <i ng-repeat="status in torrent.statusesCached">
+  <div><b>{{'OV_COL_NAME' | translate}}:</b> {{torrent.name}}</div>
+  <div><b>{{'GN_TP_10' | translate}}:</b> {{torrent.hash}}</div>
+  <div><b>{{'OV_COL_SIZE' | translate}}:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
+  <div><b>{{'OV_COL_STATUS' | translate}}:</b> <i ng-repeat="status in torrent.statusesCached">
       {{ status }}<span ng-if="!$last">,</span>
     </i></div>
-  <div><b>Labels:</b>  <i ng-repeat="label in torrent.getLabels()">
+  <div><b>{{'OV_COL_LABEL' | translate}}:</b>  <i ng-repeat="label in torrent.getLabels()">
       {{ label }}<span ng-if="!$last">,</span>
     </i></div>
-  <div><b>Clients:</b>
-    {{torrent.seedsInSwarm}} seeds<span ng-if="torrent.seedsInSwarm > 0"> ({{torrent.seedsConnected}} connected)</span>,
-    {{torrent.peersInSwarm}} peers<span ng-if="torrent.peersInSwarm > 0"> ({{torrent.peersConnected}} connected)</span>,
-    sharing ratio {{torrent.ratio/1000}}%
+  <div><b>{{'PRS_COL_CLIENT' | translate}}:</b>
+    {{'GN_TP_03' | translate}} {{torrent.seedsConnected}} <span ng-if="torrent.seedsInSwarm > 0"> / {{torrent.seedsInSwarm}}</span>,
+    {{'GN_TP_07' | translate}} {{torrent.peersConnected}} <span ng-if="torrent.seedsInSwarm > 0"> / {{torrent.peersInSwarm}}</span>,
+    {{'GN_TP_08' | translate}} {{torrent.ratio/1000}}%
   </div>
-  <div><b>Transfers:</b>
-    {{torrent.formatBytes(torrent.uploaded)}} uploaded ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
-    {{torrent.formatBytes(torrent.downloaded)}} downloaded ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
+  <div><b>{{'GN_TRANSFER' | translate}}:</b>
+    {{'GN_TP_02' | translate}} {{torrent.formatBytes(torrent.uploaded)}} ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
+    {{'GN_TP_01' | translate}} {{torrent.formatBytes(torrent.downloaded)}} ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
   </div>
   <p></p>
       <form role="form" ng-submit="doFilter()" class="form-inline actions-form action-toolbar">
         <div class="form-group">
           <div class="input-group input-group-sm filter-name">
-            <input class="form-control" type="text" ng-model="filters.name" placeholder="Filter by name">
+            <input class="form-control" type="text" ng-model="filters.name" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
             <span class="input-group-btn">
               <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = ''" ><span class="glyphicon glyphicon-remove-circle"></span></button>
             </span>
@@ -37,11 +37,11 @@
     <div class="form-group">
       <div class="input-group input-group-sm action-priority">
           <select ng-model="priorityToSet" class="form-control squared" ng-disabled="hasSelection === false" ng-change="setPriority()">
-            <option value="" disabled selected>Set priority</option>
-            <option value="0">Skip</option>
-            <option value="1">Low</option>
-            <option value="2">Normal</option>
-            <option value="3">High</option>
+            <option value="" disabled selected>{{'FI_COL_PRIO' | translate}} </option>
+            <option value="0">{{'MF_DONT' | translate}}</option>
+            <option value="1">{{'MF_LOW' | translate}}</option>
+            <option value="2">{{'MF_NORMAL' | translate}}</option>
+            <option value="3">{{'MF_HIGH' | translate}}</option>
           </select>
         </div>
       </div>
@@ -52,7 +52,7 @@
     <span class="input-group-addon">
       <input type="checkbox" ng-model="selectCheckbox" ng-change="toggleSelection()" >
     </span>
-    <span class="form-control name sorter text-center" ng-click="sorter.field = 'name'; sorter.descending=!sorter.descending">Name
+    <span class="form-control name sorter text-center" ng-click="sorter.field = 'name'; sorter.descending=!sorter.descending">{{'FI_COL_NAME' | translate}}
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
     </span>
     <span class="input-group-addon size sorter text-center" >
@@ -60,11 +60,11 @@
         <span class="glyphicon" ng-show="sorter.field === 'percent'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
       </span>
       -
-      <span ng-click="sorter.field = 'size'; sorter.descending=!sorter.descending">Size
+      <span ng-click="sorter.field = 'size'; sorter.descending=!sorter.descending">{{'FI_COL_SIZE' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'size'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
       </span>
     </span>
-    <span class="input-group-addon priority sorter text-center" ng-click="sorter.field = 'priority'; sorter.descending=!sorter.descending">Priority
+    <span class="input-group-addon priority sorter text-center" ng-click="sorter.field = 'priority'; sorter.descending=!sorter.descending">{{'FI_COL_PRIO' | translate}}
       <span class="glyphicon" ng-show="sorter.field === 'priorità'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
     </span>
   </div>
@@ -86,11 +86,11 @@
       <div class="input-group-addon input-group-sm priority text-center">
       <span class="animate-switch-container"
         ng-switch on="file.priority">
-          <span ng-switch-when="0">Skip</span>
-          <span ng-switch-when="1">Low</span>
-          <span ng-switch-when="2">Normal</span>
-          <span ng-switch-when="3">High</span>
-          <span ng-switch-default>Unknown</span>
+          <span ng-switch-when="0">{{'MF_DONT' | translate}}</span>
+          <span ng-switch-when="1">{{'MF_LOW' | translate}}</span>
+          <span ng-switch-when="2">{{'MF_NORMAL' | translate}}</span>
+          <span ng-switch-when="3">{{'MF_HIGH' | translate}}</span>
+          <span ng-switch-default>???</span>
       </span>
       </div>
     </div>

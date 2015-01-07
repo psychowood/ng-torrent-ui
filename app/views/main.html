@@ -7,8 +7,8 @@
             drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
             multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" accept="application/x-bittorrent" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
             <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" accept="application/x-bittorrent" ng-file-change="addTorrentFilesChanged($files, $event, [])">
-                <span >Click or drag and drop files to add</span>
-                <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} selected)</span>
+                <span>{{'OV_TB_ADDTORR' | translate}} ({{'CLICKORDRAG' | translate}})</span>
+                <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} {{'SELECTED' | translate}})</span>
             </div>
             </div>
 
@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
       <div class="input-group input-group-sm upload-url" >
-        <input type="text" ng-model="newtorrent" placeholder="Paste here a torrent url or a magnet link" class="form-control">
+        <input type="text" ng-model="newtorrent" placeholder="{{'OV_TB_ADDURL' | translate}}" class="form-control">
         <span class="input-group-btn">
           <button type=button ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
           <button type=button ng-click="addTorrent(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
@@ -35,7 +35,7 @@
   <form role="form" ng-submit="doFilter()" class="form-inline actions-form">
     <div class="form-group">
       <div class="input-group input-group-sm">
-        <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> Autoreload</span>
+        <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
         <select ng-model="autoreloadTimeout" ng-change="reload()" class="form-control squared" ng-disabled="autoreloadEnabled === false">
           <option value="1000">1 sec</option>
           <option value="5000">5 sec</option>
@@ -50,7 +50,7 @@
     <div class="form-group">
       <div class="input-group input-group-sm filter-name">
         <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> l33t</span>
-        <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="Filter by name">
+        <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
@@ -59,7 +59,7 @@
     <div class="form-group">
       <div class="input-group input-group-sm filter-label">
         <select ng-model="filters.label" ng-change="doFilter()" class="form-control" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
-          <option value="">Filter by label</option>
+          <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}}</option>
         </select>
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.label === ''" ng-click="filters.label = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
@@ -69,7 +69,7 @@
     <div class="form-group">
       <div class="input-group input-group-sm filter-selected">
         <span class="form-control selectable" ng-click="filters.selected = !filters.selected; doFilter()">
-          Show selected
+          {{'SHOW_SELECTED' | translate}}
         </span>
         <span class="input-group-addon input-group-sm">
           <input type="checkbox" ng-model="filters.selected" ng-change="doFilter()">
@@ -79,12 +79,12 @@
     <div class="form-group">
       <div class="input-group input-group-sm filter-status">
         <select ng-model="filters.status" ng-change="doFilter()" class="form-control squared">
-          <option value="">Filter by status</option>
-          <option value="completed">Completed</option>
-          <option value="downloading">Downloading</option>
-          <option value="paused">Paused</option>
-          <option value="queued">Queued</option>
-          <option value="seeding">Seeding</option>
+          <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}}</option>
+          <option value="completed">{{'OV_FL_FINISHED' | translate}}</option>
+          <option value="downloading">{{'OV_FL_DOWNLOADING' | translate}}</option>
+          <option value="paused">{{'OV_FL_PAUSED' | translate}}</option>
+          <option value="queued">{{'OV_FL_QUEUED' | translate}}</option>
+          <option value="seeding">{{'OV_FL_SEEDING' | translate}}</option>
         </select>
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.status === ''" ng-click="filters.status = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
@@ -92,38 +92,38 @@
       </div>
     </div>
     <div class="form-group input-group-sm info-text">
-      <span ng-show="torrents.length > 0" class="form-control status-text">{{torrents.length}} torrents - {{filteredtorrents.length}} matching filters - {{selectedtorrents.length}} selected (<u class="selectable" ng-click="clearSelected()">clear</u>)</span>
-      <span ng-show="torrents.length === 0" class="form-control">No torrents available</span>
+      <span ng-show="torrents.length > 0" class="form-control status-text">{{torrents.length}} {{'STM_TORRENTS' | translate}} - {{filteredtorrents.length}} {{'MATCHING_FILTERS' | translate}} - {{selectedtorrents.length}} {{'SELECTED' | translate}} <u class="selectable" ng-click="clearSelected()">({{'CLEAR_SELECTED' | translate}})</u></span>
+      <span ng-show="torrents.length === 0" class="form-control">0 {{'STM_TORRENTS' | translate}}</span>
     </div>
     <div class="form-group input-group-sm">
-      <span type="text" ng-show="torrents.length > 0" class="form-control status-text">Speed: <span class="glyphicon glyphicon-chevron-up"></span> {{uploadSpeed | formatBytes}}/s - <span class="glyphicon glyphicon-chevron-down"></span> {{downloadSpeed | formatBytes}}/s</span>
+      <span type="text" ng-show="torrents.length > 0" class="form-control status-text">{{'PRS_COL_UPSPEED' | translate}} {{uploadSpeed | formatBytes}}/s - {{'PRS_COL_DOWNSPEED' | translate}} {{downloadSpeed | formatBytes}}/s</span>
     </div>
     <fieldset class="form-group btn-toolbar action-toolbar" ng-disabled="selectedtorrents.length < 1">
       <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="show-on-lg">Start</span></button>
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span class="show-on-lg">Pause</span></button>
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span class="show-on-lg">Stop</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="show-on-lg">{{'ML_START' | translate}}</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span class="show-on-lg">{{'ML_PAUSE' | translate}}</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span class="show-on-lg">{{'ML_STOP' | translate}}</span></button>
       </div>
       <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="show-on-lg">Force start</span></button>
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="show-on-lg">Recheck</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="show-on-lg">{{'ML_FORCE_START' | translate}}</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="show-on-lg">{{'ML_FORCE_RECHECK' | translate}}</span></button>
         <div class="btn-group btn-group-sm dropdown" dropdown>
-          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">Remove</span></button>
+          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">{{'ML_REMOVE' | translate}}</span></button>
           <button type="button" class="btn dropdown-toggle" dropdown-toggle>
             <span class="caret"></span>
           </button>
         <div class="dropdown-menu btn-group-sm" role="menu">
-          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">Remove (with data)</span></button>
+          <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">{{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</span></button>
         </div>
         </div>
       </div>
       <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="show-on-lg">Queue Up</span></button>
-        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> <span class="show-on-lg">Queue Down</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="show-on-lg">{{'ML_QUEUEUP' | translate}}</span></button>
+        <button type="button" class="btn btn-default" ng-disabled="selectedtorrents.length < 1" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> <span class="show-on-lg">{{'ML_QUEUEDOWN' | translate}}</span></button>
       </div>
       <div class="input-group input-group-sm">
         <select ng-model="labelToSet" ng-change="setLabel(labelToSet)" class="form-control action-label" ng-disabled="selectedtorrents.length < 1" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
-          <option value="">Set label</option>
+          <option value="">{{'OV_NEWLABEL_CAPTION' | translate}}</option>
         </select>
         <span class="input-group-btn">
           <button type=button ng-click="setLabel('')" ng-disabled="selectedtorrents.length < 1" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
@@ -149,33 +149,33 @@
       <span class="glyphicon glyphicon-dashboard" ></span>
       <span class="glyphicon" ng-show="sorter.field === 'status'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
-    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">Name
+    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">{{'OV_COL_NAME' | translate}} [{{'OV_COL_LABEL' | translate}}]
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
     <span class="input-group-addon selectable size sorter text-center" >
       <span ng-click="sortBy('percent')">%
         <span class="glyphicon" ng-show="sorter.field === 'percent'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
-      -
-      <span ng-click="sortBy('size')">Size
+      <br/>
+      <span ng-click="sortBy('size')">{{'OV_COL_SIZE' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'size'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
     <span class="input-group-addon selectable sorter text-center speed show-on-lg" >
-      <span ng-click="sortBy('uploadSpeed')">Up
+      <span ng-click="sortBy('uploadSpeed')">{{'OV_COL_UPSPD' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'uploadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
-      -
-      <span ng-click="sortBy('downloadSpeed')">Down
+      <br/>
+      <span ng-click="sortBy('downloadSpeed')">{{'OV_COL_DOWNSPD' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'downloadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
     <span class="input-group-addon selectable sorter text-center peers show-on-lg" >
-      <span ng-click="sortBy('seedsInSwarm')">Seeds
+      <span ng-click="sortBy('seedsInSwarm')">{{'OV_COL_SEEDS' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'seedsInSwarm'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
-      -
-      <span ng-click="sortBy('peersInSwarm')">Peers
+      <br/>
+      <span ng-click="sortBy('peersInSwarm')">{{'OV_COL_PEERS' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'peersInSwarm'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
@@ -193,14 +193,15 @@
 
     <script type="text/ng-template" id="newLabelModal.html">
         <div class="modal-header">
-            <h3 class="modal-title">New label</h3>
+            <h3 class="modal-title">{{'OV_NEW_LABEL' | translate}}</h3>
         </div>
         <div class="modal-body">
+            <p>{{'OV_NEWLABEL_TEXT' | translate}}</p>
             <input focus-me="true" type="text" class="form-control" ng-model="newLabel" />
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="$close(newLabel)" ng-disabled="newLabel === ''">OK</button>
-            <button class="btn btn-warning" ng-click="$dismiss()">Cancel</button>
+            <button class="btn btn-primary" ng-click="$close(newLabel)" ng-disabled="newLabel === ''">{{'DLG_BTN_OK' | translate}}</button>
+            <button class="btn btn-warning" ng-click="$dismiss()">{{'DLG_BTN_CANCEL' | translate}}</button>
         </div>
     </script>
 

@@ -28,12 +28,35 @@
 
       <div class="container-fluid" ng-controller="NavController">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+        <div class="btn-group pull-right languages" dropdown>
+          <button type="button" class="btn dropdown-toggle flag" dropdown-toggle>
+            <!-- <span class="lang-sm lang-lbl-full" lang="{{language}}"></span> -->
+            {{languageDesc}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="(langId, langDesc) in languages" >
+              <a href="javascript:void(0)" ng-click="changeLanguage(langId)">
+                <!-- <span class="lang-sm lang-lbl-full" lang="{{langId}}"></span> -->
+                {{langDesc}}
+              </a>
+              <!-- <a href="javascript:void(0)" ng-click="changeLanguage(langId)" class="flag"><div class="flag-{{langId}}">&nbsp;</div>{{langDesc}}</a> -->
+            </li>
+          </ul>
+        </div>
+
         <div class="top-bar">
+
+          <!-- <select ng-model="language" ng-change="changeLanguage(language)" class="form-control pull-right languages">
+            <option ng-repeat="(langId, langDesc) in languages" value="{{langId}}" class="flag flag-{{langId}}">{{langDesc}}</option>
+          </select> -->
+
           <tabset class="pull-right">
-            <li><a ng-href="#/">Home</a></li>
-            <!-- <li><a ng-href="#/settings">Settings</a></li> -->
-            <li><a ng-href="#/about">About</a></li>
+            <li><a ng-href="#/">{{ 'STM_TORRENTS' | translate }}</a></li>
+            <!-- <li><a ng-href="#/settings">{{ 'MM_OPTIONS' | translate }}</a></li> -->
+            <li><a ng-href="#/about">{{ 'MM_HELP' | translate }}</a></li>
           </tabset>
+
           <h3 class="text-muted header logo">ng-torrent-ui <span class="version">{{VERSION}}</span>&nbsp;<a target="_BLANK" class="version text-danger" href="https://github.com/psychowood/ng-torrent-ui/releases" ng-show="updatedVersion && currentVersion !== updatedVersion">({{updatedVersion}} available for download)</a></h3>
         </div>
 
