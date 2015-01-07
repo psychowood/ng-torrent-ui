@@ -36,6 +36,9 @@ module.exports = function (grunt) {
   // Rename to move dist/app to dist/demo
   grunt.loadNpmTasks('grunt-contrib-rename');
 
+  // Validate json resources (language files)
+  grunt.loadNpmTasks('grunt-jsonlint');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -93,7 +96,8 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/demo/{,*/}*',
         '.tmp/styles/{,*/}*.css',
         '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
+        ],
+        tasks: ['string-replace']
       }
     },
 
@@ -241,6 +245,7 @@ module.exports = function (grunt) {
         src: [
         'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
+        // '<%= yeoman.app %>/langs/utorrent/{,*/}*.js'
         ]
       },
       test: {
@@ -248,6 +253,12 @@ module.exports = function (grunt) {
           jshintrc: 'test/.jshintrc'
         },
         src: ['test/spec/{,*/}*.js']
+      }
+    },
+
+    jsonlint: {
+      languages: {
+        src: [ '<%= yeoman.app %>/langs/{,*/}*.json', '<%= yeoman.app %>/langs/utorrent/{,*/}*.json' ]
       }
     },
 
@@ -439,7 +450,8 @@ module.exports = function (grunt) {
           '*.html',
           'views/{,*/}*.html',
           'images/{,*/}*.{webp}',
-          'fonts/*'
+          'fonts/*',
+          'langs/{,*/}*'
           ]
         }, {
           expand: true,
@@ -552,6 +564,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
     'newer:jshint',
+    'newer:jsonlint',
     //'test',
     'build',
     'processhtml:analytics',
@@ -574,6 +587,7 @@ module.exports = function (grunt) {
 
    grunt.registerTask('build-demo', [
     'newer:jshint',
+    'newer:jsonlint',
     //'test',
     'clean:dist',
     'wiredep:demo',

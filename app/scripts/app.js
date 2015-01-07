@@ -18,7 +18,8 @@
   'ui.bootstrap',
   'vs-repeat',
   'toastr',
-  'angularFileUpload'
+  'angularFileUpload',
+  'pascalprecht.translate'
   ]).config(function ($routeProvider) {
     $routeProvider
     .when('/', {
@@ -36,6 +37,12 @@
     .otherwise({
       redirectTo: '/'
     });
+  })
+  .config(function ($translateProvider) {
+    $translateProvider
+      .useLoader('translationsLoader')
+      .fallbackLanguage('en')
+      .determinePreferredLanguage();
   })
 /*
   .directive('resizable', function($window) {
@@ -57,7 +64,33 @@
     };
   })
 */
-  .controller('NavController', function($scope,uTorrentService,$http,$cookies,$log){
+  .controller('NavController', function($scope,uTorrentService,$http,$cookies,$log,$translate,translationsLoader){
+
+    translationsLoader('getoptions').then(function(options) {
+      $scope.languages = options.languages;
+
+      if ($cookies.language) {
+        $translate.use($cookies.language);
+        $scope.language = $cookies.language;
+      } else {
+        $scope.language = $translate.use();
+      }
+
+      $scope.languageDesc = $scope.languages[$scope.language];
+
+      $scope.changeLanguage = function (langKey) {
+        if (langKey !== $translate.use()) {
+          $translate.use(langKey);
+
+          $scope.language = langKey;
+          $scope.languageDesc = $scope.languages[langKey];
+
+          $cookies.language = langKey;
+        }
+      };
+    });
+
+
     $scope.alerts = [];
     $scope.closeAlert = function(index) {
       $scope.alerts.splice(index, 1);
