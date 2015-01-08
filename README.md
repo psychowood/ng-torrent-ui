@@ -96,7 +96,7 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ## Release History
 
 ### v0.3.1
-  [x] Added: Server version in header
+- [x] Added: Server version in header
 - [x] Fixed: Language not recognized before first set
 - [x] Support for multi-value strings (caused problems with russian language)
 
