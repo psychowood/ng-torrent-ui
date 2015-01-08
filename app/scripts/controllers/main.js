@@ -174,7 +174,11 @@
 		if (service) {
 			var ts = service(hashes, value);
 			ts.success(function() {
-			     toastr.info('Label set to "' + value + '"',null,{timeOut: 2500});
+        if (value === '') {
+          toastr.info('Label removed',null,{timeOut: 2500});
+        } else {
+			    toastr.info('Label set to "' + value + '"',null,{timeOut: 2500});
+        }
 			});
       return ts;
 		} else {
