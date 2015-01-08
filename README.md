@@ -98,7 +98,8 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ### v0.3.1
 - [x] Added: Server version in header
 - [x] Fixed: Language not recognized before first set
-- [x] Support for multi-value strings (caused problems with russian language)
+- [x] Support for multi-value strings (caused problems with russian language) [thanks *lukas-by*]
+- [x] Fixed: notification for newer version after update
 
 ### v0.3.0
 - [x] Added: Inherited translations from uTorrent resource files. Jump to 47 supported languages :) (Various strings missing, I'll need help from the community to complete the translations).

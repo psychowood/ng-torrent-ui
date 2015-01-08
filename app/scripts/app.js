@@ -120,7 +120,7 @@
 
           $http.get('bower.json').then(function(res) {
             var currentVersion = 'v' + res.data.version;
-            $scope.currentVersion = currentVersion;
+            $cookies.currentVersion = currentVersion;
             if (latest !== currentVersion) {
               if ($cookies.updatedVersion !== latest) {
                 $scope.alerts.push({ type: 'info', msg: 'New version available: ' + latest });
@@ -139,6 +139,7 @@
     } else {
       $log.info('Version already checked in the last hour');
     }
+    $scope.currentVersion = $cookies.currentVersion;
     $scope.updatedVersion = $cookies.updatedVersion;
 
     uTorrentService.init().then(function() {
