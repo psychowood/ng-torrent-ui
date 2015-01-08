@@ -79,4 +79,49 @@ angular.module('utorrentNgwebuiApp')
 
         return deferred.promise;
     };
-  });
+  })
+  .filter('translateMultiLabel', ['$parse', '$translate', function ($parse, $translate) {
+
+      var cacheForPiped = {};
+
+      var getMultiLabel = function(pipedlabel,index) {
+        var str = cacheForPiped[pipedlabel];
+
+        if (!str) {
+          str = pipedlabel.split('||');
+          cacheForPiped[pipedlabel] = str;
+        }
+
+        if (str.length === 1) {
+          return str[0];
+        }
+
+        if (str[0] === '') {
+          index ++;
+        }
+
+        if (index > str.length) {
+          return str[str.length];
+        }
+
+        return str[index];
+      };
+
+      var translateFilter = function (translationId, index, interpolateParams, interpolation) {
+
+        if (!angular.isObject(interpolateParams)) {
+          interpolateParams = $parse(interpolateParams)(this);
+        }
+
+        var str = $translate.instant(translationId, interpolateParams, interpolation);
+        return getMultiLabel(str,index);
+
+      };
+
+      // Since AngularJS 1.3, filters which are not stateless (depending at the scope)
+      // have to explicit define this behavior.
+      translateFilter.$stateful = true;
+
+      return translateFilter;
+
+    }]);

@@ -162,11 +162,11 @@
       </span>
     </span>
     <span class="input-group-addon selectable sorter text-center speed show-on-lg" >
-      <span ng-click="sortBy('uploadSpeed')">{{'OV_COL_UPSPD' | translate}}
+      <span ng-click="sortBy('uploadSpeed')">{{'OV_COL_UPSPD' | translateMultiLabel:0}}
         <span class="glyphicon" ng-show="sorter.field === 'uploadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
       <br/>
-      <span ng-click="sortBy('downloadSpeed')">{{'OV_COL_DOWNSPD' | translate}}
+      <span ng-click="sortBy('downloadSpeed')">{{'OV_COL_DOWNSPD' | translateMultiLabel:0}}
         <span class="glyphicon" ng-show="sorter.field === 'downloadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
