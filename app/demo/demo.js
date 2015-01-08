@@ -13,6 +13,7 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
   $httpBackend.whenGET(new RegExp('views\/.*')).passThrough();
   $httpBackend.whenGET(new RegExp('scripts\/.*')).passThrough();
   $httpBackend.whenGET(new RegExp('styles\/.*')).passThrough();
+  $httpBackend.whenGET(new RegExp('langs\/.*')).passThrough();
 
   var rand = function(max){
     return Math.floor((Math.random()*max)+1);
