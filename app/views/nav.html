@@ -1,0 +1,30 @@
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+        <div class="btn-group pull-right languages" dropdown>
+          <button type="button" class="btn dropdown-toggle flag" dropdown-toggle>
+            {{languageDesc}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="lang in languages" >
+              <a href="javascript:void(0)" ng-click="changeLanguage(lang)">
+                {{lang.desc}}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="top-bar">
+          <tabset class="pull-right">
+            <li><a ng-href="#/">{{ 'STM_TORRENTS' | translate }}</a></li>
+            <!-- <li><a ng-href="#/settings">{{ 'MM_OPTIONS' | translate }}</a></li> -->
+            <li><a ng-href="#/about">{{ 'MM_HELP' | translate }}</a></li>
+          </tabset>
+
+          <h3 class="text-muted header logo">ng-torrent-ui <span class="version">{{VERSION}} <a target="_BLANK" class="text-danger" href="https://github.com/psychowood/ng-torrent-ui/releases" ng-show="updatedVersion && currentVersion !== updatedVersion">({{updatedVersion}} available for download)</a> <span ng-show="serverVersion"> - {{serverVersion}}</span></span> </h3>
+        </div>
+
+        <div ng-view=""></div>
+
+        <!-- div class="footer">
+          <p></p>
+        </div-->
