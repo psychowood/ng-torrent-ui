@@ -35,10 +35,9 @@
             {{languageDesc}} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="(langId, langDesc) in languages" >
-              <a href="javascript:void(0)" ng-click="changeLanguage(langId)">
-                <!-- <span class="lang-sm lang-lbl-full" lang="{{langId}}"></span> -->
-                {{langDesc}}
+            <li ng-repeat="lang in languages" >
+              <a href="javascript:void(0)" ng-click="changeLanguage(lang)">
+                {{lang.desc}}
               </a>
               <!-- <a href="javascript:void(0)" ng-click="changeLanguage(langId)" class="flag"><div class="flag-{{langId}}">&nbsp;</div>{{langDesc}}</a> -->
             </li>

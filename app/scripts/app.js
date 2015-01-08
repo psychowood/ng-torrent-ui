@@ -67,33 +67,35 @@
   .controller('NavController', function($scope,uTorrentService,$http,$cookies,$log,$translate,translationsLoader){
 
     translationsLoader('getoptions').then(function(options) {
-      var lang;
-      $scope.languages = options.languages;
+      var langId,lang;
+      var sortable = [];
+      for (lang in options.languages) {
+            sortable.push({id:lang, desc:options.languages[lang]});
+      }
+      sortable.sort(function(a, b) {
+        return ( ( a.desc === b.desc ) ? 0 : ( ( a.desc > b.desc ) ? 1 : -1 ) );
+      });
 
-      lang = $cookies.language;
-      if (lang) {
-        $translate.use(lang);
-        $scope.language = lang;
+      $scope.languages = sortable;
+
+      langId = $cookies.language;
+      if (langId) {
+        $translate.use(langId);
       } else {
-        lang =  $translate.preferredLanguage().split('_')[0];
-        $translate.use(lang);
-        $scope.language = lang;
+        langId =  $translate.preferredLanguage().split('_')[0];
+        $translate.use(langId);
       }
 
-      $scope.languageDesc = $scope.languages[lang];
+      $scope.languageDesc = options.languages[langId];
 
-      $scope.changeLanguage = function (langKey) {
-        if (langKey !== $translate.use()) {
-          $translate.use(langKey);
-
-          $scope.language = langKey;
-          $scope.languageDesc = $scope.languages[langKey];
-
-          $cookies.language = langKey;
+      $scope.changeLanguage = function (lang) {
+        if (lang.id !== $translate.use()) {
+          $translate.use(lang.id);
+          $scope.languageDesc = lang.desc;
+          $cookies.language = lang.id;
         }
       };
     });
-
 
     $scope.alerts = [];
     $scope.closeAlert = function(index) {
