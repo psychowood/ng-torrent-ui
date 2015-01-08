@@ -22,7 +22,7 @@ module.exports = function (grunt) {
 
   // Replaces strings on files by using string or regex patterns. Used to inject
   // package.json data in the app
-  grunt.loadNpmTasks('grunt-string-replace');
+  // grunt.loadNpmTasks('grunt-string-replace');
 
   //Gzip files for utorrent archive
   grunt.loadNpmTasks('grunt-contrib-compress');
@@ -96,8 +96,7 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/demo/{,*/}*',
         '.tmp/styles/{,*/}*.css',
         '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ],
-        tasks: ['string-replace']
+        ]
       }
     },
 
@@ -521,7 +520,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'string-replace',
       'wiredep:app',
       'configureProxies:server',
       'concurrent:server',
@@ -553,7 +551,6 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'string-replace',
     'cdnify',
     'cssmin',
     'uglify',
@@ -575,7 +572,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve-demo', [
      'clean:server',
-     'string-replace',
      'wiredep:demo',
      'configureProxies:server',
      'processhtml:demo',
@@ -600,7 +596,6 @@ module.exports = function (grunt) {
     'copy:demo',
     'processhtml:demodist',
     'processhtml:analytics',
-    'string-replace',
     'cdnify',
     'cssmin',
     'uglify',
