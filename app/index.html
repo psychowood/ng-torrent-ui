@@ -49,7 +49,7 @@
             <li><a ng-href="#/about">{{ 'MM_HELP' | translate }}</a></li>
           </tabset>
 
-          <h3 class="text-muted header logo">ng-torrent-ui <span class="version">{{VERSION}} <span ng-show="serverVersion"> - {{serverVersion}}</span></span>&nbsp;<a target="_BLANK" class="version text-danger" href="https://github.com/psychowood/ng-torrent-ui/releases" ng-show="updatedVersion && currentVersion !== updatedVersion">({{updatedVersion}} available for download)</a></h3>
+          <h3 class="text-muted header logo">ng-torrent-ui <span class="version">{{VERSION}} <a target="_BLANK" class="text-danger" href="https://github.com/psychowood/ng-torrent-ui/releases" ng-show="updatedVersion && currentVersion !== updatedVersion">({{updatedVersion}} available for download)</a> <span ng-show="serverVersion"> - {{serverVersion}}</span></span> </h3>
         </div>
 
         <div ng-view=""></div>
