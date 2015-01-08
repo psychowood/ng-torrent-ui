@@ -31,7 +31,6 @@
 
         <div class="btn-group pull-right languages" dropdown>
           <button type="button" class="btn dropdown-toggle flag" dropdown-toggle>
-            <!-- <span class="lang-sm lang-lbl-full" lang="{{language}}"></span> -->
             {{languageDesc}} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
@@ -39,17 +38,11 @@
               <a href="javascript:void(0)" ng-click="changeLanguage(lang)">
                 {{lang.desc}}
               </a>
-              <!-- <a href="javascript:void(0)" ng-click="changeLanguage(langId)" class="flag"><div class="flag-{{langId}}">&nbsp;</div>{{langDesc}}</a> -->
             </li>
           </ul>
         </div>
 
         <div class="top-bar">
-
-          <!-- <select ng-model="language" ng-change="changeLanguage(language)" class="form-control pull-right languages">
-            <option ng-repeat="(langId, langDesc) in languages" value="{{langId}}" class="flag flag-{{langId}}">{{langDesc}}</option>
-          </select> -->
-
           <tabset class="pull-right">
             <li><a ng-href="#/">{{ 'STM_TORRENTS' | translate }}</a></li>
             <!-- <li><a ng-href="#/settings">{{ 'MM_OPTIONS' | translate }}</a></li> -->
