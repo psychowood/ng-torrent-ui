@@ -43,6 +43,7 @@ module.exports = function (grunt) {
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
     version: require('./bower.json').version || require('./package.json').version || 'version missing',
+    releases: 'releases',
     distRoot: 'dist',
     dist: 'dist/app',
     distUtorrent: 'dist/utorrent',
@@ -204,7 +205,7 @@ module.exports = function (grunt) {
       utorrent: {
         cwd: '<%= yeoman.distUtorrent %>',
         src: '<%= yeoman.distUtorrent %>/**/*',
-        dest: 'releases/utorrent/webui.zip',
+        dest: '<%= yeoman.releases %>/utorrent/webui.zip',
         dot: true
       }
     },
