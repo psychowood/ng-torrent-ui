@@ -10,6 +10,7 @@
  */
  angular
  .module('utorrentNgwebuiApp', [
+  'templates-views',
   'ngAnimate',
   'ngCookies',
   'ngResource',

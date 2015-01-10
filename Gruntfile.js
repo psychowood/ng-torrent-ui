@@ -39,6 +39,9 @@ module.exports = function (grunt) {
   // Validate json resources (language files)
   grunt.loadNpmTasks('grunt-jsonlint');
 
+  // Converting .html templates in javascript for better cdn importing
+  grunt.loadNpmTasks('grunt-html2js');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -60,6 +63,18 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+    html2js: {
+      options: {
+        base: '<%= yeoman.app %>',
+        quoteChar: '\'',
+        useStrict: true
+      },
+      views: {
+        src: ['<%= yeoman.app %>/views/{,*/}*.html'],
+        dest: '.tmp/scripts/views.js'
+      },
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -69,6 +84,13 @@ module.exports = function (grunt) {
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },
+      views: {
+        files: ['<%= yeoman.app %>/views/{,*/}*.html'],
+        tasks: ['html2js'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -448,7 +470,7 @@ module.exports = function (grunt) {
           '*.{ico,png,txt}',
           '.htaccess',
           '*.html',
-          'views/{,*/}*.html',
+          // 'views/{,*/}*.html',
           'images/{,*/}*.{webp}',
           'fonts/*',
           'langs/{,*/}*'
@@ -521,6 +543,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'html2js',
       'wiredep:app',
       'configureProxies:server',
       'concurrent:server',
@@ -547,6 +570,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'wiredep:app',
     'useminPrepare',
+    'html2js',
     'concurrent:dist',
     'autoprefixer',
     'concat',
@@ -573,6 +597,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve-demo', [
      'clean:server',
+     'html2js',
      'wiredep:demo',
      'configureProxies:server',
      'processhtml:demo',
@@ -586,6 +611,7 @@ module.exports = function (grunt) {
     'newer:jshint',
     'newer:jsonlint',
     //'test',
+    'html2js',
     'clean:dist',
     'wiredep:demo',
     'useminPrepare',
