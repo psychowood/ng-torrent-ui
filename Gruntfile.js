@@ -22,7 +22,7 @@ module.exports = function (grunt) {
 
   // Replaces strings on files by using string or regex patterns. Used to inject
   // package.json data in the app
-  // grunt.loadNpmTasks('grunt-string-replace');
+  grunt.loadNpmTasks('grunt-string-replace');
 
   //Gzip files for utorrent archive
   grunt.loadNpmTasks('grunt-contrib-compress');
@@ -208,15 +208,17 @@ module.exports = function (grunt) {
     },
 
     'string-replace': {
-      version: {
+      remoted:  {
         files: {
-          '<%= yeoman.dist %>/index.html': '<%= yeoman.dist %>/index.html',
-          '.tmp/index.html': 'app/index.html',
+          '<%= yeoman.dist %>/latest.html': '<%= yeoman.dist %>/index.html'
         },
         options: {
           replacements: [{
-            pattern: /{{VERSION}}/g,
-            replacement: 'v'+appConfig.version
+            pattern: /src="scripts\//g,
+            replacement: 'src="http://ng-torrent-ui.dtdns.net/ngtorrentui/scripts/'
+          },{
+            pattern: /href="styles\//g,
+            replacement: 'href="http://ng-torrent-ui.dtdns.net/ngtorrentui/styles/'
           }]
         }
       }
@@ -295,7 +297,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      remoted: {
+        files: [{
+          dot: true,
+          src: [
+          '<%= yeoman.releases %>/remoted-resources'
+          ]
+        }]
+      },
     },
 
     // Add vendor prefixed styles
@@ -507,7 +517,18 @@ module.exports = function (grunt) {
         files: {
           '.tmp/bower.json':'bower.json'
         }
-      }
+      },
+      remoted: {
+        expand: true,
+        cwd: '<%= yeoman.dist %>',
+        src: [
+        'scripts/{,*/}*',
+        'styles/{,*/}*',
+        'fonts/{,*/}*',
+        'langs/{,*/}*',
+        'favicon.png'
+        ], dest: '<%= yeoman.distRoot %>/remoted-resources/'
+        }
     },
 
     // Run some tasks in parallel to speed up the build process
@@ -578,23 +599,31 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
-    'uglify',
-    'filerev',
-    'usemin',
-    'htmlmin'
+    'uglify'
     ]);
 
-    grunt.registerTask('default', [
+    grunt.registerTask('prepare', [
     'newer:jshint',
     'newer:jsonlint',
     //'test',
     'build',
-    'processhtml:analytics',
-    'compress:utorrent',
-    'unzip:utorrent',
-    'zip:utorrent',
+    'processhtml:analytics'
     ]);
 
+    grunt.registerTask('utorrent-archive', [
+    'compress:utorrent',
+    'unzip:utorrent',
+    'zip:utorrent'
+    ]);
+
+    grunt.registerTask('default', [
+    'prepare',
+    'usemin',
+    'string-replace:remoted',
+    'copy:remoted',
+    'utorrent-archive'
+    ]);
+    
     grunt.registerTask('serve-demo', [
      'clean:server',
      'html2js',
@@ -628,8 +657,10 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
+    // 'htmlmin',
     'rename:demo'
     ]);
+
+
 
   };
