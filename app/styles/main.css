@@ -90,12 +90,6 @@ select[disabled] {
 /* Customize container */
 
 
-@media (max-width: 1024px) {
-  .actions-form .status-text {
-    width: 500px:
-  }
-}
-
 @media (max-width: 768px) {
   .show-on-lg {
     display: none;
@@ -147,19 +141,37 @@ select[disabled] {
     max-width: 1024px;
   }
 
-  .actions-form .filter-label > select,
+  /*.actions-form .filter-label > select,
   .actions-form .filter-status > select,
   .actions-form .action-label > select,
   .actions-form .action-priority > select {
     width: 175px !important;
     max-width: 175px !important;
+  }*/
+
+  #addtorrent-form .input-group,
+  #filters-form .input-group  {
+    width: 100%;
   }
 
-#addtorrent-form .form-control
-   {
-    width: 315px;
+  #addtorrent-form .input-group-btn,
+  #filters-form .input-group-btn  {
+    width: 30px;
   }
+
 }
+
+  #addtorrent-form .form-group,
+  #filters-form .form-group {
+    padding-left:2px;
+    padding-right:2px;
+  }
+
+.actions-form .status-text,
+.actions-form .info-text {
+  text-align: center;
+}
+
 
 .torrent-table td {
   overflow:hidden;
@@ -317,6 +329,15 @@ select[disabled] {
   background: transparent;
   border: none;
   padding: 0;
+  max-height: 350px;
+  overflow-y: scroll;
+  padding: 1px;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  text-align: left;
+  margin: -1px;
 }
 
 .accordion-toggle, .batch-actions .input-group-addon {
@@ -423,4 +444,9 @@ select[disabled] {
 .languages ul {
   height: 350px;
   overflow-y: scroll;
+}
+
+.buttons-base > button,
+.buttons-advanced > button {
+  width: 33.3%;
 }

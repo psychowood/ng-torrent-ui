@@ -3,6 +3,6 @@
     "SELECTED": "selected",
     "AUTORELOAD": "Autoreload",
     "MATCHING_FILTERS": "matching filters",
-    "SHOW_SELECTED": "Show only selected",
-    "CLEAR_SELECTED": "clear selection"
+    "SHOW_SELECTED": "Show",
+    "CLEAR_SELECTED": "Deselect"
 }
