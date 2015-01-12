@@ -1,7 +1,7 @@
 <div class="container-fluid" >
 
-  <form role="form" class="form-inline" id="addtorrent-form">
-    <div class="form-group">
+  <form role="form" class="form-inline row" id="addtorrent-form">
+    <div class="form-group col-sm-6">
       <div class="input-group input-group-sm upload-file" >
         <div ng-file-drop ng-model="newtorrentfiles" class="drop-box form-control"
             drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
@@ -18,7 +18,7 @@
         </span>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col-sm-6">
       <div class="input-group input-group-sm upload-url" >
         <input type="text" ng-model="newtorrent" placeholder="{{'OV_TB_ADDURL' | translate}}" class="form-control">
         <span class="input-group-btn">
@@ -98,71 +98,59 @@
         </span>
       </div>
     </div>
-    <div class="form-group input-group-sm col-lg-2">
+    <div class="form-group input-group-sm col-xl-2 col-lg-3">
       <div class="form-control input-group info-text">
-        <span>{{torrents.length}} {{'STM_TORRENTS' | translate}}</span>
-      </div>
-    </div>
-    <!-- <div class="form-group input-group-sm col-lg-2">
-      <div class="form-control input-group info-text">
-      {{filteredtorrents.length}} {{'MATCHING_FILTERS' | translate}} - <u class="selectable" ng-click="clearSelected()">({{'CLEAR_SELECTED' | translate}})</u>
-      </div>
-    </div> -->
-    <div class="form-group input-group-sm col-lg-1">
-      <div class="form-control input-group status-text"><span class="glyphicon glyphicon-circle-arrow-up"></span> {{uploadSpeed | formatBytes}}/s</div>
-    </div>
-    <div class="form-group input-group-sm col-lg-1">
-      <div class="form-control input-group status-text"><span class="glyphicon glyphicon-circle-arrow-down"></span> {{downloadSpeed | formatBytes}}/s</div>
+        <div class="pull-left">{{torrents.length}} {{'STM_TORRENTS' | translate}} </div>
+        <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-up"></span> {{uploadSpeed | formatBytes}}/s  | <span class="glyphicon glyphicon-circle-arrow-down"></span> {{downloadSpeed | formatBytes}}/s</div></div>
     </div>
 
-    <fieldset class="form-group btn-toolbar action-toolbar col-lg-8" ng-disabled="selectedtorrents.length < 1">
-      <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="show-on-lg">{{'ML_START' | translate}}</span></button>
-        <button type="button" class="btn btn-default" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span class="show-on-lg">{{'ML_PAUSE' | translate}}</span></button>
-        <button type="button" class="btn btn-default" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span class="show-on-lg">{{'ML_STOP' | translate}}</span></button>
-      </div>
-      <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="show-on-lg">{{'ML_FORCE_START' | translate}}</span></button>
-        <button type="button" class="btn btn-default" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="show-on-lg">{{'ML_FORCE_RECHECK' | translate}}</span></button>
-        <div class="btn-group btn-group-sm dropdown" dropdown>
-          <button type="button" class="btn btn-default" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> <span class="show-on-lg">{{'ML_REMOVE' | translate}}</span></button>
-          <button type="button" class="btn dropdown-toggle" dropdown-toggle>
-            <span class="caret"></span>
-          </button>
-        <div class="dropdown-menu btn-group-sm" role="menu">
-          <button type="button" class="btn btn-default" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</button>
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-3 col-lg-3" ng-disabled="selectedtorrents.length < 1">
+        <div class="btn-group btn-group-sm btn-group-justified">
+          <a role="button" class="btn btn-default" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span>{{'ML_START' | translate}}</span></a>
+          <a role="button" class="btn btn-default middle" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span>{{'ML_PAUSE' | translate}}</span></a>
+        <a role="button" class="btn btn-default" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span>{{'ML_STOP' | translate}}</span></a>
         </div>
-        </div>
-      </div>
-      <div class="btn-group btn-group-sm dropdown" dropdown>
-          <button type="button" class="btn btn-default" >{{'OV_NEWLABEL_CAPTION' | translate}}</button>
-          <button type="button" class="btn dropdown-toggle" dropdown-toggle>
-            <span class="caret"></span>
-          </button>
-        <div class="dropdown-menu btn-group-sm" role="menu">
-          <button type="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span> {{'OV_REMOVE_LABEL' | translate}}</button>
-          <button type="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span> {{'OV_NEW_LABEL' | translate}}</button>
-
-          <button type="button" class="btn btn-default" ng-repeat="label in labels" ng-click="setLabel(label[0])">
-            <span class="glyphicon glyphicon-tag"></span> {{ label[0] + ' (' + label[1] + ')' }}
-          </button>
-        </div>
-      </div>
-      <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-default" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> <span class="show-on-lg"></span>{{'ST_CAPT_QUEUEING' | translate}}</button>
-        <button type="button" class="btn btn-default" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> <span class="show-on-lg"></span>{{'ST_CAPT_QUEUEING' | translate}}</button>
-      </div>
-
-      <!-- <div class="input-group input-group-sm">
-        <select ng-model="labelToSet" ng-change="setLabel(labelToSet)" class="form-control action-label" ng-disabled="selectedtorrents.length < 1" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
-          <option value="">{{'OV_NEWLABEL_CAPTION' | translate}}</option>
-        </select>
-        <span class="input-group-btn">
-          <button type=button ng-click="setLabel('')" ng-disabled="selectedtorrents.length < 1" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
-          <button type=button ng-click="setNewLabel()" ng-disabled="selectedtorrents.length < 1" class="btn" ><span class="glyphicon glyphicon-plus"></span></button>
-        </span>
-      </div> -->
     </fieldset>
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-2" ng-disabled="selectedtorrents.length < 1">
+      <div class="btn-group btn-group-sm btn-group-justified">
+        <a role="button" class="btn btn-default" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="visible-xl">{{'ML_FORCE_START' | translate}}</span></a>
+        <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="visible-xl">{{'ML_FORCE_RECHECK' | translate}}</span></a>
+        <div class="btn-group btn-group-sm dropdown" dropdown>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            <span class="glyphicon glyphicon-remove"></span> <span class="visible-xl">{{'ML_REMOVE' | translate}} </span> <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu btn-group-sm" role="menu">
+            <a class="btn btn-default" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
+            <a class="btn btn-default" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-1 col-lg-1" ng-disabled="selectedtorrents.length < 1">
+        <div class="btn-group btn-group-sm btn-group-justified">
+          <a role="button" class="btn btn-default" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> </a>
+          <!-- <span>{{'ST_CAPT_QUEUEING' | translate}}</span> -->
+          <a role="button" class="btn btn-default" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> </a>
+      </div>
+    </fieldset>
+
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-2 col-lg-3" ng-disabled="selectedtorrents.length < 1">
+        <div class="btn-group btn-group-sm btn-group-justified">
+          <div class="btn-group btn-group-sm dropdown" dropdown>
+            <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+              <span class="glyphicon glyphicon-tags"></span> {{'OV_NEWLABEL_CAPTION' | translate}} <span class="caret"></span>
+            </a>
+              <div class="dropdown-menu btn-group-sm" role="menu">
+                <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span> {{'OV_REMOVE_LABEL' | translate}}</a>
+                <a role="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span> {{'OV_NEW_LABEL' | translate}}</a>
+                <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="setLabel(label[0])">
+                  <span class="glyphicon glyphicon-tag"></span> {{ label[0] + ' (' + label[1] + ')' }}
+                </a>
+            </div>
+          </div>
+        </div>
+      </fieldset>
   </form>
 
 <p></p>
@@ -180,7 +168,7 @@
       <span class="glyphicon glyphicon-dashboard" ></span>
       <span class="glyphicon" ng-show="sorter.field === 'status'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
-    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">{{'OV_COL_NAME' | translate}} [{{'OV_COL_LABEL' | translate}}]
+    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">{{'OV_COL_NAME' | translate}} <div class="pull-right tag-label">{{'OV_COL_LABEL' | translate}}</div>
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
     <span class="input-group-addon selectable size sorter text-center" >
@@ -192,7 +180,7 @@
         <span class="glyphicon" ng-show="sorter.field === 'size'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
-    <span class="input-group-addon selectable sorter text-center speed show-on-lg" >
+    <span class="input-group-addon selectable sorter text-center speed" >
       <span ng-click="sortBy('uploadSpeed')">{{'OV_COL_UPSPD' | translateMultiLabel:0}}
         <span class="glyphicon" ng-show="sorter.field === 'uploadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
@@ -201,7 +189,7 @@
         <span class="glyphicon" ng-show="sorter.field === 'downloadSpeed'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
     </span>
-    <span class="input-group-addon selectable sorter text-center peers show-on-lg" >
+    <span class="input-group-addon selectable sorter text-center peers" >
       <span ng-click="sortBy('seedsInSwarm')">{{'OV_COL_SEEDS' | translate}}
         <span class="glyphicon" ng-show="sorter.field === 'seedsInSwarm'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>

@@ -91,8 +91,9 @@ select[disabled] {
 
 
 @media (max-width: 768px) {
-  .show-on-lg {
-    display: none;
+
+  .top-bar {
+    height: 60px;
   }
 
   .batch-actions {
@@ -110,8 +111,7 @@ select[disabled] {
 
 }
 
-.form-inline > div,
-.form-inline > fieldset > div {
+.form-inline .form-group {
   margin-bottom: 5px !important;
 }
 
@@ -308,7 +308,7 @@ select[disabled] {
 }
 
 .torrent-header .tag-label {
-  padding-right: 30px;
+  margin-right: 45px;
 }
 
 .torrent-header .sorter {
@@ -332,12 +332,22 @@ select[disabled] {
   max-height: 350px;
   overflow-y: scroll;
   padding: 1px;
+  right: 0;
 }
 
-.dropdown-menu button {
+.dropdown-menu a {
   width: 100%;
   text-align: left;
   margin: -1px;
+}
+
+fieldset.action-toolbar {
+  margin-right: 5px;
+}
+
+fieldset.action-toolbar .middle {
+  border-left:0px;
+  border-right:0px;
 }
 
 .accordion-toggle, .batch-actions .input-group-addon {
