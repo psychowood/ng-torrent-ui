@@ -41,9 +41,9 @@
   })
   .config(function ($translateProvider) {
     $translateProvider
+      .determinePreferredLanguage()
       .useLoader('translationsLoader')
-      .fallbackLanguage('en')
-      .determinePreferredLanguage();
+      .fallbackLanguage('en');
   })
 /*
   .directive('resizable', function($window) {
