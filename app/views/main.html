@@ -113,15 +113,15 @@
     </fieldset>
     <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-2" ng-disabled="selectedtorrents.length < 1">
       <div class="btn-group btn-group-sm btn-group-justified">
-        <a role="button" class="btn btn-default" ng-click="doAction('forcestart')"><span class="glyphicon glyphicon-play-circle"></span> <span class="visible-xl">{{'ML_FORCE_START' | translate}}</span></a>
-        <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')"><span class="glyphicon glyphicon-repeat"></span> <span class="visible-xl">{{'ML_FORCE_RECHECK' | translate}}</span></a>
+        <a role="button" class="btn btn-default" ng-click="doAction('forcestart')" title="{{'ML_FORCE_START' | translate}}"><span class="glyphicon glyphicon-play-circle"></span> <span class="visible-xl-inline">{{'ML_FORCE_START' | translate}}</span></a>
+        <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')" title="{{'ML_FORCE_RECHECK' | translate}}"><span class="glyphicon glyphicon-repeat"></span> <span class="visible-xl-inline">{{'ML_FORCE_RECHECK' | translate}}</span></a>
         <div class="btn-group btn-group-sm dropdown" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-            <span class="glyphicon glyphicon-remove"></span> <span class="visible-xl">{{'ML_REMOVE' | translate}} </span> <span class="caret"></span>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle title="{{'ML_REMOVE' | translate}}">
+            <span class="glyphicon glyphicon-remove"></span> <span class="visible-xl-inline">{{'ML_REMOVE' | translate}} </span> <span class="caret"></span>
           </a>
           <div class="dropdown-menu btn-group-sm" role="menu">
-            <a class="btn btn-default" ng-click="doAction('remove')"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
-            <a class="btn btn-default" ng-click="doAction('removedata')"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
+            <a class="btn btn-default" ng-click="doAction('remove')" title="{{'ML_REMOVE' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
+            <a class="btn btn-default" ng-click="doAction('removedata')" title="{{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
           </div>
         </div>
       </div>
