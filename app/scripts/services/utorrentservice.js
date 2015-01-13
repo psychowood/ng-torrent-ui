@@ -411,6 +411,12 @@ Torrent.prototype.formatBytes = function(bytes) {
         removedata: {
           params: { action:'removedata'}
         },
+        removetorrent: {
+          params: { action:'removetorrent'}
+        },
+        removedatatorrent: {
+          params: { action:'removedatatorrent'}
+        },
         forcestart: {
           params: { action:'forcestart'}
         },
