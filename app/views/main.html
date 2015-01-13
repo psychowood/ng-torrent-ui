@@ -33,7 +33,7 @@
   <p></p>
 
   <form role="form" ng-submit="doFilter()" class="form-inline actions-form row" id="filters-form">
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm">
         <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
         <select ng-model="autoreloadTimeout" ng-change="reload()" class="form-control squared" ng-disabled="autoreloadEnabled === false">
@@ -47,7 +47,7 @@
         </span>
       </div>
     </div>
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-name">
         <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> l33t</span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
@@ -56,7 +56,7 @@
         </span>
       </div>
     </div>
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-label">
         <select ng-model="filters.label" ng-change="doFilter()" class="form-control" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
           <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}}</option>
@@ -66,7 +66,7 @@
         </span>
       </div>
     </div>
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-status">
         <select ng-model="filters.status" ng-change="doFilter()" class="form-control squared">
           <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}}</option>
@@ -81,13 +81,13 @@
         </span>
       </div>
     </div>
-    <div class="form-group input-group-sm col-lg-2">
+    <div class="form-group input-group-sm col-lg-2 col-sm-3">
       <div class="form-control input-group info-text">
       {{filteredtorrents.length}} {{'MATCHING_FILTERS' | translate}}
       </div>
     </div>
 
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-selected">
         <span class="input-group-addon"><input type="checkbox" ng-model="filters.selected" ng-change="doFilter()"></span>
         <span class="form-control selectable" ng-click="filters.selected = !filters.selected; doFilter()">
@@ -98,20 +98,20 @@
         </span>
       </div>
     </div>
-    <div class="form-group input-group-sm col-xl-2 col-lg-3">
+    <div class="form-group input-group-sm col-xl-2 col-lg-3 col-sm-6">
       <div class="form-control input-group info-text">
         <div class="pull-left">{{torrents.length}} {{'STM_TORRENTS' | translate}} </div>
         <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-up"></span> {{uploadSpeed | formatBytes}}/s  | <span class="glyphicon glyphicon-circle-arrow-down"></span> {{downloadSpeed | formatBytes}}/s</div></div>
     </div>
 
-    <fieldset class="form-group btn-toolbar action-toolbar col-xl-3 col-lg-3" ng-disabled="selectedtorrents.length < 1">
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-3 col-lg-3 col-sm-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
-          <a role="button" class="btn btn-default" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span>{{'ML_START' | translate}}</span></a>
-          <a role="button" class="btn btn-default middle" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span>{{'ML_PAUSE' | translate}}</span></a>
-        <a role="button" class="btn btn-default" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span>{{'ML_STOP' | translate}}</span></a>
+          <a role="button" class="btn btn-default" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="visible-lg-inline">{{'ML_START' | translate}}</span></a>
+          <a role="button" class="btn btn-default middle" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span class="visible-lg-inline">{{'ML_PAUSE' | translate}}</span></a>
+        <a role="button" class="btn btn-default" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span class="visible-lg-inline">{{'ML_STOP' | translate}}</span></a>
         </div>
     </fieldset>
-    <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-2" ng-disabled="selectedtorrents.length < 1">
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-2 col-sm-3" ng-disabled="selectedtorrents.length < 1">
       <div class="btn-group btn-group-sm btn-group-justified">
         <a role="button" class="btn btn-default" ng-click="doAction('forcestart')" title="{{'ML_FORCE_START' | translate}}"><span class="glyphicon glyphicon-play-circle"></span> <span class="visible-xl-inline">{{'ML_FORCE_START' | translate}}</span></a>
         <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')" title="{{'ML_FORCE_RECHECK' | translate}}"><span class="glyphicon glyphicon-repeat"></span> <span class="visible-xl-inline">{{'ML_FORCE_RECHECK' | translate}}</span></a>
@@ -129,7 +129,7 @@
       </div>
     </fieldset>
 
-      <fieldset class="form-group btn-toolbar action-toolbar col-xl-1 col-lg-1" ng-disabled="selectedtorrents.length < 1">
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-1 col-lg-1 col-sm-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
           <a role="button" class="btn btn-default" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> </a>
           <!-- <span>{{'ST_CAPT_QUEUEING' | translate}}</span> -->
@@ -137,7 +137,7 @@
       </div>
     </fieldset>
 
-      <fieldset class="form-group btn-toolbar action-toolbar col-xl-2 col-lg-3" ng-disabled="selectedtorrents.length < 1">
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-2 col-lg-3 col-sm-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
           <div class="btn-group btn-group-sm dropdown" dropdown>
             <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
