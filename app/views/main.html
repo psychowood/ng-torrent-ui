@@ -104,14 +104,14 @@
         <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-up"></span> {{uploadSpeed | formatBytes}}/s  | <span class="glyphicon glyphicon-circle-arrow-down"></span> {{downloadSpeed | formatBytes}}/s</div></div>
     </div>
 
-    <fieldset class="form-group btn-toolbar action-toolbar col-xl-3 col-lg-3 col-sm-3" ng-disabled="selectedtorrents.length < 1">
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-3 col-lg-3 col-xs-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
           <a role="button" class="btn btn-default" ng-click="doAction('start')"><span class="glyphicon glyphicon-play"></span> <span class="visible-lg-inline">{{'ML_START' | translate}}</span></a>
           <a role="button" class="btn btn-default middle" ng-click="doAction('pause')"><span class="glyphicon glyphicon-pause"></span> <span class="visible-lg-inline">{{'ML_PAUSE' | translate}}</span></a>
         <a role="button" class="btn btn-default" ng-click="doAction('stop')"><span class="glyphicon glyphicon-stop"></span> <span class="visible-lg-inline">{{'ML_STOP' | translate}}</span></a>
         </div>
     </fieldset>
-    <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-2 col-sm-3" ng-disabled="selectedtorrents.length < 1">
+    <fieldset class="form-group btn-toolbar action-toolbar col-xl-4 col-lg-3 col-xs-3" ng-disabled="selectedtorrents.length < 1">
       <div class="btn-group btn-group-sm btn-group-justified">
         <a role="button" class="btn btn-default" ng-click="doAction('forcestart')" title="{{'ML_FORCE_START' | translate}}"><span class="glyphicon glyphicon-play-circle"></span> <span class="visible-xl-inline">{{'ML_FORCE_START' | translate}}</span></a>
         <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')" title="{{'ML_FORCE_RECHECK' | translate}}"><span class="glyphicon glyphicon-repeat"></span> <span class="visible-xl-inline">{{'ML_FORCE_RECHECK' | translate}}</span></a>
@@ -129,19 +129,18 @@
       </div>
     </fieldset>
 
-      <fieldset class="form-group btn-toolbar action-toolbar col-xl-1 col-lg-1 col-sm-3" ng-disabled="selectedtorrents.length < 1">
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-1 col-lg-1 col-xs-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
-          <a role="button" class="btn btn-default" ng-click="doAction('queuedown')"><span class="glyphicon glyphicon-chevron-up"></span> </a>
-          <!-- <span>{{'ST_CAPT_QUEUEING' | translate}}</span> -->
-          <a role="button" class="btn btn-default" ng-click="doAction('queueup')"><span class="glyphicon glyphicon-chevron-down"></span> </a>
+          <a role="button" class="btn btn-default" ng-click="doAction('queuedown')" title="{{'ML_QUEUEUP' | translate}}"><span class="glyphicon glyphicon-chevron-up"></span> </a>
+          <a role="button" class="btn btn-default" ng-click="doAction('queueup')" title="{{'ML_QUEUEDOWN' | translate}}"><span class="glyphicon glyphicon-chevron-down"></span> </a>
       </div>
     </fieldset>
 
-      <fieldset class="form-group btn-toolbar action-toolbar col-xl-2 col-lg-3 col-sm-3" ng-disabled="selectedtorrents.length < 1">
+      <fieldset class="form-group btn-toolbar action-toolbar col-xl-2 col-lg-2 col-xs-3" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
-          <div class="btn-group btn-group-sm dropdown" dropdown>
+          <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
             <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-              <span class="glyphicon glyphicon-tags"></span> {{'OV_NEWLABEL_CAPTION' | translate}} <span class="caret"></span>
+              <span class="glyphicon glyphicon-tags"></span> <span class="visible-sm-inline">{{'OV_NEWLABEL_CAPTION' | translate}}</span> <span class="caret"></span>
             </a>
               <div class="dropdown-menu btn-group-sm" role="menu">
                 <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span> {{'OV_REMOVE_LABEL' | translate}}</a>
