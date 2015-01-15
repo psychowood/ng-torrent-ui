@@ -109,6 +109,12 @@ select[disabled] {
     text-align: left;
   }
 
+  #addtorrent-form .form-group,
+  #filters-form .form-group {
+    padding-left:0px;
+    padding-right:0px;
+  }
+
 }
 
 .form-inline .form-group {
@@ -159,13 +165,14 @@ select[disabled] {
     width: 30px;
   }
 
-}
-
   #addtorrent-form .form-group,
   #filters-form .form-group {
     padding-left:2px;
     padding-right:2px;
   }
+
+}
+
 
 .actions-form .status-text,
 .actions-form .info-text {
