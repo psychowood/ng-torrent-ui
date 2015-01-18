@@ -128,6 +128,9 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
         var status = randStatus();
         var upspeed = 0;
         var downspeed = 0;
+        var label = randInArr(mock.labels);
+        label[1]++;
+
         if ((status % 2) === 1) {
           upspeed = rand(100000);
           downspeed = rand(100000);
@@ -136,7 +139,7 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
           name = $window.L33t.Translate(name);
         }
         mock.torrents.push(
-          [i,status,name,size,percent,rand(size),rand(size*2),Math.random(),upspeed,downspeed,0,randInArr(mock.labels)[0],rand(peers),peers,rand(seeds),seeds,rand(65535),i,remaining]
+          [i,status,name,size,percent,rand(size),rand(size*2),Math.random(),upspeed,downspeed,0,label[0],rand(peers),peers,rand(seeds),seeds,rand(65535),i,remaining]
           );
       }
       return [200, {
