@@ -61,6 +61,7 @@
 	*/
 
 	$scope.labels = [];
+  $scope.labelColorMap = {};
 
 	$scope.torrents = [];
 	$scope.filteredtorrents = [];
@@ -75,6 +76,25 @@
   $scope.newtorrentfiles = [];
   $scope.uploadDropSupported = true;
 
+  var labelColors = ['#B0C4DE','#B0E0E6','#87CEEB','#87CEFA','#00BFFF','#1E90FF','#6495ED','#4682B4','#4169E1','#0000FF','#0000CD','#6A5ACD','#7B68EE','#00008B','#000080','#191970'];
+  var updateLabelColorsMap = function(labels) {
+    var i;
+    var tot = labelColors.length;
+    var sorted = angular.copy(labels).sort(function(aLbl,bLbl) {
+      var aVal = aLbl[1];
+      var bVal = bLbl[1];
+			if (aVal === bVal) {
+				return 0;
+			} else if (aVal > bVal) {
+				return 1;
+			} else {
+				return -1;
+			}
+		});
+    for (i=0;i<sorted.length;i++) {
+      $scope.labelColorMap[sorted[i][0]] = labelColors[i%tot];
+    }
+  };
 
 	function getSelectedAndUpdateGlobals(torrentsArr) {
 		var i,upSpeed=0,downSpeed=0;
@@ -399,6 +419,7 @@
 			var changed = false;
 			var i,torrent;
 			$scope.labels = ts.label;
+      updateLabelColorsMap($scope.labels);
 
 			if (torrentsMap === null) {
 				torrentsMap = {};
