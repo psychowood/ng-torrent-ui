@@ -34,14 +34,24 @@
 
   <form role="form" ng-submit="doFilter()" class="form-inline actions-form row" id="filters-form">
     <div class="form-group col-lg-2 col-sm-3">
-      <div class="input-group input-group-sm">
+      <div class="input-group input-group-sm filter-autoreload">
         <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
-        <select ng-model="autoreloadTimeout" ng-change="reload()" class="form-control squared" ng-disabled="autoreloadEnabled === false">
-          <option value="1000">1 sec</option>
-          <option value="5000">5 sec</option>
-          <option value="10000">10 sec</option>
-          <option value="30000">30 sec</option>
-        </select>
+
+        <div class="btn-group btn-group-sm dropdown" title="{{'AUTORELOAD' | translate}}" dropdown>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="autoreloadEnabled === false">
+            {{autoreloadTimeout/1000}} sec <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu btn-group-sm" role="menu">
+            <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 1000;reload()">
+              1 sec</a>
+            <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 5000;reload()">
+              5 sec</a>
+            <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 15000;reload()">
+              15 sec</a>
+            <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 30000;reload()">
+              30 sec</a>
+          </div>
+        </div>
         <span class="input-group-btn">
           <button type=submit class="btn" ng-click="reload()" ng-disabled="refreshing"><span class="glyphicon glyphicon-refresh" ng-class="{'glyphicon-animate-spin':refreshing}"></span></button>
         </span>
@@ -58,9 +68,16 @@
     </div>
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-label">
-        <select ng-model="filters.label" ng-change="doFilter()" class="form-control" ng-options="label[0] as label[0] + ' (' + label[1] + ')' for label in labels">
-          <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}}</option>
-        </select>
+        <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;&nbsp;{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}} <span class="caret"></span>
+          </a>
+            <div class="dropdown-menu btn-group-sm" role="menu">
+              <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
+                <span class="glyphicon glyphicon-tag" ></span>&nbsp;&nbsp;&nbsp;{{ label[0] + ' (' + label[1] + ')' }}
+              </a>
+          </div>
+        </div>
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.label === ''" ng-click="filters.label = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
@@ -68,14 +85,23 @@
     </div>
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-status">
-        <select ng-model="filters.status" ng-change="doFilter()" class="form-control squared">
-          <option value="">{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}}</option>
-          <option value="completed">{{'OV_FL_FINISHED' | translate}}</option>
-          <option value="downloading">{{'OV_FL_DOWNLOADING' | translate}}</option>
-          <option value="paused">{{'OV_FL_PAUSED' | translate}}</option>
-          <option value="queued">{{'OV_FL_QUEUED' | translate}}</option>
-          <option value="seeding">{{'OV_FL_SEEDING' | translate}}</option>
-        </select>
+        <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;&nbsp;&nbsp;{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}} <span class="caret"></span>
+          </a>
+            <div class="dropdown-menu btn-group-sm" role="menu">
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'completed';doFilter()">
+                <span class="glyphicon glyphicon-check text-success"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_FINISHED' | translate}}</a>
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'downloading';doFilter()">
+                <span class="glyphicon glyphicon-collapse-down text-info"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_DOWNLOADING' | translate}}</a>
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'paused';doFilter()">
+                <span class="glyphicon glyphicon-pause text-info"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_PAUSED' | translate}}</a>
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'queued';doFilter()">
+                <span class="glyphicon glyphicon-time text-info"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_QUEUED' | translate}}</a>
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'seeding';doFilter()">
+                <span class="glyphicon glyphicon-collapse-up text-success"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_SEEDING' | translate}}</a>
+          </div>
+        </div>
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.status === ''" ng-click="filters.status = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
@@ -143,10 +169,10 @@
               <span class="glyphicon glyphicon-tags"></span> <span class="hidden-xs">{{'OV_NEWLABEL_CAPTION' | translate}}</span> <span class="caret"></span>
             </a>
               <div class="dropdown-menu btn-group-sm" role="menu">
-                <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span> {{'OV_REMOVE_LABEL' | translate}}</a>
-                <a role="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span> {{'OV_NEW_LABEL' | translate}}</a>
+                <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;&nbsp;{{'OV_REMOVE_LABEL' | translate}}</a>
+                <a role="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;{{'OV_NEW_LABEL' | translate}}</a>
                 <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="setLabel(label[0])">
-                  <span class="glyphicon glyphicon-tag"></span> {{ label[0] + ' (' + label[1] + ')' }}
+                  <span class="glyphicon glyphicon-tag" ></span>&nbsp;&nbsp;&nbsp;{{ label[0] + ' (' + label[1] + ')' }}
                 </a>
             </div>
           </div>

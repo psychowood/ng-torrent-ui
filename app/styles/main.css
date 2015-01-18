@@ -338,11 +338,17 @@ select[disabled] {
   cursor: default;
 }
 
-.action-toolbar .dropdown-menu {
+.nocursor {
+  cursor: default;
+}
+
+.action-toolbar .dropdown-menu,
+.actions-form .dropdown-menu {
   background: transparent;
   border: none;
   padding: 0;
   max-height: 350px;
+  margin-right: -30px;
   overflow-y: scroll;
   padding: 1px;
   right: 0;
@@ -370,6 +376,19 @@ fieldset.action-toolbar .middle {
 .squared {
   -webkit-appearance: none;
   border-radius: 0;
+}
+
+.filter-autoreload .dropdown,
+.filter-label .dropdown,
+.filter-status .dropdown {
+  width: 100%;
+}
+
+.filter-autoreload .dropdown-toggle,
+.filter-label .dropdown-toggle,
+.filter-status .dropdown-toggle {
+  display: block;
+  width: 100%;
 }
 /*
 .filter-label,
