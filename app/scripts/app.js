@@ -104,25 +104,67 @@
     };
     var lastUpdateCheck = $cookies.lastUpdateCheck;
     var now = new Date().getTime();
-    if (lastUpdateCheck === undefined || (now - lastUpdateCheck) > 36000000) {
 
-      $http({
-        method: 'GET',
-        url: 'https://api.github.com/repos/psychowood/ng-torrent-ui/releases?per_page=1',
-        headers: {
-         'Accept': 'application/vnd.github.v3+json'
-        }
-      }).then(function(response) {
-        $cookies.lastUpdateCheck = now;
-        if (response.data && response.data.length > 0) {
-          var data = response.data[0];
-          var versionAttr = 'tag_name';
-          var latest = data[versionAttr];
+    var isNewVersion = function (installed, required) {
+      var a,b,i;
+      if (installed === required) {
+        return false;
+      }
 
-          $http.get('bower.json').then(function(res) {
-            var currentVersion = 'v' + res.data.version;
-            $cookies.currentVersion = currentVersion;
-            if (latest !== currentVersion) {
+      a = installed.replace('v','').split('.');
+      b = required.replace('v','').split('.');
+
+      for (i = 0; i < a.length; ++i) {
+          a[i] = Number(a[i]);
+      }
+      for (i = 0; i < b.length; ++i) {
+          b[i] = Number(b[i]);
+      }
+      if (a.length === 2) {
+          a[2] = 0;
+      }
+
+      if (a[0] > b[0]) {return true;}
+      if (a[0] < b[0]) {return false;}
+
+      if (a[1] > b[1]) {return true;}
+      if (a[1] < b[1]) {return false;}
+
+      if (a[2] > b[2]) {return true;}
+      if (a[2] < b[2]) {return false;}
+
+      return true;
+    };
+
+
+    $http.get('bower.json').then(function(res) {
+      var currentVersion = 'v' + res.data.version;
+      if ($cookies.currentVersion !== currentVersion) {
+        lastUpdateCheck = undefined;
+        delete $cookies.updatedVersion;
+        delete $cookies.lastUpdateCheck;
+        delete $scope.updatedVersion;
+        delete $scope.lastUpdateCheck;
+      }
+      $cookies.currentVersion = currentVersion;
+      $scope.currentVersion = $cookies.currentVersion;
+
+      if (lastUpdateCheck === undefined || (now - lastUpdateCheck) > 36000000) {
+
+        $http({
+          method: 'GET',
+          url: 'https://api.github.com/repos/psychowood/ng-torrent-ui/releases?per_page=1',
+          headers: {
+           'Accept': 'application/vnd.github.v3+json'
+          }
+        }).then(function(response) {
+          $cookies.lastUpdateCheck = now;
+          if (response.data && response.data.length > 0) {
+            var data = response.data[0];
+            var versionAttr = 'tag_name';
+            var latest = data[versionAttr];
+
+            if (isNewVersion(currentVersion,latest)) {
               if ($cookies.updatedVersion !== latest) {
                 $scope.alerts.push({ type: 'info', msg: 'New version available: ' + latest });
                 $cookies.updatedVersion = latest;
@@ -130,17 +172,18 @@
             } else {
               delete $cookies.updatedVersion;
             }
-          });
 
-        } else {
-          $log.warning('can\'t check latest release');
-        }
+          } else {
+            $log.warning('can\'t check latest release');
+          }
 
-      });
-    } else {
-      $log.info('Version already checked in the last hour');
-    }
-    $scope.currentVersion = $cookies.currentVersion;
+        });
+      } else {
+        $log.info('Version already checked in the last hour');
+      }
+
+    });
+
     $scope.updatedVersion = $cookies.updatedVersion;
 
     uTorrentService.init().then(function() {
