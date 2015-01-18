@@ -86,18 +86,26 @@ select[disabled] {
   border-top: 1px solid #e5e5e5;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
+
   .top-bar {
     height: 60px;
   }
+
+  .top-bar .header {
+    margin-bottom: 0px;
+  }
+
+  .top-bar .tabs {
+    height: 35px;
+    overflow-y: hidden;
+  }
+
   .version {
     display: block;
     margin-left: -30px;
     margin-top: 3px;
   }
-}
-
-@media (max-width: 768px) {
 
   .batch-actions {
     width: 100%;

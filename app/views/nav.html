@@ -1,7 +1,7 @@
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <div class="top-bar">
-          <tabset class="pull-right">
+          <tabset class="pull-right tabs">
             <li><a ng-href="#/"><span class="glyphicon glyphicon-th-list visible-xs-inline"></span><span class="hidden-xs">{{ 'STM_TORRENTS' | translate }}<span></a></li>
             <!-- <li><a ng-href="#/settings">{{ 'MM_OPTIONS' | translate }}</a></li> -->
             <li><a ng-href="#/about"><span class="glyphicon glyphicon-info-sign visible-xs-inline"></span><span class="hidden-xs">{{ 'MM_HELP' | translate }}<span></a></li>
