@@ -147,6 +147,9 @@ select[disabled] {
     max-width: 1024px;
   }
 
+  .modal-details .modal-dialog {
+    width: 97%;
+  }
   /*.actions-form .filter-label > select,
   .actions-form .filter-status > select,
   .actions-form .action-label > select,
@@ -446,7 +449,6 @@ fieldset.action-toolbar .middle {
 }
 
 .modal-details .modal-dialog {
-  width: 97%;
   max-width: 990px;
 }
 
