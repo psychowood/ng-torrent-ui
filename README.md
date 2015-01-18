@@ -95,6 +95,12 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.3.2
+- [x] Better responsive support (almost complete rewrite of the toolbar), support for multiple resolutions and fit longer texts (e.g. Russian translations)
+- [x] Added tooltips for action buttons
+- [x] Changed label presentation: added colored tag icon, works well for less than 16 labels. Label color is assigned based on torrent quantity, to preserve color between different sessions
+- [x] Added self-updating url: point yout browser to /gui/latest.html to always get the latest version without having to update the webui.zip file! (BETA); needs internet access from the browser to work.
+
 ### v0.3.1
 - [x] Added: Server version in header
 - [x] Fixed: Language not recognized before first set
