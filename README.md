@@ -14,6 +14,11 @@ Installation
 
 Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
 
+Self "Updating"
+============
+
+If you point to /gui/latest.html instead of the usual /gui, you will get the latest version as soon as it is released, without having to download and replace the webui.zip: the browser downloads the latest version for you, without touching the uTorrent install.
+
 Demo
 ====
 If you want to see it in action, you can test it on the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/).
@@ -172,8 +177,6 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 Not in a specific order.
 
 - [ ] Support for current versions of uTorrent
-- [ ] Multi language interface
-- [ ] New versions check
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
@@ -188,7 +191,6 @@ Not in a specific order.
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Code cleanup
 - [ ] Desktop notifications for supported browsers
-- [ ] Toolbar auto fit width
 - [ ] Embed search engines
   [ ] Support for multiple labels per torrent (undocumented API?)
 - [ ] Find a more 'personal' name
@@ -209,8 +211,17 @@ You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s
 Screenshots
 ===========
 
-### Desktop view
-![Desktop view](screenshots/desktop.png?raw=true "Desktop view")
+### High res view (>1600px)
+![High res view](screenshots/desktop-xl.png?raw=true "High res view")
 
-### Responsive view
-![Responsive view](screenshots/responsive.png?raw=true "Responsive view")
+### Standard view (>768px <1600px)
+![Standard view](screenshots/desktop.png?raw=true "Standard view")
+
+### Mobile view (<768px)
+![Mobile view](screenshots/mobile.png?raw=true "Mobile view")
+
+### Torrent details - standard view (>768px <1600px)
+![Torrent details - standard view](screenshots/desktop-detail.png?raw=true "Torrent details - standard view")
+
+### Torrent details - mobile view (<768px)
+![Torrent details - mobile view](screenshots/mobile-detail.png?raw=true "Torrent details - mobile view")
