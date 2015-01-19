@@ -61,7 +61,7 @@ angular.module('utorrentNgwebuiApp')
           // }
           // loading = $q.defer();
 
-          $http.get('langs/utorrent/_.js').then(
+          $http.get('langs/utorrent/!base.js').then(
             function(response) {
               var invertDefine = 'Array.prototype.invert = function() { var h = {}; for (var g = 0, f = this.length; g < f; ++g) { h[this[g]] = g } return h; };';
               /*jslint evil: true */
