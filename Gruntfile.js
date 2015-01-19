@@ -623,7 +623,7 @@ module.exports = function (grunt) {
     'copy:remoted',
     'utorrent-archive'
     ]);
-    
+
     grunt.registerTask('serve-demo', [
      'clean:server',
      'html2js',
@@ -640,8 +640,8 @@ module.exports = function (grunt) {
     'newer:jshint',
     'newer:jsonlint',
     //'test',
-    'html2js',
     'clean:dist',
+    'html2js',
     'wiredep:demo',
     'useminPrepare',
     'concurrent:dist',
