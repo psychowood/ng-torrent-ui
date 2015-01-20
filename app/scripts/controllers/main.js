@@ -114,7 +114,7 @@
   $scope.addTorrentFilesOrUrl = function(urlOrFiles) {
     var add = function(dir,subpath) {
       if (typeof urlOrFiles === 'string') {
-        var ts = uTorrentService.addTorrentUrl(urlOrFiles,dir,subpath).then(function() {
+        uTorrentService.addTorrentUrl(urlOrFiles,dir,subpath).then(function() {
           toastr.info('Torrent added succesfully',null,{timeOut: 1000});
           $scope.newtorrent = '';
     		});
@@ -525,6 +525,26 @@
           torrent.files = files;
       });
     }
+  };
+
+  $scope.showSearch = function() {
+    var modalInstance = $modal.open({
+      templateUrl: 'views/yts-movies.html',
+      controller: 'YtsMoviesCtrl',
+      windowClass: 'modal-search',
+      backdrop: true,
+      resolve: {
+        addTorrent: function () {
+          return $scope.addTorrent;
+        }
+      }
+    });
+
+    modalInstance.result.then(function () {
+
+    }, function () {
+      $scope.lastTorrentDetails = null;
+    });
   };
 
   $scope.showDetails = function(item) {

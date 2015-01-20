@@ -368,7 +368,7 @@ Torrent.prototype.formatBytes = function(bytes) {
           url: data.url + '?token=' + data.token + '&action=add-file',
           method: 'POST',
           data: {
-            download_dir: dir,
+            'download_dir': dir,
             path: path
             },
           file: file, // single file or a list of files. list is only for html5
