@@ -14,7 +14,7 @@
 
         <span class="input-group-btn">
           <button type=button ng-hide="newtorrentfiles.length === 0" ng-click="newtorrentfiles = []" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
-          <button type=button ng-click="addTorrentFiles(newtorrentfiles)" ng-disabled="newtorrentfiles.length === 0" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+          <button type=button ng-click="addTorrentFilesOrUrl(newtorrentfiles)" ng-disabled="newtorrentfiles.length === 0" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
         </span>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <input type="text" ng-model="newtorrent" placeholder="{{'OV_TB_ADDURL' | translate}}" class="form-control">
         <span class="input-group-btn">
           <button type=button ng-hide="newtorrent === ''" ng-click="newtorrent = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
-          <button type=button ng-click="addTorrent(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
+          <button type=button ng-click="addTorrentFilesOrUrl(newtorrent)" ng-disabled="newtorrent === ''" class="btn btn-primary" ><span class="glyphicon glyphicon-upload"></span></button>
         </span>
       </div>
     </div>
@@ -248,6 +248,23 @@
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="$close(newLabel)" ng-disabled="newLabel === ''">{{'DLG_BTN_OK' | translate}}</button>
             <button class="btn btn-warning" ng-click="$dismiss()">{{'DLG_BTN_CANCEL' | translate}}</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="downloadLocationModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'DLG_SETTINGS_3_PATHS_01' | translate}}</h3>
+        </div>
+        <div class="modal-body">
+        {{'PATH' | translate}}:
+          <select ng-model="downloadDirId" class="form-control" ng-init="downloadDirId = '0'">
+            <option ng-repeat="dir in directories" value="{{$index}}">{{dir.path}} ({{dir.available}} MB free)</option>
+          </select>
+        {{'SUBPATH' | translate}}: <input type="text" class="form-control" ng-model="subPath" ng-init="subPath = ''"/>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="$close({dir:downloadDirId,path:subPath})" >{{'DLG_BTN_OK' | translate}}</button>
+            <button class="btn btn-default" ng-click="$dismiss()">{{'DLG_BTN_CANCEL' | translate}}</button>
         </div>
     </script>
 

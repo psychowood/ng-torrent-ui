@@ -327,7 +327,7 @@ Torrent.prototype.formatBytes = function(bytes) {
     }
   };
 
-  return {
+  var uTorrentService = {
     cacheMap: {},
     conf: data,
     init: function() {
@@ -359,23 +359,18 @@ Torrent.prototype.formatBytes = function(bytes) {
       });
       return loading.promise;
     },
-    torrent: function(){
-      return $resource(data.url + '.' + '?token=:token&:action:opt:data&t=:t', {token:data.token,t:Date.now()}, {
-        addUrl: {
-          method:'GET',
-          params: { action:'action=add-url', opt:'&s='},
-          isArray:false
-        }
-      });
+    addTorrentUrl: function(url,dir,path){
+      return $resource(data.url + '.' + '?token=:token&action=add-url&s=:url&download_dir=:dir&path=:path&t=:t', {token:data.token,t:Date.now(),url: url, dir: dir, path: path}).get().$promise;
 
     },
-    uploadTorrent: function(file) {
+    uploadTorrent: function(file,dir,path) {
         return $upload.upload({
-          url: data.url + '?token=' + data.token + '&action=add-file&download_dir=0',
+          url: data.url + '?token=' + data.token + '&action=add-file',
           method: 'POST',
-          //headers: {'Authorization': 'xxx'}, // only for html5
-          //withCredentials: true,
-          // data: {myObj: $scope.myModelObj},
+          data: {
+            download_dir: dir,
+            path: path
+            },
           file: file, // single file or a list of files. list is only for html5
           //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
           fileFormDataName: 'torrent_file', // file formData name ('Content-Disposition'), server side request form name
@@ -470,6 +465,11 @@ Torrent.prototype.formatBytes = function(bytes) {
                 };
                 settings.push(val);
               }
+              uTorrentService.settings = settings;
+              if (parseInt(data.build) < 25406) { //Features supported from uTorrent 3+
+                delete uTorrentService.getDownloadDirectories;
+                delete uTorrentService.uploadTorrent;
+              }
               return settings;
             }
         }
@@ -486,6 +486,17 @@ Torrent.prototype.formatBytes = function(bytes) {
           t:Date.now()
         }
       });
+    },
+    getDownloadDirectories: function(){
+      return $resource(data.url + '.' + '?token=:token&action=list-dirs&t=:t', {token:data.token,t:Date.now()}, {
+        get: {
+          isArray: true,
+          transformResponse: function (response) {
+            var responseData = angular.fromJson(response);
+            return responseData['download-dirs'];
+          }
+        }
+      }).get().$promise;
     },
     filePriority: function(){
       return $resource(data.url + '.' + '?token=:token&action=setprio&hash=:hash&t=:t&p=:priority', {token:data.token,t:Date.now()}, {
@@ -508,4 +519,5 @@ Torrent.prototype.formatBytes = function(bytes) {
 
     }
   };
+  return uTorrentService;
 });

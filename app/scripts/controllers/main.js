@@ -111,28 +111,51 @@
 		return sel;
 	}
 
-	$scope.addTorrent = function(url) {
-		var ts = uTorrentService.torrent().addUrl({data:url});
-		ts.$promise.then(function() {
-      toastr.info('Torrent added succesfully',null,{timeOut: 1000});
-      $scope.newtorrent = '';
-		});
-	};
-
-	$scope.addTorrentFiles = function(files) {
-    var i,success = 0;
-    var callback = function(/* data, status, headers, config */) {
-      success++;
-      if (i === files.length -1) {
-        toastr.info(success + ' torrent added succesfully',null,{timeOut: 2500});
-        $scope.newtorrentfiles = [];
+  $scope.addTorrentFilesOrUrl = function(urlOrFiles) {
+    var add = function(dir,subpath) {
+      if (typeof urlOrFiles === 'string') {
+        var ts = uTorrentService.addTorrentUrl(urlOrFiles,dir,subpath).then(function() {
+          toastr.info('Torrent added succesfully',null,{timeOut: 1000});
+          $scope.newtorrent = '';
+    		});
+      } else {
+        if(uTorrentService.uploadTorrent) {
+          var i,success = 0;
+          var callback = function(/* data, status, headers, config */) {
+            success++;
+            if (success === urlOrFiles.length) {
+              toastr.info(success + ' torrent added succesfully',null,{timeOut: 2500});
+              $scope.newtorrentfiles = [];
+            }
+          };
+          for (i = 0; i < urlOrFiles.length; i++) {
+            var file = urlOrFiles[i];
+            uTorrentService.uploadTorrent(file,dir,subpath).success(callback);
+          }
+        } else {
+          toastr.warning('Files upload not supported for ' + uTorrentService.getVersion(),null,{timeOut: 2500});
+        }
       }
     };
-    for (i = 0; i < files.length; i++) {
-      var file = files[i];
-      uTorrentService.uploadTorrent(file).success(callback);
+    if(uTorrentService.getDownloadDirectories) {
+      uTorrentService.getDownloadDirectories().then(function(directories) {
+        $scope.directories = directories;
+
+        var modalInstance = $modal.open({
+          templateUrl: 'downloadLocationModal.html',
+          backdrop: true,
+          scope: $scope
+        });
+
+        modalInstance.result.then(function (res) {
+          add(res.dir,res.path);
+        });
+      });
+    } else {
+      add('0','');
     }
-	};
+
+  };
 
   $scope.addTorrentFilesChanged = function(files, event, rejectedFiles) {
       var rejected = 0;
