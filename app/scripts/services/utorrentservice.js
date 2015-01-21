@@ -365,12 +365,8 @@ Torrent.prototype.formatBytes = function(bytes) {
     },
     uploadTorrent: function(file,dir,path) {
         return $upload.upload({
-          url: data.url + '?token=' + data.token + '&action=add-file',
+          url: data.url + '?token=' + data.token + '&action=add-file&download_dir=' + encodeURIComponent(dir) + '&path=' + encodeURIComponent(path),
           method: 'POST',
-          data: {
-            'download_dir': dir,
-            path: path
-            },
           file: file, // single file or a list of files. list is only for html5
           //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
           fileFormDataName: 'torrent_file', // file formData name ('Content-Disposition'), server side request form name
@@ -468,7 +464,6 @@ Torrent.prototype.formatBytes = function(bytes) {
               uTorrentService.settings = settings;
               if (parseInt(data.build) < 25406) { //Features supported from uTorrent 3+
                 delete uTorrentService.getDownloadDirectories;
-                delete uTorrentService.uploadTorrent;
               }
               return settings;
             }
