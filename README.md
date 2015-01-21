@@ -101,7 +101,7 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ## Release History
 
 ### v0.3.3
-- [x] Added selection for download location (needs uTorrent 3+)
+- [x] Added selection for download location when adding a torrent (needs uTorrent 3+)
 
 ### v0.3.2
 - [x] Better responsive support (almost complete rewrite of the toolbar), support for multiple resolutions and fit longer texts (e.g. Russian translations)
