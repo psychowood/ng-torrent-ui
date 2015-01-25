@@ -13,7 +13,8 @@
         $scope.headerHeight = 350;
         // On window resize => resize the app
         $scope.setListHeight = function() {
-            $scope.listHeight = $window.innerHeight - 200;// - $scope.headerHeight;
+            var newHeight = $window.innerHeight - 260;// - $scope.headerHeight;
+            $scope.listHeight = (newHeight > 250)?newHeight:250;
         };
 
         angular.element($window).bind('resize', function() {
