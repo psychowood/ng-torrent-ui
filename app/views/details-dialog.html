@@ -7,7 +7,7 @@
 <div class="modal-body details-body">
   <!-- <div><b>ETA:</b> {{torrent.eta}}</div> -->
   <div><b>{{'OV_COL_NAME' | translate}}:</b> {{torrent.name}}</div>
-  <div><b>{{'GN_TP_10' | translate}}:</b> {{torrent.hash}}</div>
+  <div><b>{{'GN_TP_10' | translate}}</b> {{torrent.hash}}</div>
   <div><b>{{'OV_COL_SIZE' | translate}}:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
   <div><b>{{'OV_COL_STATUS' | translate}}:</b> <i ng-repeat="status in torrent.statusesCached">
       {{ status }}<span ng-if="!$last">,</span>
