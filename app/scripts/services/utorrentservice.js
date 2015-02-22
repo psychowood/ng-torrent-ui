@@ -54,6 +54,14 @@
     availability,
     torrentQueueOrder,
     remaining,
+    downloadUrl,
+    rssFeedUrl,
+    statusMessage,
+    streamId,
+    dateAdded,
+    dateCompleted,
+    appUpdateUrl,
+    savePath,
     additionalData,
     decodedName) {
 
@@ -75,9 +83,17 @@
     this.peersInSwarm = peersInSwarm;
     this.seedsConnected = seedsConnected;
     this.seedsInSwarm = seedsInSwarm;
-    this.availability = availability;
+    this.availability = (availability / 65536).toFixed(1);
     this.torrentQueueOrder = torrentQueueOrder;
     this.remaining = remaining;
+    this.downloadUrl = downloadUrl;
+    this.rssFeedUrl = rssFeedUrl;
+    this.statusMessage = statusMessage;
+    this.streamId = streamId;
+    this.dateAdded = dateAdded * 1000;
+    this.dateCompleted = dateCompleted * 1000;
+    this.appUpdateUrl = appUpdateUrl;
+    this.savePath = savePath;
     this.additionalData = additionalData;
     if (decodedName) {
       this.decodedName = decodedName;
@@ -280,7 +296,7 @@ Torrent.prototype.formatBytes = function(bytes) {
    * Instance ('this') is not available in static context
    */
    Torrent.build = function (array,additionalData,decodedName) {
-    return new Torrent(
+    var torrent = new Torrent(
       array[0],
       array[1],
       array[2],
@@ -300,9 +316,19 @@ Torrent.prototype.formatBytes = function(bytes) {
       array[16],
       array[17],
       array[18],
+      array[19],
+      array[20],
+      array[21],
+      array[22],
+      array[23],
+      array[24],
+      array[25],
+      array[26],
       additionalData,
       decodedName
       );
+    //torrent._base = array;
+    return torrent;
   };
 
   /**
@@ -465,8 +491,11 @@ Torrent.prototype.formatBytes = function(bytes) {
                 settings.push(val);
               }
               uTorrentService.settings = settings;
-              if (parseInt(data.build) < 25406) { //Features supported from uTorrent 3+
-                delete uTorrentService.getDownloadDirectories;
+              uTorrentService.supports = {};
+              if (parseInt(data.build) > 25406) { //Features supported from uTorrent 3+
+                uTorrentService.supports.getDownloadDirectories = true;
+                uTorrentService.supports.torrentAddedDate = true;
+                uTorrentService.supports.torrentCompletedDate = true;
               }
               return settings;
             }

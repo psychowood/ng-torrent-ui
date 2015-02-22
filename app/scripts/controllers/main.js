@@ -138,7 +138,7 @@
         }
       }
     };
-    if(uTorrentService.getDownloadDirectories) {
+    if(uTorrentService.supports.getDownloadDirectories === true) {
       uTorrentService.getDownloadDirectories().then(function(directories) {
         $scope.directories = directories;
 
