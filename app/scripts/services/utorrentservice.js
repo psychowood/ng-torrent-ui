@@ -100,6 +100,9 @@
  };
  var statusesFlags = [1,2,4,8,16,32,64,128].reverse();
 
+ Torrent.prototype.getMagnetURI = function() {
+   return 'magnet:?xt=urn:btih:' + this.hash + '&dn=' + encodeURIComponent(this.name);
+ };
 
  Torrent.prototype.getStatusFlag = function (x) {
   /*jshint bitwise: false*/
