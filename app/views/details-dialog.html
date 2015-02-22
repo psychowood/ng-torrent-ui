@@ -24,6 +24,15 @@
     {{'GN_TP_02' | translate}} {{torrent.formatBytes(torrent.uploaded)}} ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
     {{'GN_TP_01' | translate}} {{torrent.formatBytes(torrent.downloaded)}} ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
   </div>
+  <div ng-if="torrent.dateAdded"><b>{{'OV_COL_DATE_ADDED' | translate}}:</b>
+    {{torrent.dateAdded | date:'medium'}}
+  </div>
+  <div ng-if="torrent.dateCompleted"><b>{{'OV_COL_DATE_COMPLETED' | translate}}:</b>
+    {{torrent.dateCompleted | date:'medium'}}
+  </div>
+  <div ng-if="torrent.savePath"><b>{{'GN_TP_09' | translate}}</b>
+    {{torrent.savePath}}
+  </div>
   <p></p>
       <form role="form" ng-submit="doFilter()" class="form-inline actions-form action-toolbar">
         <div class="form-group">

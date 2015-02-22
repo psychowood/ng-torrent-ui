@@ -255,11 +255,22 @@ select[disabled] {
   width: 100px;
 }
 
+.torrent .peers .availability {
+
+}
+
 .torrent .queue {
   padding-left: 2px;
   padding-right: 2px;
   width: 40px;
 }
+
+.torrent .dateAdded {
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 120px;
+}
+
 
 .torrent .download-progress {
   height: 3px;
