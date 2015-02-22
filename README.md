@@ -101,10 +101,10 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ## Release History
 
 ### v0.3.4
-- [x] Added availability field in grid (seeds/peers column) and in details dialog
+- [x] Added 'availability' in grid (in seeds/peers column) and details dialog
 - [x] Added 'added on' in grid and details dialog (uTorrent 3+)
 - [x] Added 'completed on' in details dialog (uTorrent 3+)
-- [x] Added download location display in details dialog (uTorrent 3+)
+- [x] Added 'save as' (download location) in details dialog (uTorrent 3+)
 - [x] Better grid auto-height handling
 - [x] Fixed minor typos
 
