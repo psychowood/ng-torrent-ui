@@ -100,6 +100,14 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.3.4
+- [x] Added availability field in grid (seeds/peers column) and in details dialog
+- [x] Added 'added on' in grid and details dialog (uTorrent 3+)
+- [x] Added 'completed on' in details dialog (uTorrent 3+)
+- [x] Added download location display in details dialog (uTorrent 3+)
+- [x] Better grid auto-height handling
+- [x] Fixed minor typos
+
 ### v0.3.3
 - [x] Added selection for download location when adding a torrent (needs uTorrent 3+)
 
@@ -187,9 +195,9 @@ Not in a specific order.
 - [ ] Better error handling
 - [ ] Apply multiple name filters at the same time
 - [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
-- [ ] Local storage (saving searches and custom settings)
+- [ ] Local storage (saving searches and webui settings)
 - [ ] Scene name parsing, estraction of tags (file format, languages, etc)
-- [ ] Use a fake-torrent in list to save client settings
+- [ ] Use a fake-torrent in list to save client settings to the server
 - [ ] Documentation
 - [ ] Generalize API to allow the usage with different torrent applications
 - [ ] Code cleanup
