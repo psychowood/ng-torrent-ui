@@ -409,6 +409,9 @@ Torrent.prototype.formatBytes = function(bytes) {
         list: {
           method:'GET',
           params: { action:'list=1'},
+          transformResponse: function (response) {
+              return angular.fromJson(response.replace(/[\x00-\x1F]/g,''));
+          },
           interceptor: updateCidInterceptor,
           isArray:false
         }
