@@ -14,6 +14,7 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
   $httpBackend.whenGET(new RegExp('scripts\/.*')).passThrough();
   $httpBackend.whenGET(new RegExp('styles\/.*')).passThrough();
   $httpBackend.whenGET(new RegExp('langs\/.*')).passThrough();
+  $httpBackend.whenGET(new RegExp('bower.json')).passThrough();
 
   var rand = function(max){
     return Math.floor((Math.random()*max)+1);
@@ -78,10 +79,10 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
       var priority = rand(3);
       files.push([name,size,remaining,priority]);
     }
-    return [200, {
+    return [200, angular.toJson({
       build: mock.build,
       files: ["UNUSEDHASH", files]
-    }, {}];
+      }), {}];
   });
 
   $httpBackend.whenGET(new RegExp('/gui/.*[?&]list=1&*.*')).respond(function(method, url, data) {
@@ -142,19 +143,19 @@ angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsu
           [i,status,name,size,percent,rand(size),rand(size*2),Math.random(),upspeed,downspeed,0,label[0],rand(peers),peers,rand(seeds),seeds,rand(65535),i,remaining]
           );
       }
-      return [200, {
+      return [200, angular.toJson({
         build: mock.build,
         label: mock.labels,
         torrents: mock.torrents,
         torrentc: mock.torrentc
-      }, {}];
+        }), {}];
     } else {
-      return [200, {
+      return [200, angular.toJson({
         build: mock.build,
         label: mock.labels,
         torrents: mock.torrents,
         torrentc: mock.torrentc
-      }, {}];
+      }), {}];
     }
   });
 
