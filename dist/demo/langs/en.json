@@ -4,5 +4,7 @@
     "AUTORELOAD": "Autoreload",
     "MATCHING_FILTERS": "matching filters",
     "SHOW_SELECTED": "Show",
-    "CLEAR_SELECTED": "Deselect"
+    "CLEAR_SELECTED": "Deselect",
+    "PATH": "Path",
+    "SUBPATH": "Sub-path"
 }
