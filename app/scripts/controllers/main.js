@@ -509,7 +509,7 @@
       var numOfLabeledTorrents = 0;
       angular.forEach($scope.labels, function(value /* , key */) {
         numOfLabeledTorrents = numOfLabeledTorrents + value[1];
-      })
+      });
 
       $scope.labels.unshift(['',$scope.torrents.length-numOfLabeledTorrents]);
 
