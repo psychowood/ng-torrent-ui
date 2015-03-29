@@ -74,12 +74,12 @@
           </a>
             <div class="dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
-                <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ label[0] + ' (' + label[1] + ')' }}
+                <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate) + ' (' + label[1] + ')' }}
               </a>
           </div>
         </div>
         <span class="input-group-btn">
-          <button class="btn" type="button" ng-disabled="filters.label === ''" ng-click="filters.label = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+          <button class="btn" type="button" ng-disabled="filters.label === undefined" ng-click="filters.label = undefined;doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
       </div>
     </div>

@@ -249,7 +249,7 @@
 		open: true,
 		filters: {
 			name: '',
-			label: '',
+			label: undefined,
 			l33t: true,
 			selected: false,
       status: ''
@@ -371,7 +371,7 @@
 			$scope.filteredtorrents = $filter('filter')($scope.torrents,
 				function (torrent /*, index */) {
 					var matches = true;
-					if (filters.label) {
+					if (typeof filters.label !== 'undefined') {
 						matches = torrent.label === filters.label;
 					}
           if (filters.selected) {
@@ -505,6 +505,15 @@
 			}
       $scope.torrentsMap = torrentsMap;
       updateTorrentDetails($scope.lastTorrentDetails);
+
+      var numOfLabeledTorrents = 0;
+      angular.forEach($scope.labels, function(value /* , key */) {
+        numOfLabeledTorrents = numOfLabeledTorrents + value[1];
+      })
+
+      $scope.labels.unshift(['',$scope.torrents.length-numOfLabeledTorrents]);
+
+
 			$scope.refreshing = false;
 
 		});
