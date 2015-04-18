@@ -4,5 +4,8 @@
     "AUTORELOAD": "Autorefresh",
     "MATCHING_FILTERS": "risultanti dai filtri",
     "SHOW_SELECTED": "Mostra",
-    "CLEAR_SELECTED": "Deseleziona"
+    "CLEAR_SELECTED": "Deseleziona",
+    "PATH": "Directory",
+    "SUBPATH": "Subdirectory",
+    "ERROR": "Errore"
 }

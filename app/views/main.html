@@ -100,6 +100,8 @@
                 <span class="glyphicon glyphicon-time text-info"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_QUEUED' | translate}}</a>
               <a role="button" class="btn btn-default" ng-click="filters.status = 'seeding';doFilter()">
                 <span class="glyphicon glyphicon-collapse-up text-success"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_SEEDING' | translate}}</a>
+              <a role="button" class="btn btn-default" ng-click="filters.status = 'error';doFilter()">
+                <span class="glyphicon glyphicon-collapse-up text-danger"></span>&nbsp;&nbsp;&nbsp;{{'ERROR' | translate}}</a>
           </div>
         </div>
         <span class="input-group-btn">

@@ -398,6 +398,10 @@
                 matches = torrent.isStatusSeeding();
                 break;
               }
+              case 'error': {
+                matches = torrent.isStatusError();
+                break;
+              }
             }
           }
 					if (matches && filters.name && filters.name !== '') {
