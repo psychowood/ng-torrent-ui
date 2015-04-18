@@ -98,7 +98,6 @@ select[disabled] {
 
   .top-bar .tabs {
     height: 35px;
-    overflow-y: hidden;
   }
 
   .version {
