@@ -642,13 +642,9 @@
     }
     $scope.lastSelectedHash = hash;
     (function(){
-      var selection = ('getSelection' in $window)
-        ? $window.getSelection()
-        : ('selection' in $window.document)
-          ? $window.document.selection
-          : null;
-      if ('removeAllRanges' in selection) selection.removeAllRanges();
-      else if ('empty' in selection) selection.empty();
+      var selection = ('getSelection' in $window) ? $window.getSelection() : ('selection' in $window.document) ? $window.document.selection : null;
+      if ('removeAllRanges' in selection) { selection.removeAllRanges();}
+      else if ('empty' in selection) { selection.empty(); }
     })();
  		$scope.updateSelected();
  	};
