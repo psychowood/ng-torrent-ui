@@ -20,6 +20,7 @@ angular.module('utorrentNgwebuiApp')
           if (isGetOptions) {
             return deferred.resolve({languages: languages, constants: constants});
           } else {
+            opts.key = opts.key.split('_')[0];
             $http.get(['langs/utorrent/',opts.key,'.js.json'].join('')).then(
               function(response) {
                 var labels = response.data;
