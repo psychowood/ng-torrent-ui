@@ -101,6 +101,14 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.4.0
+- [x] Added "Preferences" tab to view and edit uTorrent settings
+- [x] Added support for homescreen pinning (browser menu -> add to HomeScreen on mobile) with dedicated icon and fullscreen view
+- [x] Added 'No label' filter
+- [x] Added 'Status: error' filter
+- [x] Fix for uTorrent bad character handling (caused crash of both ng-torrent-un and official WebUI)
+- [x] Prevent text highlighting when selecting on grid
+
 ### v0.3.4
 - [x] Added 'availability' in grid (in seeds/peers column) and details dialog
 - [x] Added 'added on' in grid and details dialog (uTorrent 3+)
@@ -188,11 +196,9 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 Not in a specific order.
 
-- [ ] Support for current versions of uTorrent
 - [ ] Confirmation dialogs
 - [ ] Test with different browsers
 - [ ] Unit tests
-- [ ] Settings page
 - [ ] Better error handling
 - [ ] Apply multiple name filters at the same time
 - [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
@@ -204,7 +210,7 @@ Not in a specific order.
 - [ ] Code cleanup
 - [ ] Desktop notifications for supported browsers
 - [ ] Embed search engines
-  [ ] Support for multiple labels per torrent (undocumented API?)
+- [ ] Support for multiple labels per torrent (undocumented API?)
 - [ ] Find a more 'personal' name
 - [ ] Any ideas? Tell me :)
 
