@@ -509,3 +509,26 @@ fieldset.action-toolbar .middle {
 .buttons-advanced > button {
   width: 33.3%;
 }
+
+#settings .radio input[type="radio"],
+#settings .radio-inline input[type="radio"],
+#settings .checkbox input[type="checkbox"],
+#settings .checkbox-inline input[type="checkbox"] {
+  margin-left: 0px;
+}
+
+#settings .tab-content {
+  padding-left: 25px;
+  border: 1px solid #ccc;
+  border-top: 0px;
+}
+
+#settings h4,
+#settings h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+#settings h4 {
+  margin-right: 7%;
+}

@@ -517,6 +517,27 @@ Torrent.prototype.formatBytes = function(bytes) {
         }
       });
     },
+    setSetting: function(setting,value){
+      return uTorrentService.setSettings([[setting,value]]);
+    },
+    setSettings: function(settings){ // [ [setting1,value1], [setting2,value2] ]
+      var encodedQuery = '';
+      var i,val;
+      for (i=0; i<settings.length; i++) {
+        val = settings[i][1];
+        if (val === 'true') {
+          val = '1';
+        } else if (val === 'false') {
+          val = '0';
+        }
+        encodedQuery += '&' + ['s=' + settings[i][0],'v=' + encodeURIComponent(val)].join('&');
+      }
+      return $http.get(data.url + '?token=' + data.token + '&action=setsetting' + encodedQuery, {
+        params: {
+          t:Date.now()
+        }
+      });
+    },
     getDownloadDirectories: function(){
       return $resource(data.url + '.' + '?token=:token&action=list-dirs&t=:t', {token:data.token,t:Date.now()}, {
         get: {

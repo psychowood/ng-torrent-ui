@@ -1,35 +1,75 @@
-<div class="container">
-  <form class="form-horizontal" role="form" ng-submit="signIn()">
+<div class="container-fluid" id="settings" ng-class="{'hidden':(loaded !== true)}">
 
-    <div class="form-group">
-      <label for="utUrl" class="col-sm-2 control-label">uTorrent url</label>
-      <div class="col-sm-10">
-        <input type="url" class="form-control" id="utUrl" placeholder="Enter uTorrent url - http://hostname:port/gui/" ng-model="url">
+    <form class="form-horizontal">
+      <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-9 input-group input-group-sm">
+            <span class="input-group-addon" >
+              <span class="glyphicon glyphicon-search" ></span>
+            </span>
+            <input type="text" class="form-control" ng-model="settingSearchTmp" ng-init="settingSearch = '';settingSearchTmp = '';" ng-change="updateSettingSearch(settingSearchTmp)">
+            <div class="input-group-btn">
+              <button type=button ng-disabled="settingSearch === ''" ng-click="settingSearch = ''" class="btn" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+            </div>
+          </div>
       </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="utUser" class="col-sm-2 control-label">UserName</label>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" id="utUser" placeholder="Enter username" ng-model="user">
-      </div>
-      <label for="utPass" class="col-sm-2 control-label">Password</label>
-      <div class="col-sm-4">
-        <input type="password" class="form-control" id="utPass" placeholder="Enter password" ng-model="password">
-      </div>
-    </div>
+    </form>
 
-    <div class="form-group">
-      <label for="utToken" class="col-sm-2 control-label">Token</label>
-      <div class="col-sm-10">
-        <input disabled type="text" class="form-control" id="utToken" placeholder="No token available - Did you sign in?" ng-model="token">
-      </div>
-    </div>
+    <form class="form-horizontal" >
+      <div ng-repeat="section in settings.conf" ng-class="{'hidden':section.count === 0}">
+        <h3>{{section.label}}</h3>
 
-    <div class="form-group">
-      <div class="col-sm-offset-10">
-        <button type="submit" class="btn btn-default">Sign in</button>
+        <div ng-repeat="subsection in section.items" ng-class="{'hidden':subsection.count === 0}">
+          <h4 class="col-sm-offset-1">{{subsection.label}}</h4>
+
+          <div class="form-group" ng-repeat="setting in filteredSettings = (subsection.items | filter: settingSearch ) track by $index" ng-switch on="setting.type" ng-class="{hidden:setting.known !== true}" ng-init="section.count = filteredSettings.length -1; subsection.count = filteredSettings.length - 1;">
+
+            <label class="col-sm-4 control-label" for="{{setting.id}}">{{setting.label}}</label>
+
+            <div class="col-sm-7 input-group input-group-sm">
+              <input ng-switch-when="int" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+
+              <label ng-switch-when="bool" class="checkbox"><input type="checkbox" ng-model="setting.value" id="{{setting.id}}" ng-true-value="'true'" ng-false-value="'false'"></label>
+
+              <input ng-switch-when="string" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+
+              <select ng-switch-when="select" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+                <option ng-repeat="(key, value) in setting.values" value="{{ key }}" ng-selected="setting.value === ''+key">{{ value }}</option>
+              </select>
+
+              <input ng-switch-default type="text" readOnly name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+
+              <div class="input-group-btn">
+                <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
       </div>
-    </div>
-  </form>
+    </form>
+
+    <h3>{{'DLG_SETTINGS_A_ADVANCED_01' | translate}}</h3>
+
+    <form class="form-horizontal" > <!-- class="repeater-container" vs-repeat="45" vs-excess="10" ng-style="{ height: listHeight + 'px'}" -->
+      <div ng-repeat="setting in settings.values | filter: settingSearch" class="form-group" ng-init="setting.oldvalue = setting.value">
+
+          <label class="col-sm-3 control-label">{{setting.name}}</label>
+
+          <div class="col-sm-8 input-group input-group-sm">
+            <span class="input-group-addon" ng-if="settings.map[setting.name].label">
+              <span class="glyphicon glyphicon-question-sign" title="{{settings.map[setting.name].label}}"></span>
+            </span>
+
+            <input type="text" ng-model="setting.value" class="form-control">
+
+            <div class="input-group-btn">
+              <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+            </div>
+          </div>
+          <span ng-if="$last" ng-init="loadingFinished()"></span>
+      </div>
+    </form>
+
 </div>
