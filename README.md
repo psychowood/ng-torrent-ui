@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/psychowood/ng-torrent-ui.svg?branch=master)](https://travis-ci.org/psychowood/ng-torrent-ui)
+[![Build Status](https://travis-ci.org/psychowood/ng-torrent-ui.svg)](https://travis-ci.org/psychowood/ng-torrent-ui)
 ![Logo](app/favicon.png?raw=true "Logo") ng-torrent-ui
 =============
 
