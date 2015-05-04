@@ -12,7 +12,12 @@ If you want to discuss or get support, [here's](https://plus.google.com/communit
 Installation
 ============
 
-Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version, rename the existing webui.zip instead of overwriting.
+Download latest webui.zip from the [releases](../../releases) tab and copy it in the uTorrent directory. If you want to preserve the official version (which is included in the package anyway), rename the existing webui.zip instead of overwriting.
+
+Mobile friendly
+============
+
+From a mobile device, you can pin the application (from the browser, select "Add to homescreen") and get a nice icon which will open in fullscreen with your favourite uTorrent webui ;) .
 
 Self "Updating"
 ============
