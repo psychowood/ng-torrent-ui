@@ -71,9 +71,10 @@
         <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
           <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-switch="filters.label">
             <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;&nbsp;
-            <span ng-switch-when="undefined">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}} <span class="caret"></span></span>
-            <span ng-switch-when="">{{'OV_CAT_NOLABEL' | translate}} <span class="caret"></span></span>
-            <span ng-switch-default>{{filters.label}} <span class="caret"></span></span>
+              <span ng-switch-when="undefined">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}}</span>
+              <span ng-switch-when="">{{'OV_CAT_NOLABEL' | translate}}</span>
+              <span ng-switch-default>{{filters.label}}</span>
+            <span class="caret"></span>
           </a>
             <div class="dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
@@ -89,8 +90,16 @@
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-status">
         <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;&nbsp;&nbsp;{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}} <span class="caret"></span>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-switch="filters.status">
+            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;&nbsp;&nbsp;
+            <span ng-switch-when="completed">{{'OV_FL_FINISHED' | translate}}</span>
+            <span ng-switch-when="downloading">{{'OV_FL_DOWNLOADING' | translate}}</span>
+            <span ng-switch-when="paused">{{'OV_FL_PAUSED' | translate}}</span>
+            <span ng-switch-when="queued">{{'OV_FL_QUEUED' | translate}}</span>
+            <span ng-switch-when="seeding">{{'OV_FL_SEEDING' | translate}}</span>
+            <span ng-switch-when="error">{{'ERROR' | translate}}</span>
+            <span ng-switch-default>{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}}</span>
+            <span class="caret"></span>
           </a>
             <div class="dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-click="filters.status = 'completed';doFilter()">
