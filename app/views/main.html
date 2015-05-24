@@ -69,8 +69,11 @@
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-label">
         <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
-            <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;&nbsp;{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}} <span class="caret"></span>
+          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-switch="filters.label">
+            <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;&nbsp;
+            <span ng-switch-when="undefined">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}} <span class="caret"></span></span>
+            <span ng-switch-when="">{{'OV_CAT_NOLABEL' | translate}} <span class="caret"></span></span>
+            <span ng-switch-default>{{filters.label}} <span class="caret"></span></span>
           </a>
             <div class="dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
