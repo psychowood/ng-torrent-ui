@@ -109,9 +109,15 @@
         </span>
       </div>
     </div>
-    <div class="form-group input-group-sm col-lg-2 col-sm-3">
-      <div class="form-control input-group info-text">
-      {{filteredtorrents.length}} {{'MATCHING_FILTERS' | translate}}
+    <div class="form-group col-lg-2 col-sm-3">
+      <div class="input-group input-group-sm">
+        <div class="form-control info-text" ng-switch="equals(filters,emptyFilters)">
+          <span ng-switch-when="true">{{'NO_FILTERS_APPLIED' | translate}}</span>
+          <span ng-switch-default>{{filteredtorrents.length}} {{'MATCHING_FILTERS' | translate}}</span>
+        </div>
+        <span class="input-group-btn">
+          <button class="btn" type="button" ng-disabled="equals(filters,emptyFilters)" ng-click="clearFilters()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
+        </span>
       </div>
     </div>
 

@@ -106,6 +106,9 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.4.1
+- [x] Added "Clear all filters" button
+
 ### v0.4.0
 - [x] Added "Preferences" tab to view and edit uTorrent settings
 - [x] Added support for homescreen pinning (browser menu -> add to HomeScreen on mobile) with dedicated icon and fullscreen view

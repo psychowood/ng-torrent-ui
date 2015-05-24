@@ -3,6 +3,7 @@
     "SELECTED": "selected",
     "AUTORELOAD": "Autoreload",
     "MATCHING_FILTERS": "matching filters",
+    "NO_FILTERS_APPLIED": "No filters applied",
     "SHOW_SELECTED": "Show",
     "CLEAR_SELECTED": "Deselect",
     "PATH": "Path",

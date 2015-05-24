@@ -61,6 +61,8 @@
 	}
 	*/
 
+  $scope.equals = angular.equals;
+
 	$scope.labels = [];
   $scope.labelColorMap = {};
 
@@ -245,18 +247,15 @@
 
   };
 
-	$scope.filterspanel = {
-		open: true,
-		filters: {
-			name: '',
-			label: undefined,
-			l33t: true,
-			selected: false,
-      status: ''
-		}
-	};
+  $scope.emptyFilters = {
+    name: '',
+    label: undefined,
+    l33t: true,
+    selected: false,
+    status: ''
+  };
 
-	$scope.filters = $scope.filterspanel.filters;
+	$scope.filters = angular.copy($scope.emptyFilters);
 
 	$scope.sorter = {
 		field: 'torrentQueueOrder',
@@ -322,6 +321,10 @@
 
 	var doFilterTimer;
   $scope.notL33table = false;
+  $scope.clearFilters = function() {
+    $scope.filters = angular.copy($scope.emptyFilters);
+    $scope.doFilter();
+  };
 	$scope.doFilter = function(wait) {
 
     $scope.notL33table = $scope.filters.name.search(/^[a-z0-9 ]+$/i) === -1;

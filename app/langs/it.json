@@ -3,6 +3,7 @@
     "SELECTED": "selezionati",
     "AUTORELOAD": "Autorefresh",
     "MATCHING_FILTERS": "risultanti dai filtri",
+    "NO_FILTERS_APPLIED": "Nessun filtro applicato",
     "SHOW_SELECTED": "Mostra",
     "CLEAR_SELECTED": "Deseleziona",
     "PATH": "Directory",
