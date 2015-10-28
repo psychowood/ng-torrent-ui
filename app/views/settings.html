@@ -14,62 +14,60 @@
       </div>
     </form>
 
-    <form class="form-horizontal" >
-      <div ng-repeat="section in settings.conf" ng-class="{'hidden':section.count === 0}">
-        <h3>{{section.label}}</h3>
-
-        <div ng-repeat="subsection in section.items" ng-class="{'hidden':subsection.count === 0}">
-          <h4 class="col-sm-offset-1">{{subsection.label}}</h4>
-
-          <div class="form-group" ng-repeat="setting in filteredSettings = (subsection.items | filter: settingSearch ) track by $index" ng-switch on="setting.type" ng-class="{hidden:setting.known !== true}" ng-init="section.count = filteredSettings.length -1; subsection.count = filteredSettings.length - 1;">
-
-            <label class="col-sm-4 control-label" for="{{setting.id}}">{{setting.label}}</label>
-
-            <div class="col-sm-7 input-group input-group-sm">
-              <input ng-switch-when="int" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
-
-              <label ng-switch-when="bool" class="checkbox"><input type="checkbox" ng-model="setting.value" id="{{setting.id}}" ng-true-value="'true'" ng-false-value="'false'"></label>
-
-              <input ng-switch-when="string" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
-
-              <select ng-switch-when="select" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
-                <option ng-repeat="(key, value) in setting.values" value="{{ key }}" ng-selected="setting.value === ''+key">{{ value }}</option>
-              </select>
-
-              <input ng-switch-default type="text" readOnly name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
-
-              <div class="input-group-btn">
-                <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+   <tabset justified="true">
+      <tab heading="{{'SETTINGS_NTU' | translate}}">
+        <form class="form-horizontal" >
+          <div>
+            <h3>{{'ST_CAPT_UI_SETTINGS' | translate}}</h3>
+          </div>
+        </form>
+      </tab>
+      <tab heading="{{'SETTINGS_UT' | translate}}">
+        <form class="form-horizontal" >
+          <div ng-repeat="section in settings.conf" ng-class="{'hidden':section.count === 0}">
+            <h3>{{section.label}}</h3>
+            <div ng-repeat="subsection in section.items" ng-class="{'hidden':subsection.count === 0}">
+              <h4 class="col-sm-offset-1">{{subsection.label}}</h4>
+              <div class="form-group" ng-repeat="setting in filteredSettings = (subsection.items | filter: settingSearch ) track by $index" ng-switch on="setting.type" ng-class="{hidden:setting.known !== true}" ng-init="section.count = filteredSettings.length -1; subsection.count = filteredSettings.length - 1;">
+                <label class="col-sm-4 control-label" for="{{setting.id}}">{{setting.label}}</label>
+                <div class="col-sm-7 input-group input-group-sm">
+                  <input ng-switch-when="int" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+                  <label ng-switch-when="bool" class="checkbox"><input type="checkbox" ng-model="setting.value" id="{{setting.id}}" ng-true-value="'true'" ng-false-value="'false'"></label>
+                  <input ng-switch-when="string" type="text" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+                  <select ng-switch-when="select" name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+                    <option ng-repeat="(key, value) in setting.values" value="{{ key }}" ng-selected="setting.value === ''+key">{{ value }}</option>
+                  </select>
+                  <input ng-switch-default type="text" readOnly name="{{setting.id}}" id="{{setting.id}}" ng-model="setting.value" class="form-control">
+                  <div class="input-group-btn">
+                    <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+                  </div>
+                </div>
               </div>
             </div>
-
-
           </div>
-        </div>
+        </form>
+      </tab>
+      <tab heading="{{'DLG_SETTINGS_A_ADVANCED_01' | translate}}">
+        <form class="form-horizontal" > <!-- class="repeater-container" vs-repeat="45" vs-excess="10" ng-style="{ height: listHeight + 'px'}" -->
+          <div ng-repeat="setting in settings.values | filter: settingSearch" class="form-group" ng-init="setting.oldvalue = setting.value">
 
-      </div>
-    </form>
+              <label class="col-sm-3 control-label">{{setting.name}}</label>
 
-    <h3>{{'DLG_SETTINGS_A_ADVANCED_01' | translate}}</h3>
+              <div class="col-sm-8 input-group input-group-sm">
+                <span class="input-group-addon" ng-if="settings.map[setting.name].label">
+                  <span class="glyphicon glyphicon-question-sign" title="{{settings.map[setting.name].label}}"></span>
+                </span>
 
-    <form class="form-horizontal" > <!-- class="repeater-container" vs-repeat="45" vs-excess="10" ng-style="{ height: listHeight + 'px'}" -->
-      <div ng-repeat="setting in settings.values | filter: settingSearch" class="form-group" ng-init="setting.oldvalue = setting.value">
+                <input type="text" ng-model="setting.value" class="form-control">
 
-          <label class="col-sm-3 control-label">{{setting.name}}</label>
-
-          <div class="col-sm-8 input-group input-group-sm">
-            <span class="input-group-addon" ng-if="settings.map[setting.name].label">
-              <span class="glyphicon glyphicon-question-sign" title="{{settings.map[setting.name].label}}"></span>
-            </span>
-
-            <input type="text" ng-model="setting.value" class="form-control">
-
-            <div class="input-group-btn">
-              <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
-            </div>
+                <div class="input-group-btn">
+                  <button type=button class="btn" ng-click="saveSetting(setting)" ng-disabled="setting.value === setting.oldvalue"><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+                </div>
+              </div>
+              <span ng-if="$last" ng-init="loadingFinished()"></span>
           </div>
-          <span ng-if="$last" ng-init="loadingFinished()"></span>
-      </div>
-    </form>
+        </form>
+      </tab>
+    </tabset>
 
 </div>

@@ -8,5 +8,7 @@
     "CLEAR_SELECTED": "Deselect",
     "PATH": "Path",
     "SUBPATH": "Sub-path",
-    "ERROR": "Error"
+    "ERROR": "Error",
+    "SETTINGS_UT": "uTorrent",
+    "SETTINGS_NTU": "ng-torrent-ui"
 }
