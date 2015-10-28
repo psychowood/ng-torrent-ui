@@ -79,7 +79,7 @@
 
       $scope.languages = sortable;
 
-      langId = $cookies.language;
+      langId = $cookies.get('language');
       if (langId) {
         $translate.use(langId);
       } else {
@@ -93,7 +93,7 @@
         if (lang.id !== $translate.use()) {
           $translate.use(lang.id);
           $scope.languageDesc = lang.desc;
-          $cookies.language = lang.id;
+          $cookies.put('language',lang.id);
         }
       };
     });
@@ -102,7 +102,7 @@
     $scope.closeAlert = function(index) {
       $scope.alerts.splice(index, 1);
     };
-    var lastUpdateCheck = $cookies.lastUpdateCheck;
+    var lastUpdateCheck = $cookies.get('lastUpdateCheck');
     var now = new Date().getTime();
 
     var isNewVersion = function (installed, required) {
@@ -139,15 +139,15 @@
 
     $http.get('bower.json').then(function(res) {
       var currentVersion = 'v' + res.data.version;
-      if ($cookies.currentVersion !== currentVersion) {
+      if ($cookies.get('currentVersion') !== currentVersion) {
         lastUpdateCheck = undefined;
-        delete $cookies.updatedVersion;
-        delete $cookies.lastUpdateCheck;
+        $cookies.remove('updatedVersion');
+        $cookies.remove('lastUpdateCheck');
         delete $scope.updatedVersion;
         delete $scope.lastUpdateCheck;
       }
-      $cookies.currentVersion = currentVersion;
-      $scope.currentVersion = $cookies.currentVersion;
+      $cookies.put('currentVersion',currentVersion);
+      $scope.currentVersion = $cookies.get('currentVersion');
 
       if (lastUpdateCheck === undefined || (now - lastUpdateCheck) > 36000000) {
 
@@ -158,19 +158,19 @@
            'Accept': 'application/vnd.github.v3+json'
           }
         }).then(function(response) {
-          $cookies.lastUpdateCheck = now;
+          $cookies.put('lastUpdateCheck',now);
           if (response.data && response.data.length > 0) {
             var data = response.data[0];
             var versionAttr = 'tag_name';
             var latest = data[versionAttr];
 
             if (isNewVersion(currentVersion,latest)) {
-              if ($cookies.updatedVersion !== latest) {
+              if ($cookies.get('updatedVersion') !== latest) {
                 $scope.alerts.push({ type: 'info', msg: 'New version available: ' + latest });
-                $cookies.updatedVersion = latest;
+                $cookies.put('updatedVersion',latest);
               }
             } else {
-              delete $cookies.updatedVersion;
+              $cookies.remove('updatedVersion');
             }
 
           } else {
@@ -184,7 +184,7 @@
 
     });
 
-    $scope.updatedVersion = $cookies.updatedVersion;
+    $scope.updatedVersion = $cookies.get('updatedVersion');
 
     uTorrentService.init().then(function() {
       var ts = uTorrentService.actions().getsettings();
