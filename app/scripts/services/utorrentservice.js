@@ -63,7 +63,8 @@
     appUpdateUrl,
     savePath,
     additionalData,
-    decodedName) {
+    decodedName,
+    isStarred) {
 
     this.selected = false;
 
@@ -101,6 +102,7 @@
       this.decodedName = this.name;
     }
     this.getStatuses();
+    this.isStarred = isStarred === true; 
   }
 
 
@@ -295,7 +297,7 @@ Torrent.prototype.formatBytes = function(bytes) {
    * Static method, assigned to class
    * Instance ('this') is not available in static context
    */
-   Torrent.build = function (array,additionalData,decodedName) {
+   Torrent.build = function (array,additionalData,decodedName,isStarred) {
     var torrent = new Torrent(
       array[0],
       array[1],
@@ -325,7 +327,8 @@ Torrent.prototype.formatBytes = function(bytes) {
       array[25],
       array[26],
       additionalData,
-      decodedName
+      decodedName,
+      isStarred
       );
     //torrent._base = array;
     return torrent;

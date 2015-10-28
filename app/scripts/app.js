@@ -20,7 +20,8 @@
   'vs-repeat',
   'toastr',
   'angularFileUpload',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'ngTagsInput'
   ]).config(function ($routeProvider) {
     $routeProvider
     .when('/', {

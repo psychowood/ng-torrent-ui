@@ -8,12 +8,20 @@
  * Controller of the utorrentNgwebuiApp
  */
  angular.module('utorrentNgwebuiApp')
- .controller('SettingsCtrl', function ($scope,uTorrentService,$log,$translate,toastr,$timeout) {
+ .controller('SettingsCtrl', function ($scope,uTorrentService,$log,$translate,toastr,$timeout,$cookies) {
 
   var settings = {
     conf: [],
     values: [],
     map: {}
+  };
+
+  if ($cookies.get('starredItems')){
+    $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
+  }
+  
+  $scope.starredItemsChanged = function() {
+    $cookies.put('starredItems',angular.toJson($scope.starredItems));
   };
 
   var doFilterTimer;

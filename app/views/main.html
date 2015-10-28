@@ -280,6 +280,20 @@
         </div>
     </script>
 
+    <script type="text/ng-template" id="starredModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'DLG_RSSDOWNLOADER_02' | translateMultiLabel:1}}</h3>
+        </div>
+        <div class="modal-body">
+            <tags-input focus-me="true" ng-model="starredItems" placeholder="{{'DLG_RSSDOWNLOADER_27' | translate}}" replace-spaces-with-dashes="false" text="newStarred"></tags-input>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="$close(starredItems)" >{{'DLG_BTN_OK' | translate}}</button>
+            <button class="btn btn-warning" ng-click="$dismiss()">{{'DLG_BTN_CANCEL' | translate}}</button>
+        </div>
+    </script>
+
     <script type="text/ng-template" id="downloadLocationModal.html">
         <div class="modal-header">
             <h3 class="modal-title">{{'DLG_SETTINGS_3_PATHS_01' | translate}}</h3>

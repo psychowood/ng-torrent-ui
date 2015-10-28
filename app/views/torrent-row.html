@@ -1,4 +1,4 @@
-<div class="input-group input-group-sm torrent-row" ng-class="{'selected':item.selected}">
+<div class="input-group input-group-sm torrent-row" ng-class="{'selected':item.selected,'highlighted':item.isStarred}">
   <span class="input-group-addon">
     <input type="checkbox" ng-model="item.selected" ng-change="updateSelected()" >
   </span>
@@ -14,6 +14,11 @@
   <span class="info-button input-group-btn selectable">
     <button class="btn btn-link" ng-click="doAction('info',item)">
       <span class="glyphicon glyphicon-info-sign"></span>
+    </button>
+  </span>
+  <span class="star-button input-group-btn selectable">
+    <button class="btn btn-link" ng-click="doAction('star',item)">
+      <span class="glyphicon" ng-class="{'glyphicon-star-empty':!item.isStarred,'glyphicon-star':item.isStarred}"></span>
     </button>
   </span>
   <div class="input-group-addon selectable size">

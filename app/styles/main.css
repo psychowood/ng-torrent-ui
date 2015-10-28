@@ -339,7 +339,7 @@ select[disabled] {
 }
 
 .torrent-header .tag-label {
-  margin-right: 45px;
+  margin-right: 60px;
 }
 
 .torrent-header .sorter {
@@ -459,6 +459,10 @@ fieldset.action-toolbar .middle {
 .torrent .input-group-addon {
   background-color: inherit;
   border: 0;
+}
+
+.highlighted {
+  background-color: #C2E0FF;
 }
 
 .details-header {
