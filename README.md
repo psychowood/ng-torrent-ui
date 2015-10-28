@@ -106,8 +106,12 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
-### v0.4.1
+### v0.4.5
+- [x] Added "Favorites" torrents: define a set of tags that, will highlight all matching torrents. Define tags by tapping on the star or going into Preferences. Favorites are saved in cookies.
+- [x] Revised preferences section (ng-torrent-ui, uTorrent, Advanced)
 - [x] Added "Clear all filters" button
+- [x] Show applied "label" and "status" filter
+- [x] Updated dependencies
 
 ### v0.4.0
 - [x] Added "Preferences" tab to view and edit uTorrent settings
