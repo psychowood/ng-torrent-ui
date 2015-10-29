@@ -293,7 +293,8 @@ module.exports = function (grunt) {
           dot: true,
           src: [
           '.tmp',
-          '<%= yeoman.distRoot %>'
+          '<%= yeoman.distRoot %>',
+          '.npm'
           ]
         }]
       },
