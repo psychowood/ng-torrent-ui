@@ -22,7 +22,7 @@
             <div class="col-sm-7 input-group input-group-sm">
               <tags-input ng-model="starredItems" placeholder="{{'DLG_RSSDOWNLOADER_27' | translate}}" replace-spaces-with-dashes="false"></tags-input>
               <div class="input-group-btn">
-                <button type=button class="btn" ng-click="starredItemsChanged()" ><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+                <button type=button class="btn" ng-click="starredItemsChanged(starredItems)" ><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
               </div>
             </div>
           </div>

@@ -40,11 +40,15 @@
       redirectTo: '/'
     });
   })
-  .config(function ($translateProvider) {
+  .config(function ($translateProvider,$cookiesProvider) {
     $translateProvider
       .determinePreferredLanguage()
       .useLoader('translationsLoader')
       .fallbackLanguage('en');
+    var now = new Date();
+    // this will set the expiration to 6 months
+    var exp = new Date(now.getFullYear(), now.getMonth()+6, now.getDate());
+    $cookiesProvider.defaults.expires = exp;
   })
 /*
   .directive('resizable', function($window) {

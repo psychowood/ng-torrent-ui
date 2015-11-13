@@ -207,7 +207,7 @@
     }
 
     if (action === 'star') {
-      $scope.showStar(item.decodedName,$scope.starredItems);
+      $scope.showStar(item.isStarred?'':item.decodedName,$scope.starredItems);
       return;
     }
 
@@ -270,7 +270,9 @@
     });
 
     modalInstance.result.then(function (starredItems) {
-      $cookies.put('starredItems',angular.toJson(starredItems));
+      var obj = angular.toJson(starredItems);
+      $cookies.put('starredItems',obj);
+      //uTorrentService.setSetting('webui.ngtorrentui.favorites',obj);
       $scope.starredItems = starredItems;
     }, function () {
 

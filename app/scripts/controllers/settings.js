@@ -15,13 +15,40 @@
     values: [],
     map: {}
   };
+  
+  var webcookie;
+  var ngtcookie = {};
 
   if ($cookies.get('starredItems')){
     $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
   }
   
-  $scope.starredItemsChanged = function() {
-    $cookies.put('starredItems',angular.toJson($scope.starredItems));
+  var readCookie = function() {
+    $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
+    return;
+    try {
+      webcookie = angular.fromJson(settings.map['webui.cookie'].value);  
+    } catch (error) {
+      webcookie = {};
+    }
+      
+    if (webcookie.ngtorrentui) {
+      ngtcookie = webcookie.ngtorrentui;
+    } else {
+      webcookie.ngtorrentui = ngtcookie;  
+    }
+  };
+  
+  var saveCookie = function() {
+//  uTorrentService.setSetting('webui.cookie',webcookie);
+    $cookies.put('starredItems',angular.toJson(ngtcookie.starredItems));
+  };
+  
+  $scope.starredItemsChanged = function(items) {
+    $scope.starredItems = items;
+    ngtcookie.starredItems = items;
+    
+    saveCookie();
   };
 
   var doFilterTimer;
@@ -126,6 +153,9 @@
          setting.oldvalue = setting.value;
          setting.known = true;
        }
+       
+       readCookie();
+
        settings.conf = initData(conf);
      });
  	},function() {
