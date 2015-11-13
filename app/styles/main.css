@@ -192,6 +192,9 @@ select[disabled] {
   text-align: center;
 }
 
+.torrent {
+  width: 100%;
+}
 
 .torrent-table td {
   overflow:hidden;
