@@ -462,8 +462,18 @@
 		$scope.doFilter();
 	};
 
+  if ($cookies.get('decodeNames')){
+    $scope.decodeNames = $cookies.get('decodeNames') === 'true';
+  } else {
+    $scope.decodeNames = true;
+  }
+
 	var cleanName = function(name) {
-		return name.replace(/[\._]/g,' ').replace(/(\[[^\]]*\])(.*)$/,'$2 $1').trim();
+    if($scope.decodeNames) {
+		  return name.replace(/[\._]/g,' ').replace(/(\[[^\]]*\])(.*)$/,'$2 $1').trim();
+    } else {
+      return name;
+    }
 	};
 
   var isStarred = function(name) {

@@ -50,6 +50,17 @@
     
     saveCookie();
   };
+  
+  if ($cookies.get('decodeNames')){
+    $scope.decodeNames = $cookies.get('decodeNames') === 'true';
+  } else {
+    $scope.decodeNames = true;
+  }
+  
+  $scope.decodeNamesToggle = function(val) {
+    $scope.decodeNames = val;
+    $cookies.put('decodeNames',$scope.decodeNames);
+  }
 
   var doFilterTimer;
   $scope.updateSettingSearch = function(value) {

@@ -25,6 +25,14 @@
                 <button type=button class="btn" ng-click="starredItemsChanged(starredItems)" ><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
               </div>
             </div>
+        <br/>    
+            <h3>{{'ST_CAPT_UI_SETTINGS' | translate}}</h3>
+            <div class="form-group">
+                <label class="col-sm-4 control-label" >{{'SETTINGS_NTU_DECODE_NAME' | translate}}</label>
+                <div class="col-sm-7 input-group input-group-sm">
+                  <label class="checkbox"><input type="checkbox" ng-model="decodeNames" ng-true-value="true" ng-false-value="false" ng-click="decodeNamesToggle(decodeNames)"></label>
+                </div>
+              </div>
           </div>
         </form>
       </tab>

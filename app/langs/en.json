@@ -1,4 +1,7 @@
 {
+    "SETTINGS_UT": "uTorrent",
+    "SETTINGS_NTU": "ng-torrent-ui",
+
     "CLICKORDRAG": "click or drag'n'drop files here",
     "SELECTED": "selected",
     "AUTORELOAD": "Autoreload",
@@ -9,6 +12,5 @@
     "PATH": "Path",
     "SUBPATH": "Sub-path",
     "ERROR": "Error",
-    "SETTINGS_UT": "uTorrent",
-    "SETTINGS_NTU": "ng-torrent-ui"
+    "SETTINGS_NTU_DECODE_NAME": "Decode torrent names removing some special characters"
 }
