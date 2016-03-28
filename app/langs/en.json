@@ -12,5 +12,7 @@
     "PATH": "Path",
     "SUBPATH": "Sub-path",
     "ERROR": "Error",
-    "SETTINGS_NTU_DECODE_NAME": "Decode torrent names removing some special characters"
+    "SETTINGS_NTU_DECODE_NAME": "Decode torrent names removing some special characters",
+    "LOAD_SETTINGS_FROM_SERVER": "Load settings from server",
+    "SAVE_SETTINGS_TO_SERVER": "Save settings to server"
 }

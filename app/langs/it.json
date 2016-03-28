@@ -9,5 +9,7 @@
     "PATH": "Directory",
     "SUBPATH": "Subdirectory",
     "ERROR": "Errore",
-    "SETTINGS_NTU_DECODE_NAME": "Decodifica nomi dei torrent rimuovendo alcuni caratteri speciali"
+    "SETTINGS_NTU_DECODE_NAME": "Decodifica nomi dei torrent rimuovendo alcuni caratteri speciali",
+    "LOAD_SETTINGS_FROM_SERVER": "Carica dal server",
+    "SAVE_SETTINGS_TO_SERVER": "Salva sul server"    
 }

@@ -22,7 +22,8 @@
             <div class="col-sm-7 input-group input-group-sm">
               <tags-input ng-model="starredItems" placeholder="{{'DLG_RSSDOWNLOADER_27' | translate}}" replace-spaces-with-dashes="false"></tags-input>
               <div class="input-group-btn">
-                <button type=button class="btn" ng-click="starredItemsChanged(starredItems)" ><span class="glyphicon glyphicon-floppy-disk" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+                <button type=button class="btn" ng-click="exportSetting('starredItems')" uib-tooltip="{{'SAVE_SETTINGS_TO_SERVER' | translate}}"><span class="glyphicon glyphicon-floppy-save" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
+                <button type=button class="btn" ng-click="importSetting('starredItems')" uib-tooltip="{{'LOAD_SETTINGS_FROM_SERVER' | translate}}"><span class="glyphicon glyphicon-floppy-open" ng-class="{'glyphicon-animate-spin':(setting.saving === true)}"></span></button>
               </div>
             </div>
         <br/>    

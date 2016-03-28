@@ -16,52 +16,70 @@
     map: {}
   };
   
-  //var webcookie;
-  var ngtcookie = {};
+  var STARRED_ITEMS = 'starredItems';
+  var DECODE_NAMES = 'decodeNames';
 
-  if ($cookies.get('starredItems')){
-    $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
+
+  $scope.exportSetting = function(name /* ,value */) {
+      var webcookie = readWebUiCookie();
+      if (!webcookie.ngtorrentui) {
+          webcookie.ngtorrentui = {};  
+      }
+      switch(name) {
+          case STARRED_ITEMS: {
+              webcookie.ngtorrentui[STARRED_ITEMS] = $scope[STARRED_ITEMS];
+              uTorrentService.setSetting('webui.cookie',angular.toJson(webcookie));
+          }
+          break; 
+      }
+  };
+
+  $scope.importSetting = function(name/* ,value */) {
+      var webcookie = readWebUiCookie();
+      switch(name) {
+          case STARRED_ITEMS: {
+              $scope[STARRED_ITEMS] = webcookie.ngtorrentui[STARRED_ITEMS];
+              saveCookie();
+          }
+          break; 
+      }      
+  };
+  
+  if ($cookies.get(STARRED_ITEMS)){
+    $scope[STARRED_ITEMS] = angular.fromJson($cookies.get(STARRED_ITEMS));
   }
   
-  var readCookie = function() {
-    $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
-    return;
-    /*
+  var readWebUiCookie = function() {
     try {
-      webcookie = angular.fromJson(settings.map['webui.cookie'].value);  
+      return angular.fromJson(settings.map['webui.cookie'].value);
     } catch (error) {
-      webcookie = {};
+      toastr.error('Error reading webui.cookie setting',null,{timeOut: 5000});
     }
-      
-    if (webcookie.ngtorrentui) {
-      ngtcookie = webcookie.ngtorrentui;
-    } else {
-      webcookie.ngtorrentui = ngtcookie;  
-    }
-    */
+  };
+  
+  var readCookie = function() {
+    $scope[STARRED_ITEMS] = angular.fromJson($cookies.get(STARRED_ITEMS));
   };
   
   var saveCookie = function() {
-//  uTorrentService.setSetting('webui.cookie',webcookie);
-    $cookies.put('starredItems',angular.toJson(ngtcookie.starredItems));
+    $cookies.put(STARRED_ITEMS,angular.toJson($scope[STARRED_ITEMS]));
   };
   
   $scope.starredItemsChanged = function(items) {
-    $scope.starredItems = items;
-    ngtcookie.starredItems = items;
+    $scope[STARRED_ITEMS] = items;
     
     saveCookie();
   };
   
-  if ($cookies.get('decodeNames')){
-    $scope.decodeNames = $cookies.get('decodeNames') === 'true';
+  if ($cookies.get(DECODE_NAMES)){
+    $scope[DECODE_NAMES] = $cookies.get(DECODE_NAMES) === 'true';
   } else {
-    $scope.decodeNames = true;
+    $scope[DECODE_NAMES] = true;
   }
   
   $scope.decodeNamesToggle = function(val) {
-    $scope.decodeNames = val;
-    $cookies.put('decodeNames',$scope.decodeNames);
+    $scope[DECODE_NAMES] = val;
+    $cookies.put(DECODE_NAMES,$scope[DECODE_NAMES]);
   };
 
   var doFilterTimer;
