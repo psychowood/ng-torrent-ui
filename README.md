@@ -108,6 +108,7 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ### v0.5.0
 - [x] Added Save/Load Favorites to uTorrent, to sync data between different clients
+- [x] Added Sort by Favorite status (starred torrents first/last)
 - [x] Added Trackers in Detail Dialog
 - [x] Added ETA column and in Detail Dialog
 - [x] Fixed width problems on Firefox

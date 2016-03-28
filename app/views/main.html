@@ -220,6 +220,10 @@
       <div class="pull-right eta hidden-xs">{{'OV_COL_ETA' | translate}}</div>
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
+    <span class="input-group-addon sorter selectable" ng-click="sortBy('isStarred')">
+      <span class="glyphicon glyphicon-star-empty" ></span>
+      <span class="glyphicon" ng-show="sorter.field === 'isStarred'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
+    </span>
     <span class="input-group-addon selectable size sorter text-center" >
       <span ng-click="sortBy('percent')">%
         <span class="glyphicon" ng-show="sorter.field === 'percent'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
