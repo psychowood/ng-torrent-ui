@@ -334,6 +334,7 @@ select[disabled] {
 
 .torrent-header {
   height: 60px;
+  width: auto;
 }
 
 .torrent-header .name{

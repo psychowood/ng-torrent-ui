@@ -107,6 +107,7 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ## Release History
 
 ### v0.5.0
+- [x] Fixed width problems on Firefox
 - [x] Added preference to prevent filename automatic filtering of separators
 
 ### v0.4.5
