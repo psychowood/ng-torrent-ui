@@ -34,6 +34,9 @@
     {{torrent.savePath}}
   </div>
   <p></p>
+  <uib-tabset>
+    <uib-tab heading="{{'OV_TABS' | translateMultiLabel:4}}">
+    <p></p>
       <form role="form" ng-submit="doFilter()" class="form-inline actions-form action-toolbar">
         <div class="form-group">
           <div class="input-group input-group-sm filter-name">
@@ -80,7 +83,6 @@
 </div>
 <p></p>
 
-<div class="separator"></div>
 <div vs-repeat="30" vs-autoresize class="repeater-container" ng-style="{ height: listHeight + 'px'}">
   <div ng-repeat="file in ($parent.filteredFiles = (torrent.files | filter:{name:filters.name} | orderBy:sorter.field:sorter.descending))" class="torrent" data-toggle="context" >
     <div class="input-group input-group-sm torrent-row selectable" ng-class="{'selected':file.selected}" ng-click="toggleSelection(file)">
@@ -131,7 +133,14 @@
       </div>
   </div>
 </div> -->
-<div class="separator"></div>
+     </uib-tab>
+     <uib-tab heading="{{'OV_TABS' | translateMultiLabel:1}}">
+        <p></p>
+        <div ng-repeat="tracker in torrent.props.trackers.split('\r\n') track by $index" class="torrent">
+            {{tracker}}
+        </div>
+     </uib-tab>
+  </uib-tabset>
   <!-- <pre>
   <code>
     {{filteredFiles | json}}
