@@ -334,8 +334,13 @@
 			if (aField === bField) {
                 var aSecondField = a[$scope.sorter.secondField];
                 var bSecondField = b[$scope.sorter.secondField];
+                
                 if (aSecondField !== bSecondField) {
-    				return compareFunc(aSecondField,bSecondField);
+                    if ($scope.sorter.ascending) {
+    				    return compareFunc(aSecondField,bSecondField);
+                    } else {
+                        return compareFunc(bSecondField,aSecondField);
+                    }
                 } else {
                     return 0;
                 }
