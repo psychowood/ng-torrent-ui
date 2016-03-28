@@ -332,8 +332,13 @@
 			}
 
 			if (aField === bField) {
-				return 0;
-				//return compareFunc(a[$scope.sorter.secondField],a[$scope.sorter.secondField]);
+                var aSecondField = a[$scope.sorter.secondField];
+                var bSecondField = b[$scope.sorter.secondField];
+                if (aSecondField !== bSecondField) {
+    				return compareFunc(aSecondField,bSecondField);
+                } else {
+                    return 0;
+                }
 			} else {
 				return compareFunc(aField,bField);
 			}
@@ -345,9 +350,7 @@
 		if ($scope.sorter.field === field) {
 			$scope.sorter.ascending = !$scope.sorter.ascending;
 		} else {
-			//$scope.sorter.secondField = $scope.sorter.field;
 			$scope.sorter.field = field;
-			//$scope.sorter.ascending = false;
 		}
 		$scope.doSort();
 	};
