@@ -343,7 +343,11 @@ select[disabled] {
 }
 
 .torrent-header .tag-label {
-  margin-right: 60px;
+  margin-right: 70px;
+}
+
+.torrent-header .eta {
+  margin-right: 20px;
 }
 
 .torrent-header .sorter {

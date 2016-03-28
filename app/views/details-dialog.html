@@ -24,6 +24,9 @@
     {{'GN_TP_02' | translate}} {{torrent.formatBytes(torrent.uploaded)}} ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
     {{'GN_TP_01' | translate}} {{torrent.formatBytes(torrent.downloaded)}} ({{torrent.getDownSpeedStrArr()[0]}}{{torrent.getDownSpeedStrArr()[1]}})
   </div>
+  <div ng-if="torrent.eta > 0"><b>{{'OV_COL_ETA' | translate}}:</b>
+    {{ torrent.eta | amDurationFormat : 'seconds' }}
+  </div>  
   <div ng-if="torrent.dateAdded"><b>{{'OV_COL_DATE_ADDED' | translate}}:</b>
     {{torrent.dateAdded | date:'medium'}}
   </div>

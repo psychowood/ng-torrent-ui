@@ -215,7 +215,9 @@
       <span class="glyphicon glyphicon-dashboard" ></span>
       <span class="glyphicon" ng-show="sorter.field === 'status'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
-    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">{{'OV_COL_NAME' | translate}} <div class="pull-right tag-label hidden-xs">{{'OV_COL_LABEL' | translate}}</div>
+    <span class="form-control selectable name sorter text-center" ng-click="sortBy('name')">{{'OV_COL_NAME' | translate}}
+      <div class="pull-right tag-label hidden-xs">{{'OV_COL_LABEL' | translate}}</div>
+      <div class="pull-right eta hidden-xs">{{'OV_COL_ETA' | translate}}</div>
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
     </span>
     <span class="input-group-addon selectable size sorter text-center" >

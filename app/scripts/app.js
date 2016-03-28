@@ -21,7 +21,8 @@
   'toastr',
   'angularFileUpload',
   'pascalprecht.translate',
-  'ngTagsInput'
+  'ngTagsInput',
+  'angularMoment'
   ]).config(function ($routeProvider) {
     $routeProvider
     .when('/', {
