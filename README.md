@@ -106,6 +106,9 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.5.0
+- [x] Added preference to prevent filename automatic filtering of separators
+
 ### v0.4.5
 - [x] Added "Favorites" torrents: define a set of tags that, will highlight all matching torrents. Define tags by tapping on the star or going into Preferences. Favorites are saved in cookies.
 - [x] Revised preferences section (ng-torrent-ui, uTorrent, Advanced)
