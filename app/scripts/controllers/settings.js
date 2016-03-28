@@ -16,7 +16,7 @@
     map: {}
   };
   
-  var webcookie;
+  //var webcookie;
   var ngtcookie = {};
 
   if ($cookies.get('starredItems')){
@@ -26,6 +26,7 @@
   var readCookie = function() {
     $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
     return;
+    /*
     try {
       webcookie = angular.fromJson(settings.map['webui.cookie'].value);  
     } catch (error) {
@@ -37,6 +38,7 @@
     } else {
       webcookie.ngtorrentui = ngtcookie;  
     }
+    */
   };
   
   var saveCookie = function() {
@@ -60,7 +62,7 @@
   $scope.decodeNamesToggle = function(val) {
     $scope.decodeNames = val;
     $cookies.put('decodeNames',$scope.decodeNames);
-  }
+  };
 
   var doFilterTimer;
   $scope.updateSettingSearch = function(value) {
