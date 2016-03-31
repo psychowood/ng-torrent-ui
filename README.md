@@ -24,11 +24,13 @@ Self "Updating"
 
 If you point to /gui/latest.html instead of the usual /gui, you will get the latest version as soon as it is released, without having to download and replace the webui.zip: the browser downloads the latest version for you, without touching the uTorrent install.
 There's a bug, you'll see the "offline" version number in the header instead of the loaded one, but the loaded version is correctly the latest one.
+Currently not up-to-date with the latest release.
 
 Demo
 ====
 If you want to see it in action, you can test it on the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/).
 It's just a demo with a randomly generated download queue, without a real backend. You can play with the frontend, just don't expect the downloads to change status or to complete :)
+Currently not up-to-date with the latest release.
 
 I feel brave, but I still need the old one!
 ===========================================
