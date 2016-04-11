@@ -11,7 +11,7 @@
   <div title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)" >{{item.decodedName}} </span>  
   </div>
   <div class="eta input-group-addon" ng-if="item.eta > 0">{{ item.eta | amDurationFormat : 'seconds' }}</div>
-  <div class="tag-label input-group-addon"><span class="btn btn-default btn-xs nocursor" ng-hide="item.getMainLabel() === ''"><span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[item.getMainLabel()]}" title='{{item.getMainLabel()}}'></span><span class="hidden-xs">{{item.getMainLabel()}}</span></span></div>
+  <div class="tag-label input-group-addon"><span class="btn btn-default btn-xs" ng-hide="item.getMainLabel() === ''" ng-click="filters.label = item.getMainLabel();doFilter()" ><span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[item.getMainLabel()]}" title='{{item.getMainLabel()}}'></span><span class="hidden-xs">{{item.getMainLabel()}}</span></span></div>
   <span class="info-button input-group-btn selectable">
     <button class="btn btn-link" ng-click="doAction('info',item)">
       <span class="glyphicon glyphicon-info-sign"></span>
