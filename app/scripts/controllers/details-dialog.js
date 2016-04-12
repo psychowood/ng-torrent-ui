@@ -8,7 +8,7 @@
  * Controller of the utorrentNgwebuiApp
  */
 angular.module('utorrentNgwebuiApp')
-    .controller('DetailsDialogCtrl', function($scope, $modalInstance, torrent, uTorrentService, toastr) {
+    .controller('DetailsDialogCtrl', function($scope, $modalInstance, torrent, uTorrentService, toastr, $translate, $window) {
         $scope.hasSelection = false;
 
         $scope.filters = {
@@ -68,4 +68,38 @@ angular.module('utorrentNgwebuiApp')
                 $scope.priorityToSet = '';
             });
         };
+        
+        $translate('SHARE_MAGNET_PAGE').then(function (translation) {
+            $scope.socialshareUrl = translation + torrent.hash;
+        });
+        $translate('SHARE_PREFIX_TEXT').then(function (translation) {
+            $scope.socialshareText = translation;
+            $scope.socialshareTextWithName = translation + ' - ' + torrent.name;
+        });
+        $translate('NTU_HOME').then(function (home) {
+            $scope.socialshareMedia = home + '/raw/master/app/logo.png?raw=true';
+            $scope.socialshareSource = home;
+            
+            $scope.shareViaEmail = function() {
+                $translate('SHARED_VIA').then(function (via) {
+
+                var body = $window.encodeURIComponent(torrent.name) +
+                        '%0A' +
+                        '%0A' +
+                        torrent.getMagnetURI() +
+                        '%0A' +
+                        '%0A' +
+                        '------------------------' +
+                        '%0A' +
+                        via + 
+                        $scope.socialshareSource;
+
+                $scope.socialshareMailLink;
+                $window.location = 'mailto:?' + 
+                    'subject=' + $scope.socialshareText + 
+                    '&body=' + body;
+            });
+            };
+        });
+        
     });

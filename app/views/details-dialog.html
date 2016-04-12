@@ -143,6 +143,175 @@
             {{tracker}}
         </div>
      </uib-tab>
+     <uib-tab heading="{{'SHARE' | translate}}">
+         <p></p>
+         <div class="share-buttons">
+             <h5 class="text-center">{{'SHARE_RESPONSIBLY' | translate}}</h5>
+            <button class="btn btn-default" ng-click="shareViaEmail()">
+                <i class="fa fa-envelope-o"></i> Email
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="twitter"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+			 socialshare-hashtags="ng-torrent-ui, torrents">
+                <i class="fa fa-twitter"></i> Twitter
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="google+"
+			 socialshare-url="{{socialshareUrl}}">
+                <i class="fa fa-google-plus"></i> Google +
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="facebook"
+             socialshare-media="{{socialshareMedia}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-via="946606775436985"
+             socialshare-source="{{socialshareSource}}">
+                <i class="fa fa-facebook"></i> Facebook
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="vk"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-vk"></i> Vk
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="linkedin"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-source="{{socialshareSource}}">
+                <i class="fa fa-linkedin"></i> Linkedin
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="pinterest"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+			 socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-pinterest"></i> Pinterest
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="stumbleupon"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-stumbleupon"></i> Stumble
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="reddit"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-subreddit="torrents">
+                <i class="fa fa-reddit"></i> Reddit
+            </button>
+            <!-- button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="tumblr"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-tumblr"></i> Tumblr
+            </button -->
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="delicious"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-delicious"></i> Delicious
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="digg"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-digg"></i> Digg
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="buffer"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-via="{{socialshareSource}}">
+                <img src="data:image/png;base64,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" width="18" class="v-middle" /> Buffer
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="pocket"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <i class="fa fa-get-pocket"></i> Pocket
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="wordpress"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-wordpress"></i> Wordpress
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="xing"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}"
+             socialshare-media="{{socialshareMedia}}">
+                <i class="fa fa-xing"></i> Xing
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="hackernews"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <i class="fa fa-hacker-news"></i> Y news
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="flipboard"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAABBFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iCiAgICAgICAgICAgIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnRpZmY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vdGlmZi8xLjAvIj4KICAgICAgICAgPHhtcE1NOkRlcml2ZWRGcm9tIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgPHN0UmVmOmluc3RhbmNlSUQ+eG1wLmlpZDpFN0NFRTMzMTg0NkYxMUU1QkEwQ0MyOUNENTM2Q0E5Nzwvc3RSZWY6aW5zdGFuY2VJRD4KICAgICAgICAgICAgPHN0UmVmOmRvY3VtZW50SUQ+eG1wLmRpZDpFN0NFRTMzMjg0NkYxMUU1QkEwQ0MyOUNENTM2Q0E5Nzwvc3RSZWY6ZG9jdW1lbnRJRD4KICAgICAgICAgPC94bXBNTTpEZXJpdmVkRnJvbT4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ+eG1wLmRpZDpFN0NFRTMzNDg0NkYxMUU1QkEwQ0MyOUNENTM2Q0E5NzwveG1wTU06RG9jdW1lbnRJRD4KICAgICAgICAgPHhtcE1NOkluc3RhbmNlSUQ+eG1wLmlpZDpFN0NFRTMzMzg0NkYxMUU1QkEwQ0MyOUNENTM2Q0E5NzwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaDwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KuYvOlwAAAzhJREFUWAnFl0tSGzEQhiXjAAEDq2zYsKCKYsuaG3AEjpELUFwgl8gyW7ZwCBYUB4CiKFjwMBiwQfm/Zlpl4tHkYUy6qqelllp/PyTNTAghRPH/oujgX+TBN3FHPBC7Xs13paTV2uKu+Kv4Qmz0XU8GP5LBNG+QRA71xJ+sNblHX0t/Fhsm6YBQQoC7zhQTfFDq0KoAXE4Qr35pj5ba19LMzExYXFy0sZRSiNq3g8HAmHYT3d/f27zCHDN2B2pXAvzx8TFcXOTNWlirrG632yUnLGh3YCQDDr65uRnW19fTw8ODAo6p1WrFq6urdHl5aX1B4zz2Wb68vIROp5POz8/j4eFhKDjRnAHSTuSA7+zshKWlpUTqp6am0s3NTeh2u+Y0TlWlMYkzAMrBIDtzbG5uLmDzC5l9MQMsChE54HIoR6gFk+oblQ1As17TrT89PY1pkpMWJZ0aas6AGwgk15DUKuLQ7/fD09NTYAxH0fkYEmYO4w3UnAE3BKAia5ByAJVmogXE9LOzsyZRkgH1swPMr6HmDLgRsmpLRECioku3t7fW56G9kfb39+P19XXSHqE0gfbJyYnhchxryBz+7R4gSlhEcDiTSO/d3Z0p2ZS9Xo8NF05PT4dDtTbOML+GXsergWFDUwkoy6otYTqfm/uAbGxs2PzV1dWwsrISlpeXrQTshwL9ewZwhMhZGEnfo+To1hy5Oh8sEC+BR5UnVtFa/au2xOseeH5+Ju12DBV91IlIHmlVrrxOQ+PvMwAIER8cHMTt7e2wtbUFOMfObjzAdPYbMEeHPAMjI00Z0FVsZ31vb++NHTZ/kQGzLd4UQwupadnyNHPVmmJtbc3elAsLC1aqIZs3jjV1ihlwI9JbAWbp2eHd8IcbzpcbkUUHHIQbTpcKhol6z8/PJ90B9LmAkGNR0QGP7Pj4OO7u7ubXsbIRj46ODPTs7Gws8GHjH+pQV64spLG+CXLbdS513xfHfE5BOgaYzR+gfA35J5lvMG49sqPXNPZjU7EEvvK4n2S+TkkWj2HJ4B31lDCXwDNR+9p6R1CWAgM8+wFyYL8/+WOZNL3B9A4/itBH/5wa6Mib0LQf84g/AdwS2Zg2n1qRAAAAAElFTkSuQmCC" width="14" valign="middle" style="margin-top:-3px;"> Flipboard
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="evernote"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAJ2AAACdgBx6C5rQAAActpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+d3d3Lmlua3NjYXBlLm9yZzwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KGMtVWAAABBFJREFUWAmtlk2oV0UYh//XD/wAtchMwkVeSdIWtciFG/cqCG5Cixa6ERFDoqCNiC2CVkGEG3MXoiDXhRB4UaKFBS4MSipCuZqLRMIs7UMz7XnOmd/13HP/99yPfOE5887MO++8887MOafX65Y5pft5yqfhKRiCm/ArnIPdEJkVhXIAHD+76BTTk0y+mmFXYAXsg4fwoJTqchQmEwMZJ5mk3WH7fRiEz+FZ+AOeAMW+ufAvuNLtYJZuQHz+hX4JzsIwaGuGDL5T4sDJr4Ir/BuWwoFSv1dK+0Tn0fuVF+nfDEpzm+qWxjNpeo62EdBZJnsG/UCrrTmZQZiZJv9Qbwa3hbqSeepaeSayNdSvQ9O56Z8PB0t7gmradOmxv8z4eaC4daPpsOLeeMo/LPp3lO7hj7AN3IYMRp2W5Ly4rVvLyCx4nKO+6cHqJUhm2rega/XpczvUj4FSBZADZ0Wn6+EtcB+rFFGmbwO650C7CaOnbyLJmLUY5JZVc2SiZXT8DIm4X9k8UP36u9qStd+Zw7mUAaNKyl9HXw7utRO10XlWgTpjWcTIF8roWTrUsfJiXYy+Pg2sSTJVzDoLV+s2WkYc76KUVXXRG3AvEoAn9XFIMpVsOWmyHP9moRKNYugH5v+KK3alXt13YQScPCvPYhfQVomTJ7V+3ZQY1bWpP7NyR7wKH8Ar8AMYRA4hai8BVIcw+/S9PUg7XXXr1J93MTWAneBpfxs8D8k0am+hD6RabDoGafAG2Jho1bvQbjLbX7Dxy6ifvIw+RldmO7kdyjUYqbRHbaXat3Cc2yfxEcPmDfD17nekKdmChwnAtBvdV8Uq29Ic1Nad2B+RP0E9Bw21usrx3Q7O/mzBmH2xI382Du6SBOh7/Z1imIPm6qWZoWIyWnhOKslERu8qzsAXYLsZmUyexOAQ7IHfwHG+W0R/CRR1jGirVC+iWq0HGPWbcAF8MRmETnUW0Wnqt0qjQZwCr90K8IPzGiwG7bPQbMdoAPSNkVzBjbRq5ICJ+JQ+7eMcdYyspPYNON4MW+YWZNvM1DhJEIP0vAdn4SKMwLdwEnZAU9ZR2Q8nwCxE/LxnAWZCrG8FJXPVtcaz3eF2eJXa3wu34iPIJJabQDEznvZ84pMFf+/cJiVbWddaTx30S5Ht+TXbi57JfZMeh5chYgDXQJuk/2v0TJySpm7RsI0jhkHnt2ENKLFTN4CfQJt7pXyfUmlnuW6dwjNRm4lzoHPTnKzYLorbdgO0SRCr0ZXY1LVpPjN4iHFxvruPj52lP9+Yw8Um4/sMmVpT0vdGmcAg7sDpwmeUX4KnPm/Fy+hLQEkW69oMn3FyhPHJwkTlVWzWlnkS/AynfTQsAVjugvNwE7xunnhX7+H8BPydV8ZN/h+oM1DPwzt1QAAAAABJRU5ErkJggg==" width="15" valign="middle" style="margin-top:-3px;"> Evernote
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="whatsapp"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <i class="fa fa-whatsapp"></i> Whatsapp
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="skype"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <i class="fa fa-skype"></i> Skype
+            </button>
+            <button class="btn btn-default"
+			 socialshare
+			 socialshare-provider="viber"
+			 socialshare-text="{{socialshareText}}"
+			 socialshare-url="{{socialshareUrl}}">
+                <img src="data:image/png;base64,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" width="15" valign="middle" style="margin-top:-3px;"> Viber
+            </button>
+            <h5 class="text-center">{{'SHARE_WARNING' | translate}}</h5>
+         </div>
+     </uib-tab>
   </uib-tabset>
   <!-- <pre>
   <code>

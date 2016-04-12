@@ -24,7 +24,8 @@ angular
         'ngTagsInput',
         'angularMoment',
         'pr.longpress',
-        'monospaced.qrcode'
+        'monospaced.qrcode',
+        '720kb.socialshare'
     ]).config(function( $compileProvider ) {   
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|magnet):/);   
     }).config(function($routeProvider) {

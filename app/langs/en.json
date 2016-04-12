@@ -1,6 +1,7 @@
 {
     "SETTINGS_UT": "uTorrent",
     "SETTINGS_NTU": "ng-torrent-ui",
+    "NTU_HOME": "https://github.com/psychowood/ng-torrent-ui",
 
     "CLICKORDRAG": "click or drag'n'drop files here",
     "SELECTED": "selected",
@@ -14,5 +15,11 @@
     "ERROR": "Error",
     "SETTINGS_NTU_DECODE_NAME": "Decode torrent names removing some special characters",
     "LOAD_SETTINGS_FROM_SERVER": "Load settings from server",
-    "SAVE_SETTINGS_TO_SERVER": "Save settings to server"
+    "SAVE_SETTINGS_TO_SERVER": "Save settings to server",
+    "SHARE": "Share",
+    "SHARE_PREFIX_TEXT": "Check out this torrent!",
+    "SHARED_VIA": "Shared via ",
+    "SHARE_MAGNET_PAGE": "http://psychowood.github.io/ng-torrent-ui/magnet/?hash=",
+    "SHARE_WARNING": "Some of the providers works only on specific mobile devices.",
+    "SHARE_RESPONSIBLY": "Please share responsibly."
 }

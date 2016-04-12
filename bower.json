@@ -21,8 +21,10 @@
     "ng-tags-input": "~3.0.0",
     "angular-moment": "~0.10.3",
     "moment": "~2.10.6",
-    "angular-qrcode": "monospaced/angular-qrcode#^6.2.1"
     "angular-long-press": "^0.2.0",
+    "angular-qrcode": "monospaced/angular-qrcode#^6.2.1",
+    "angular-socialshare": "angularjs-socialshare#^0.1.20",
+    "components-font-awesome": "^4.5.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4",

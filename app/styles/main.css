@@ -545,3 +545,8 @@ fieldset.action-toolbar .middle {
 #settings h4 {
   margin-right: 7%;
 }
+
+.share-buttons button {
+    width: 115px;
+    margin-bottom: 5px;
+}
