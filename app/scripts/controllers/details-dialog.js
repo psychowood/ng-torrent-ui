@@ -94,7 +94,6 @@ angular.module('utorrentNgwebuiApp')
                         via + 
                         $scope.socialshareSource;
 
-                $scope.socialshareMailLink;
                 $window.location = 'mailto:?' + 
                     'subject=' + $scope.socialshareText + 
                     '&body=' + body;
