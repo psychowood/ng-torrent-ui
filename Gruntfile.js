@@ -493,7 +493,12 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/flatstrap-css-only',
+          cwd: 'bower_components/flatstrap-css-only/dist',
+          src: 'fonts/*',
+          dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/components-font-awesome',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         }, {
