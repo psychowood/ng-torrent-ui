@@ -1,32 +1,40 @@
 {
   "name": "ng-torrent-ui",
   "description": "Angular + (flat) Boostrap (μ)Torrent Web UI",
-  "version": "0.3.4",
+  "version": "0.5.0",
   "dependencies": {
-    "angular": "~1.3.8",
+    "angular": "~1.4",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
-    "angular-resource": "~1.3.8",
-    "angular-cookies": "~1.3.8",
-    "angular-sanitize": "~1.3.8",
-    "angular-animate": "~1.3.8",
-    "angular-route": "~1.3.8",
-    "angular-vs-repeat": "~1.0.0-rc5",
+    "angular-resource": "~1.4",
+    "angular-cookies": "~1.4",
+    "angular-sanitize": "~1.4",
+    "angular-animate": "~1.4",
+    "angular-route": "~1.4",
+    "angular-vs-repeat": "1.0.0-rc13",
     "angular-toastr": "~0.5.1",
-    "angular-bootstrap": "~0.12.0",
+    "angular-bootstrap": "~0.14.3",
     "ng-file-upload": "~2.0.5",
     "angular-translate-loader-url": "~2.5.2",
     "angular-translate": "~2.5.2",
-    "flatstrap-css-only": "~3.3.1"
+    "flatstrap-css-only": "~3.3.1",
+    "ng-tags-input": "~3.0.0",
+    "angular-moment": "~0.10.3",
+    "moment": "~2.10.6",
+    "angular-long-press": "^0.2.0",
+    "angular-qrcode": "monospaced/angular-qrcode#^6.2.1",
+    "angular-socialshare": "angularjs-socialshare#^0.1.20",
+    "components-font-awesome": "^4.5.0"
   },
   "devDependencies": {
-    "angular-mocks": "~1.3.8",
-    "angular-scenario": "~1.3.8",
+    "angular-mocks": "~1.4",
+    "angular-scenario": "~1.4",
     "angular-ipsum": "~0.0.4"
   },
   "appPath": "app",
   "resolutions": {
-    "angular": "~1.3.8",
-    "es5-shim": ">=3.4.0"
+    "angular": "~1.4",
+    "ng-file-upload": "~9.1.2",
+    "es5-shim": "~4.2.0"
   }
 }
