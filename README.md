@@ -108,6 +108,12 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.5.5
+- [x] Added tap to label icon on torrent row to set label filter directly
+- [x] Added long press/tap to select multiple torrents (same as shift key)
+- [x] Added clickable QRCode with magnet link in details dialog
+- [x] Added social sharing tab (shares magnet link, using a github page as a proxy to allow url shortening in twitter/faceboook/...). Not really tested besides the main socials.
+
 ### v0.5.0
 - [x] Added Save/Load Favorites to uTorrent, to sync data between different clients
 - [x] Added Sort by Favorite status (starred torrents first/last)
