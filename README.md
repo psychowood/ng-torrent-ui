@@ -30,7 +30,6 @@ Demo
 ====
 If you want to see it in action, you can test it on the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/).
 It's just a demo with a randomly generated download queue, without a real backend. You can play with the frontend, just don't expect the downloads to change status or to complete :)
-Currently not up-to-date with the latest release.
 
 I feel brave, but I still need the old one!
 ===========================================
