@@ -689,9 +689,10 @@ angular.module('utorrentNgwebuiApp')
 
         $scope.lastSelectedHash = null;
 
-        $scope.setSelected = function(hash, event) {
+        $scope.setSelected = function(hash, event, forceShift) {
+            $log.info('setSelected', hash);
             var ctrl = event.ctrlKey || event.metaKey;
-            var shift = event.shiftKey;
+            var shift = event.shiftKey || forceShift;
             var i, j = 0;
 
             if (shift) {

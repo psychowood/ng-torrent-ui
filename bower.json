@@ -20,7 +20,8 @@
     "flatstrap-css-only": "~3.3.1",
     "ng-tags-input": "~3.0.0",
     "angular-moment": "~0.10.3",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "angular-long-press": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.4",

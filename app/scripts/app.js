@@ -22,7 +22,8 @@ angular
         'angularFileUpload',
         'pascalprecht.translate',
         'ngTagsInput',
-        'angularMoment'
+        'angularMoment',
+        'pr.longpress'
     ]).config(function($routeProvider) {
         $routeProvider
             .when('/', {
