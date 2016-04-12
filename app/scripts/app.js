@@ -23,8 +23,11 @@ angular
         'pascalprecht.translate',
         'ngTagsInput',
         'angularMoment',
-        'pr.longpress'
-    ]).config(function($routeProvider) {
+        'pr.longpress',
+        'monospaced.qrcode'
+    ]).config(function( $compileProvider ) {   
+            $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|magnet):/);   
+    }).config(function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',

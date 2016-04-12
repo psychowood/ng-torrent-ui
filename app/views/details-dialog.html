@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="modal-body details-body">
-  <!-- <div><b>ETA:</b> {{torrent.eta}}</div> -->
+  <div class="pull-right"><a href="{{torrent.getMagnetURI(true)}}"><qrcode data="{{torrent.getMagnetURI()}}" size="128" ></qrcode></a></div>
   <div><b>{{'OV_COL_NAME' | translate}}:</b> {{torrent.name}}</div>
   <div><b>{{'GN_TP_10' | translate}}</b> {{torrent.hash}}</div>
   <div><b>{{'OV_COL_SIZE' | translate}}:</b> {{torrent.getSizeStrArr()[0]}}{{torrent.getSizeStrArr()[1]}}</div>
