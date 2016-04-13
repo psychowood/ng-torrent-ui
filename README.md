@@ -107,6 +107,9 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.5.6
+- [x] Fixed social sharing dependency which prevented many providers from working correctly
+ 
 ### v0.5.5
 - [x] Added tap to label icon on torrent row to set label filter directly
 - [x] Added long press/tap to select multiple torrents (same as shift key)
