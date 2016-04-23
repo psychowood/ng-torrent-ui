@@ -24,7 +24,6 @@ Self "Updating"
 
 If you point to /gui/latest.html instead of the usual /gui, you will get the latest version as soon as it is released, without having to download and replace the webui.zip: the browser downloads the latest version for you, without touching the uTorrent install.
 There's a bug, you'll see the "offline" version number in the header instead of the loaded one, but the loaded version is correctly the latest one.
-Currently not up-to-date with the latest release.
 
 Demo
 ====
