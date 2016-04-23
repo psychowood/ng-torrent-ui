@@ -107,6 +107,11 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.6.0
+- [x] Added Direct search button: if selected on a favorite torrent, it will filter by its "favorite name"; on a non-favorite torrent, it will search by its full name  
+- [x] Added Actions menu (tap on the status column) with direct access to main actions
+- [x] Fixed "live" version (resources moved to github-pages) 
+
 ### v0.5.6
 - [x] Fixed social sharing dependency which prevented many providers from working correctly
  
