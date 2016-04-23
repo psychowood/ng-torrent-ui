@@ -60,6 +60,7 @@
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-name">
         <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> l33t</span>
+        <span class="input-group-addon"><input type="checkbox" ng-model="filters.fuzzy" ng-change="doFilter()"> Fuzzy</span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>

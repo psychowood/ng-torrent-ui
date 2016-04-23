@@ -301,16 +301,16 @@ angular.module('utorrentNgwebuiApp')
             });
 
         };
-        $scope.getSearchName = function(torrent) {
+
+        $scope.searchSimilar = function(torrent) {
             var starredName = $scope.starredNamesStrings[torrent.decodedName];
             if (starredName) {
-                return starredName;
+                $scope.filters.name = starredName;
+                $scope.filters.fuzzy = false;
             } else {
-                return torrent.decodedName;
+                $scope.filters.name = torrent.decodedName;
+                $scope.filters.fuzzy = true;
             }
-        };
-        $scope.searchSimilar = function(torrent) {
-            $scope.filters.name = $scope.getSearchName(torrent);
             $scope.doFilter();
         };
         $scope.showActions = function(torrent) {
@@ -324,7 +324,15 @@ angular.module('utorrentNgwebuiApp')
                             $scope.$close();    
                         }); 
                     };
-                    $scope.getSearchName = $parentScope.getSearchName;
+                    $scope.getSearchName = function(torrent) {
+                        var starredName = $scope.starredNamesStrings[torrent.decodedName];
+                        if (starredName) {
+                            return starredName;
+                        } else {
+                            return torrent.decodedName;
+                        }
+                    };
+                    
                     $scope.search = function(torrent) {
                       $parentScope.searchSimilar(torrent);
                       $scope.$close();  
@@ -345,7 +353,8 @@ angular.module('utorrentNgwebuiApp')
             label: undefined,
             l33t: true,
             selected: false,
-            status: ''
+            status: '',
+            fuzzy: false
         };
 
         $scope.filters = angular.copy($scope.emptyFilters);
@@ -449,6 +458,7 @@ angular.module('utorrentNgwebuiApp')
                 }
 
                 filters.selected = $scope.filters.selected;
+                filters.fuzzy = $scope.filters.fuzzy;
 
                 if ($scope.filters.name === null || $scope.filters.name === '') {
                     delete filters.name;
@@ -518,6 +528,13 @@ angular.module('utorrentNgwebuiApp')
                         if (matches && filters.name && filters.name !== '') {
                             var name = torrent.name;
                             matches = name.search(new RegExp(filters.name, 'i')) > -1;
+                        
+                            if (!matches && filters.fuzzy) {
+                                name = torrent.decodedName.replace(/[s|S]?([0-9]{1,2})[x|X|e|E|-]([0-9]{2})/,'');
+                                name = name.toUpperCase().replace(/(BDRIP|BRRIP|CAM|DTTRIP|DVDRIP|DVDSCR|DVD|FS|HDTV|HDTVRIP|HQ|PDTV|SATRIP|DVBRIP|R5|R6|TS|TC|TVRIP|VHSRIP|VHSSCR|WS|AAC|AC3|DD|DSP|DTS|LC|LD|MD|MP3|XVID|720P|1080P|FS|INTERNAL|LIMITED|PROPER|STV|SUBBED|TMA|TNZ|SILENT|TLS|GBM|FSH|REV|TRL|UPZ|UNRATED|WEBRIP|WS|MKV|AVI|MOV|MP4|MP3|ISO|X264|X265|H264|H265)/g,'').trim();
+                                var subStrscore = name.subCompare($scope.filters.name);
+                                matches = (subStrscore.found === 1);
+                            }
                         }
                         return matches;
                     }
