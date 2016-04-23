@@ -106,6 +106,9 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.6.1
+- [x] Added Fuzzy search (try to show similar torrents using a guess search: e.g. ignoring episode number and quality suffixes like '1080p'). This is the default when selecting the direct search button for non-starred torrents. 
+
 ### v0.6.0
 - [x] Added Direct search button: if selected on a favorite torrent, it will filter by its "favorite name"; on a non-favorite torrent, it will search by its full name  
 - [x] Added Actions menu (tap on the status column) with direct access to main actions
