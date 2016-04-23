@@ -1,0 +1,20 @@
+{
+    "CLICKORDRAG": "clicca o trascina qui dei file",
+    "SELECTED": "selezionati",
+    "AUTORELOAD": "Autorefresh",
+    "MATCHING_FILTERS": "risultanti dai filtri",
+    "NO_FILTERS_APPLIED": "Nessun filtro applicato",
+    "SHOW_SELECTED": "Mostra",
+    "CLEAR_SELECTED": "Deseleziona",
+    "PATH": "Directory",
+    "SUBPATH": "Subdirectory",
+    "ERROR": "Errore",
+    "SETTINGS_NTU_DECODE_NAME": "Decodifica nomi dei torrent rimuovendo alcuni caratteri speciali",
+    "LOAD_SETTINGS_FROM_SERVER": "Carica dal server",
+    "SAVE_SETTINGS_TO_SERVER": "Salva sul server",
+    "SHARE": "Condividi",
+    "SHARE_PREFIX_TEXT": "Guarda che torrent!",
+    "SHARED_VIA": "Condiviso con ",
+    "SHARE_WARNING": "Alcuni provider funzionano solo su alcuni mobile device.",
+    "SHARE_RESPONSIBLY": "Condividi responsabilmente."
+}
