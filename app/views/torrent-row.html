@@ -18,6 +18,11 @@
     </button>
   </span>
   <span class="star-button input-group-btn selectable">
+    <button class="btn btn-link" ng-click="searchSimilar(item)">
+      <span class="glyphicon glyphicon-search"></span>
+    </button>
+  </span>
+  <span class="star-button input-group-btn selectable">
     <button class="btn btn-link" ng-click="doAction('star',item)">
       <span class="glyphicon" ng-class="{'glyphicon-star-empty':!item.isStarred,'glyphicon-star':item.isStarred}"></span>
     </button>

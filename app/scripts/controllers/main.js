@@ -297,6 +297,18 @@ angular.module('utorrentNgwebuiApp')
             });
 
         };
+        $scope.getSearchName = function(torrent) {
+            var starredName = $scope.starredNamesStrings[torrent.decodedName];
+            if (starredName) {
+                return starredName;
+            } else {
+                return torrent.decodedName;
+            }
+        };
+        $scope.searchSimilar = function(torrent) {
+            $scope.filters.name = $scope.getSearchName(torrent);
+            $scope.doFilter();
+        };
 
         $scope.emptyFilters = {
             name: '',
@@ -509,15 +521,20 @@ angular.module('utorrentNgwebuiApp')
             }
         };
 
+        $scope.starredNamesStrings = {};
+        var starredNamesStrings = $scope.starredNamesStrings;
+         
         var isStarred = function(name) {
             var array = $scope.starredItems;
             if (array) {
                 for (var i = 0; i < array.length; i++) {
                     if (name.indexOf(array[i].text) !== -1) {
+                        starredNamesStrings[name] = array[i].text;
                         return true;
                     }
                 }
             }
+            delete starredNamesStrings[name];
             return false;
         };
 
