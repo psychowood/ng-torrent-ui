@@ -42,6 +42,9 @@ module.exports = function (grunt) {
   // Converting .html templates in javascript for better cdn importing
   grunt.loadNpmTasks('grunt-html2js');
 
+  // Typscript support
+  grunt.loadNpmTasks('grunt-typescript');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -88,6 +91,13 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
+      ts: {
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.ts'],
+        tasks: ['newer:typescript:all'],
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        }
+      },      
       views: {
         files: ['<%= yeoman.app %>/views/{,*/}*.html'],
         tasks: ['html2js'],
@@ -559,7 +569,20 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+    
+    typescript: { 
+        default: { 
+          src: ['<%= yeoman.app %>/scripts/**/*.ts'],
+          dest: '.tmp/scripts/tsscripts.js', 
+          noImplicitAny: true, 
+          sourceMap: true,
+          inlineSourceMap: true,   
+          comments: true, 
+          sortOutput: true, 
+          noExternalResolve: true 
+        } 
+	} 
   });
 
 
@@ -570,6 +593,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'typescript',
       'html2js',
       'wiredep:app',
       'configureProxies:server',
@@ -595,6 +619,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
     'clean:dist',
+    'typescript',
     'wiredep:app',
     'useminPrepare',
     'html2js',

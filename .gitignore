@@ -4,5 +4,6 @@ dist
 .sass-cache
 bower_components
 releases
+typings
 
 resources/utorrent-webui.2013052820184444/
