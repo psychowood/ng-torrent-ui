@@ -308,7 +308,7 @@ angular.module('utorrentNgwebuiApp')
                 $scope.filters.name = starredName;
                 $scope.filters.fuzzy = false;
             } else {
-                $scope.filters.name = torrent.decodedName;
+                $scope.filters.name = torrent.cleanedName;
                 $scope.filters.fuzzy = true;
             }
             $scope.doFilter();
@@ -324,15 +324,6 @@ angular.module('utorrentNgwebuiApp')
                             $scope.$close();    
                         }); 
                     };
-                    $scope.getSearchName = function(torrent) {
-                        var starredName = $scope.starredNamesStrings[torrent.decodedName];
-                        if (starredName) {
-                            return starredName;
-                        } else {
-                            return torrent.decodedName;
-                        }
-                    };
-                    
                     $scope.search = function(torrent) {
                       $parentScope.searchSimilar(torrent);
                       $scope.$close();  
@@ -530,9 +521,8 @@ angular.module('utorrentNgwebuiApp')
                             matches = name.search(new RegExp(filters.name, 'i')) > -1;
                         
                             if (!matches && filters.fuzzy) {
-                                var fuzzyName = $scope.filters.name.toLowerCase().replace(/s?([0-9]{1,2})[x|e|-]([0-9]{1,2})/,'').replace(/(bdrip|brrip|cam|dttrip|dvdrip|dvdscr|dvd|fs|hdtv|hdtvrip|hq|pdtv|satrip|dvbrip|r5|r6|ts|tc|tvrip|vhsrip|vhsscr|ws|aac|ac3|dd|dsp|dts|lc|ld|md|mp3|xvid|720p|1080p|fs|internal|limited|proper|stv|subbed|tma|tnz|silent|tls|gbm|fsh|rev|trl|upz|unrated|webrip|ws|mkv|avi|mov|mp4|mp3|iso|x264|x265|h264|h265)/g,'').trim();
                                 name = torrent.decodedName;
-                                var subStrscore = name.subCompare(fuzzyName);
+                                var subStrscore = name.subCompare($scope.filters.name);
                                 matches = (subStrscore.found === 1);
                             }
                         }

@@ -345,7 +345,7 @@
               <li role="presentation"><a class="btn btn-default" ng-click="doAction('recheck',item)"><span class="glyphicon glyphicon-repeat"></span> {{'ML_FORCE_RECHECK' | translate}}</a></li>
               <li role="presentation" class="divider"></li>
               <li role="presentation"><a class="btn btn-default" ng-click="doAction('star',item)"><span class="glyphicon" ng-class="{'glyphicon-star-empty':!item.isStarred,'glyphicon-star':item.isStarred}"></span> {{'DLG_RSSDOWNLOADER_02' | translateMultiLabel:1}}</a></li>
-              <li role="presentation"><a class="btn btn-default" ng-click="search(item)"><span class="glyphicon glyphicon-search"></span> <i>'{{getSearchName(item)}}'</i></a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="search(item)"><span class="glyphicon glyphicon-search"></span> <i>'{{item.cleanedName}}'</i></a></li>
             </span>
         </ul>
     </script>
