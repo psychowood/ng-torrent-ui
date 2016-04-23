@@ -239,3 +239,28 @@ angular
             }
         };
     });
+// subCompare courtesy of slebetman @ http://stackoverflow.com/a/13007065/1763297
+// Note: not fully tested, there may be bugs:
+String.prototype.subCompare = function(needle, haystack, minLength) {
+    var i,j;
+    haystack = haystack || this.toLowerCase();
+    minLength = minLength || 5;
+    
+    for (i=needle.length; i>=minLength; i--) {
+        for (j=0; j <= (needle.length - i); j++) {
+            var substring = needle.substr(j,i);
+            var k = haystack.indexOf(substring);
+            if (k !== -1) {
+                return {
+                    found : 1,
+                    substring : substring,
+                    needleIndex : j,
+                    haystackIndex : k
+                };
+            }
+        }
+    }
+    return {
+        found : 0
+    };
+};
