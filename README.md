@@ -103,7 +103,7 @@ I managed to get many of the ui texts from the original uTorrent WebUI, this mea
  - Valencian
  - Vietnamese
 
-There are parts not translated yet, and I'll need help because I don't speak nor write most them (except for italian and english). If you think you can help, contact me.
+There are parts not translated yet, and I'll need help because I don't speak nor write most them (except for italian and english). If you know you can help, please contact me.
 
 ## Release History
 
