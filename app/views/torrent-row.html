@@ -5,8 +5,10 @@
   <span class="input-group-addon queue" >
     {{item.getQueueStr()}}
   </span>
-  <span class="input-group-addon status" title="{{statusTitle}}" >
-    <span class="glyphicon {{statusClass}} {{statusColor}}"></span>
+  <span class="input-group-addon status" title="{{statusTitle}}">
+    <button class="btn btn-default btn-xs" ng-click="showActions(item,$event)">
+      <span class="glyphicon {{statusClass}} {{statusColor}}"></span>
+      </button>
   </span>
   <div title="{{item.name}}" class="form-control selectable name" ng-click="setSelected(item.hash,$event)" on-long-press="setSelected(item.hash,$event,true)">{{item.decodedName}} </span>  
   </div>

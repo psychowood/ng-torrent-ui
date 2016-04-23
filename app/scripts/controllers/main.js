@@ -207,7 +207,7 @@ angular.module('utorrentNgwebuiApp')
             return hashes;
         }
 
-        $scope.doAction = function(action, item) {
+        $scope.doAction = function(action, item, callback) {
             var hashes = getSelectedHashes(item);
 
             if (action === 'info') {
@@ -226,7 +226,11 @@ angular.module('utorrentNgwebuiApp')
                 var ts = service({
                     hash: hashes
                 });
-                ts.$promise.then(function() {});
+                ts.$promise.then(function() {
+                    if(callback) {
+                        callback();
+                    }
+                });
                 return ts;
             } else {
                 toastr.warning('Action ' + action + ' not yet supported', null, {
@@ -308,6 +312,32 @@ angular.module('utorrentNgwebuiApp')
         $scope.searchSimilar = function(torrent) {
             $scope.filters.name = $scope.getSearchName(torrent);
             $scope.doFilter();
+        };
+        $scope.showActions = function(torrent) {
+            var $parentScope = $scope;
+            var modalInstance = $modal.open({
+                controller: function($scope) {
+                    $scope.item = torrent;
+                    $scope.starredNamesStrings = $parentScope.starredNamesStrings;
+                    $scope.doAction = function(action,torrent) {
+                        $parentScope.doAction(action,torrent,function() {
+                            $scope.$close();    
+                        }); 
+                    };
+                    $scope.getSearchName = $parentScope.getSearchName;
+                    $scope.search = function(torrent) {
+                      $parentScope.searchSimilar(torrent);
+                      $scope.$close();  
+                    };
+                    
+                },
+                windowClass: 'actionsModal',
+                backdropClass: 'gray-background',
+                templateUrl: 'actionsModal.html',
+                backdrop: true
+            });
+            
+            console.log(modalInstance);
         };
 
         $scope.emptyFilters = {

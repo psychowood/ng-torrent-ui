@@ -317,4 +317,36 @@
         </div>
     </script>
 
+    <script type="text/ng-template" id="actionsModal.html">
+        <ul class="nav nav-pills nav-stacked">
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('start',item)"><span class="glyphicon glyphicon-play"></span> {{'ML_START' | translate}}</a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('pause',item)"><span class="glyphicon glyphicon-pause"></span> {{'ML_PAUSE' | translate}}</a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('stop',item)"><span class="glyphicon glyphicon-stop"></span> {{'ML_STOP' | translate}}</a></li>
+              <li role="presentation" class="divider"></li>
+              
+              <li role="presentation" class="dropdown" dropdown>
+                  <a class="btn btn-default" role="button" dropdown-toggle >
+                    <span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}} <span class="caret"></span>
+                  </a>
+                  <div class="dropdown-menu" role="presentation">
+                    <a class="btn btn-default" ng-click="doAction('remove',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
+                    <a class="btn btn-default" ng-click="doAction('removedata',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
+                    <a class="btn btn-default" ng-click="doAction('removetorrent',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_TORRENT' | translate}}</a>
+                    <a class="btn btn-default" ng-click="doAction('removedatatorrent',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATATORRENT' | translate}}</a>
+                  </div>
+                </li>
+                                
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('queuedown',item)"><span class="glyphicon glyphicon-chevron-up"></span> {{'ML_QUEUEUP' | translate}}</a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('queueup',item)"><span class="glyphicon glyphicon-chevron-down"></span> {{'ML_QUEUEDOWN' | translate}}</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('forcestart',item)"><span class="glyphicon glyphicon-play-circle"></span> {{'ML_FORCE_START' | translate}}</a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('recheck',item)"><span class="glyphicon glyphicon-repeat"></span> {{'ML_FORCE_RECHECK' | translate}}</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="doAction('star',item)"><span class="glyphicon" ng-class="{'glyphicon-star-empty':!item.isStarred,'glyphicon-star':item.isStarred}"></span> {{'DLG_RSSDOWNLOADER_02' | translateMultiLabel:1}}</a></li>
+              <li role="presentation"><a class="btn btn-default" ng-click="search(item)"><span class="glyphicon glyphicon-search"></span> <i>'{{getSearchName(item)}}'</i></a></li>
+            </span>
+        </ul>
+    </script>
+
 </div>
