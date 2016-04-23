@@ -215,10 +215,10 @@ module.exports = function (grunt) {
         options: {
           replacements: [{
             pattern: /src="scripts\//g,
-            replacement: 'src="http://ng-torrent-ui.dtdns.net/ngtorrentui/scripts/'
+            replacement: 'src="http://psychowood.github.io/ng-torrent-ui/dist/remoted-resources/scripts/'
           },{
             pattern: /href="styles\//g,
-            replacement: 'href="http://ng-torrent-ui.dtdns.net/ngtorrentui/styles/'
+            replacement: 'href="http://psychowood.github.io/ng-torrent-ui/dist/remoted-resources/styles/'
           }]
         }
       }
