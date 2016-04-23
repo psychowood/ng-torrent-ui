@@ -530,9 +530,9 @@ angular.module('utorrentNgwebuiApp')
                             matches = name.search(new RegExp(filters.name, 'i')) > -1;
                         
                             if (!matches && filters.fuzzy) {
-                                name = torrent.decodedName.replace(/[s|S]?([0-9]{1,2})[x|X|e|E|-]([0-9]{2})/,'');
-                                name = name.toUpperCase().replace(/(BDRIP|BRRIP|CAM|DTTRIP|DVDRIP|DVDSCR|DVD|FS|HDTV|HDTVRIP|HQ|PDTV|SATRIP|DVBRIP|R5|R6|TS|TC|TVRIP|VHSRIP|VHSSCR|WS|AAC|AC3|DD|DSP|DTS|LC|LD|MD|MP3|XVID|720P|1080P|FS|INTERNAL|LIMITED|PROPER|STV|SUBBED|TMA|TNZ|SILENT|TLS|GBM|FSH|REV|TRL|UPZ|UNRATED|WEBRIP|WS|MKV|AVI|MOV|MP4|MP3|ISO|X264|X265|H264|H265)/g,'').trim();
-                                var subStrscore = name.subCompare($scope.filters.name);
+                                var fuzzyName = $scope.filters.name.toLowerCase().replace(/s?([0-9]{1,2})[x|e|-]([0-9]{1,2})/,'').replace(/(bdrip|brrip|cam|dttrip|dvdrip|dvdscr|dvd|fs|hdtv|hdtvrip|hq|pdtv|satrip|dvbrip|r5|r6|ts|tc|tvrip|vhsrip|vhsscr|ws|aac|ac3|dd|dsp|dts|lc|ld|md|mp3|xvid|720p|1080p|fs|internal|limited|proper|stv|subbed|tma|tnz|silent|tls|gbm|fsh|rev|trl|upz|unrated|webrip|ws|mkv|avi|mov|mp4|mp3|iso|x264|x265|h264|h265)/g,'').trim();
+                                name = torrent.decodedName;
+                                var subStrscore = name.subCompare(fuzzyName);
                                 matches = (subStrscore.found === 1);
                             }
                         }
