@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc overview
- * @name utorrentNgwebuiAppDemo
+ * @name ngTorrentUiAppDemo
  * @description
- * # utorrentNgwebuiAppDemo
+ * # ngTorrentUiAppDemo
  *
  * Main module of the demo application.
  */
-angular.module('utorrentNgwebuiAppDemo', ['utorrentNgwebuiApp','ngMockE2E','ipsum']).run(function ($httpBackend,$log,$window,ipsumService) {
+angular.module('ngTorrentUiAppDemo', ['ngTorrentUiApp','ngMockE2E','ipsum']).run(function ($httpBackend,$log,$window,ipsumService) {
   // let all views through (the actual html views from the views folder should be loaded)
   $httpBackend.whenGET(new RegExp('views\/.*')).passThrough();
   $httpBackend.whenGET(new RegExp('scripts\/.*')).passThrough();

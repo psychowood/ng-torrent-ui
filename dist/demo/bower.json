@@ -1,7 +1,7 @@
 {
   "name": "ng-torrent-ui",
   "description": "Angular + (flat) Boostrap (μ)Torrent Web UI",
-  "version": "0.5.6",
+  "version": "0.6.5",
   "dependencies": {
     "angular": "~1.4",
     "json3": "~3.3.1",
@@ -23,7 +23,7 @@
     "moment": "~2.10.6",
     "angular-long-press": "^0.2.0",
     "angular-qrcode": "monospaced/angular-qrcode#^6.2.1",
-    "angular-socialshare": "angularjs-socialshare#^0.2.6-beta",
+    "angular-socialshare": "angularjs-socialshare#^2.1.2",
     "components-font-awesome": "^4.5.0"
   },
   "devDependencies": {
@@ -31,10 +31,5 @@
     "angular-scenario": "~1.4",
     "angular-ipsum": "~0.0.4"
   },
-  "appPath": "app",
-  "resolutions": {
-    "angular": "~1.4",
-    "ng-file-upload": "~9.1.2",
-    "es5-shim": "~4.2.0"
-  }
+  "appPath": "app"
 }
