@@ -9,7 +9,7 @@
  * Controller of the utorrentNgwebuiApp
  */
 angular.module('utorrentNgwebuiApp')
-    .controller('TorrentsCtrl', function($scope, $window, $modal, $filter, $timeout, $log, uTorrentService, Torrent, toastr, $cookies) {
+    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, uTorrentService, Torrent, toastr, $cookies) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -158,7 +158,7 @@ angular.module('utorrentNgwebuiApp')
                 uTorrentService.getDownloadDirectories().then(function(directories) {
                     $scope.directories = directories;
 
-                    var modalInstance = $modal.open({
+                    var modalInstance = $uibModal.open({
                         templateUrl: 'downloadLocationModal.html',
                         backdrop: true,
                         scope: $scope
@@ -268,7 +268,7 @@ angular.module('utorrentNgwebuiApp')
 
         $scope.setNewLabel = function(item) {
 
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'newLabelModal.html',
                 backdrop: true
             });
@@ -282,7 +282,7 @@ angular.module('utorrentNgwebuiApp')
         };
 
         $scope.showStar = function(name, currentStarred) {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 controller: function($scope) {
                     $scope.starredItems = currentStarred;
                     $scope.newStarred = name;
@@ -315,7 +315,7 @@ angular.module('utorrentNgwebuiApp')
         };
         $scope.showActions = function(torrent) {
             var $parentScope = $scope;
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 controller: function($scope) {
                     $scope.item = torrent;
                     $scope.starredNamesStrings = $parentScope.starredNamesStrings;
@@ -692,7 +692,7 @@ angular.module('utorrentNgwebuiApp')
         };
 
         $scope.showSearch = function() {
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'views/yts-movies.html',
                 controller: 'YtsMoviesCtrl',
                 windowClass: 'modal-search',
@@ -714,7 +714,7 @@ angular.module('utorrentNgwebuiApp')
         $scope.showDetails = function(item) {
             $scope.lastTorrentDetails = item;
             updateTorrentDetails(item);
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'views/details-dialog.html',
                 controller: 'DetailsDialogCtrl',
                 windowClass: 'modal-details',
