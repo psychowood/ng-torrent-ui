@@ -15,7 +15,7 @@
     </form>
 
    <uib-tabset justified="true">
-      <tab heading="{{'SETTINGS_NTU' | translate}}">
+      <uib-tab heading="{{'SETTINGS_NTU' | translate}}">
         <form class="form-horizontal" >
           <div>
             <h3>{{'DLG_RSSDOWNLOADER_02' | translateMultiLabel:1}}</h3>
@@ -36,8 +36,8 @@
               </div>
           </div>
         </form>
-      </tab>
-      <tab heading="{{'SETTINGS_UT' | translate}}">
+      </uib-tab>
+      <uib-tab heading="{{'SETTINGS_UT' | translate}}">
         <form class="form-horizontal" >
           <div ng-repeat="section in settings.conf" ng-class="{'hidden':section.count === 0}">
             <h3>{{section.label}}</h3>
@@ -61,8 +61,8 @@
             </div>
           </div>
         </form>
-      </tab>
-      <tab heading="{{'DLG_SETTINGS_A_ADVANCED_01' | translate}}">
+      </uib-tab>
+      <uib-tab heading="{{'DLG_SETTINGS_A_ADVANCED_01' | translate}}">
         <form class="form-horizontal" > <!-- class="repeater-container" vs-repeat="45" vs-excess="10" ng-style="{ height: listHeight + 'px'}" -->
           <div ng-repeat="setting in settings.values | filter: settingSearch" class="form-group" ng-init="setting.oldvalue = setting.value">
 
@@ -82,7 +82,7 @@
               <span ng-if="$last" ng-init="loadingFinished()"></span>
           </div>
         </form>
-      </tab>
+      </uib-tab>
     </uib-tabset>
 
 </div>
