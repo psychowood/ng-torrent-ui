@@ -1,7 +1,7 @@
 <div class="modal-header details-header">
   <h3 class="modal-title"><button type=button ng-click="$dismiss()" class="btn btn-primary pull-right" ><span class="glyphicon glyphicon-remove"></span></button>{{torrent.decodedName}}</h3>
     <div class="details-progress">
-      <progressbar max="1000" ng-class="{'progress-striped active':(torrent.uploadSpeed !== 0 || torrent.downloadSpeed !== 0)}" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.percent">{{torrent.percent/10}}% </progressbar>
+      <uib-progressbar max="1000" ng-class="{'progress-striped active':(torrent.uploadSpeed !== 0 || torrent.downloadSpeed !== 0)}" type="{{ ((torrent.percent < 250)?'warning':((torrent.percent < 999)?'info':'success')) }}" value="torrent.percent">{{torrent.percent/10}}% </uib-progressbar>
     </div>
 </div>
 <div class="modal-body details-body">
