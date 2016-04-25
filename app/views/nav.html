@@ -1,7 +1,7 @@
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <div class="top-bar">
-          <tabset class="pull-right tabs">
+          <uib-tabset class="pull-right tabs">
             <li><a ng-href="#/"><span class="glyphicon glyphicon-th-list visible-xs-inline"></span><span class="hidden-xs">{{ 'STM_TORRENTS' | translate }}</span></a></li>
             <li><a ng-href="#/settings"><span class="glyphicon glyphicon-cog visible-xs-inline"></span><span class="hidden-xs">{{ 'OV_TB_PREF' | translate }}</span></a></li>
             <li><a ng-href="#/about"><span class="glyphicon glyphicon-info-sign visible-xs-inline"></span><span class="hidden-xs">{{ 'MM_HELP' | translate }}</span></a></li>
@@ -18,7 +18,7 @@
               </ul>
             </div>
             </li>
-          </tabset>
+          </uib-tabset>
 
           <h3 class="text-muted header logo">ng-torrent-ui <span class="version">{{currentVersion}} <a target="_BLANK" class="text-danger" href="https://github.com/psychowood/ng-torrent-ui/releases" ng-show="updatedVersion && currentVersion !== updatedVersion">({{updatedVersion}} available for download)</a> <span ng-show="serverVersion"> - {{serverVersion}}</span></span> </h3>
         </div>
