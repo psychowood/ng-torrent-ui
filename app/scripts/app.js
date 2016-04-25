@@ -76,7 +76,7 @@ angular
         };
       })
     */
-    .controller('NavController', function($scope, uTorrentService, $http, $cookies, $log, $translate, translationsLoader, $rootScope) {
+    .controller('NavController', function($scope, torrentServerService, $http, $cookies, $log, $translate, translationsLoader, $rootScope) {
 
         translationsLoader('getoptions').then(function(options) {
             var langId, lang;
@@ -215,11 +215,11 @@ angular
 
         $scope.updatedVersion = $cookies.get('updatedVersion');
 
-        uTorrentService.init().then(function() {
-            var ts = uTorrentService.actions().getsettings();
+        torrentServerService.init().then(function() {
+            var ts = torrentServerService.actions().getsettings();
             ts.$promise.then(function() {
-                $rootScope.features = uTorrentService.supports;
-                $rootScope.serverVersion = uTorrentService.getVersion();
+                $rootScope.features = torrentServerService.supports;
+                $rootScope.serverVersion = torrentServerService.getVersion();
             });
             return ts;
         }, function() {

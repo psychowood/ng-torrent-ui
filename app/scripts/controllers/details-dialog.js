@@ -8,7 +8,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('DetailsDialogCtrl', function($scope, torrent, uTorrentService, toastr, $translate, $window) {
+    .controller('DetailsDialogCtrl', function($scope, torrent, torrentServerService, toastr, $translate, $window) {
         $scope.hasSelection = false;
 
         $scope.filters = {
@@ -57,7 +57,7 @@ angular.module('ngTorrentUiApp')
                     fileIndexes.push(torrent.files[i].hash);
                 }
             }
-            uTorrentService.filePriority().set({
+            torrentServerService.filePriority().set({
                 hash: torrent.hash,
                 priority: $scope.priorityToSet,
                 f: fileIndexes

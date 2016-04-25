@@ -8,6 +8,6 @@
  * Controller of the ngTorrentUiApp
  */
  angular.module('ngTorrentUiApp')
- .controller('AboutCtrl', function ($scope,uTorrentService) {
- 	$scope.url = uTorrentService.url;
+ .controller('AboutCtrl', function ($scope,torrentServerService) {
+ 	$scope.url = torrentServerService.url;
  });

@@ -9,7 +9,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, uTorrentService, Torrent, toastr, $cookies) {
+    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, Torrent, toastr, $cookies) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -71,7 +71,7 @@ angular.module('ngTorrentUiApp')
         $scope.filteredtorrents = [];
         $scope.selectedtorrents = [];
 
-        var torrentsMap = uTorrentService.cacheMap;
+        var torrentsMap = torrentServerService.cacheMap;
         var reloadTimeout;
         $scope.autoreloadTimeout = 5000;
         $scope.autoreloadEnabled = ($scope.autoreloadTimeout > 0);
@@ -125,14 +125,14 @@ angular.module('ngTorrentUiApp')
         $scope.addTorrentFilesOrUrl = function(urlOrFiles) {
             var add = function(dir, subpath) {
                 if (typeof urlOrFiles === 'string') {
-                    uTorrentService.addTorrentUrl(urlOrFiles, dir, subpath).then(function() {
+                    torrentServerService.addTorrentUrl(urlOrFiles, dir, subpath).then(function() {
                         toastr.info('Torrent added succesfully', null, {
                             timeOut: 1000
                         });
                         $scope.newtorrent = '';
                     });
                 } else {
-                    if (uTorrentService.uploadTorrent) {
+                    if (torrentServerService.uploadTorrent) {
                         var i, success = 0;
                         var callback = function( /* data, status, headers, config */ ) {
                             success++;
@@ -145,17 +145,17 @@ angular.module('ngTorrentUiApp')
                         };
                         for (i = 0; i < urlOrFiles.length; i++) {
                             var file = urlOrFiles[i];
-                            uTorrentService.uploadTorrent(file, dir, subpath).success(callback);
+                            torrentServerService.uploadTorrent(file, dir, subpath).success(callback);
                         }
                     } else {
-                        toastr.warning('Files upload not supported for ' + uTorrentService.getVersion(), null, {
+                        toastr.warning('Files upload not supported for ' + torrentServerService.getVersion(), null, {
                             timeOut: 2500
                         });
                     }
                 }
             };
-            if (uTorrentService.supports.getDownloadDirectories === true) {
-                uTorrentService.getDownloadDirectories().then(function(directories) {
+            if (torrentServerService.supports.getDownloadDirectories === true) {
+                torrentServerService.getDownloadDirectories().then(function(directories) {
                     $scope.directories = directories;
 
                     var modalInstance = $uibModal.open({
@@ -220,7 +220,7 @@ angular.module('ngTorrentUiApp')
                 return;
             }
 
-            var service = uTorrentService.actions()[action];
+            var service = torrentServerService.actions()[action];
 
             if (service) {
                 var ts = service({
@@ -242,7 +242,7 @@ angular.module('ngTorrentUiApp')
         $scope.setLabel = function(value, item) {
             var hashes = getSelectedHashes(item);
 
-            var service = uTorrentService.setLabel;
+            var service = torrentServerService.setLabel;
             $scope.labelToSet = '';
 
             if (service) {
@@ -294,7 +294,7 @@ angular.module('ngTorrentUiApp')
             modalInstance.result.then(function(starredItems) {
                 var obj = angular.toJson(starredItems);
                 $cookies.put('starredItems', obj);
-                //uTorrentService.setSetting('webui.ngtorrentui.favorites',obj);
+                //torrentServerService.setSetting('webui.ngtorrentui.favorites',obj);
                 $scope.starredItems = starredItems;
             }, function() {
 
@@ -584,7 +584,7 @@ angular.module('ngTorrentUiApp')
             $timeout.cancel(reloadTimeout);
             $log.info('reload torrents');
             //var reloadingMsg = toastr.info('Refreshing torrents...',null,{timeOut: 0});
-            var ts = uTorrentService.torrents().list();
+            var ts = torrentServerService.torrents().list();
 
             //var ptn = $window.ptn;
 
@@ -646,7 +646,7 @@ angular.module('ngTorrentUiApp')
                         $scope.torrents.push(value);
                     });
                     $scope.doFilter();
-                    uTorrentService.cacheMap = torrentsMap;
+                    torrentServerService.cacheMap = torrentsMap;
                     $scope.selectedtorrents = getSelectedAndUpdateGlobals($scope.torrents);
                 } else {
                     $log.debug('no changes');
@@ -827,7 +827,7 @@ angular.module('ngTorrentUiApp')
 
         $scope.$on('$destroy', function() {});
 
-        uTorrentService.init().then(function() {
+        torrentServerService.init().then(function() {
             $scope.reload();
         }, function() {
             $log.error('error', arguments);

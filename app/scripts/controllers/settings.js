@@ -8,7 +8,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('SettingsCtrl', function($scope, uTorrentService, $log, $translate, toastr, $timeout, $cookies) {
+    .controller('SettingsCtrl', function($scope, torrentServerService, $log, $translate, toastr, $timeout, $cookies) {
 
         var settings = {
             conf: [],
@@ -29,7 +29,7 @@ angular.module('ngTorrentUiApp')
                 case STARRED_ITEMS:
                     {
                         webcookie.ngtorrentui[STARRED_ITEMS] = $scope[STARRED_ITEMS];
-                        uTorrentService.setSetting('webui.cookie', angular.toJson(webcookie));
+                        torrentServerService.setSetting('webui.cookie', angular.toJson(webcookie));
                     }
                     break;
             }
@@ -171,8 +171,8 @@ angular.module('ngTorrentUiApp')
             return result;
         };
 
-        uTorrentService.init().then(function() {
-            var set = uTorrentService.actions().getsettings();
+        torrentServerService.init().then(function() {
+            var set = torrentServerService.actions().getsettings();
             set.$promise.then(function() {
                 var i;
                 var values = set.sort(function(a, b) {
@@ -210,7 +210,7 @@ angular.module('ngTorrentUiApp')
         });
 
         $scope.saveSetting = function(setting) {
-            var service = uTorrentService.setSetting;
+            var service = torrentServerService.setSetting;
 
             $log.debug('save setting', setting);
 

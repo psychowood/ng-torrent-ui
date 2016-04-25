@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name ngTorrentUiApp.uTorrentService
+ * @name ngTorrentUiApp.torrentServerService
  * @description
- * # uTorrentService
+ * # torrentServerService for uTorrent
  * Factory in the ngTorrentUiApp.
  */
 angular.module('ngTorrentUiApp')
@@ -356,7 +356,7 @@ angular.module('ngTorrentUiApp')
          */
         return Torrent;
     })
-    .service('uTorrentService', function($http, $resource, $log, $upload, $q) {
+    .service('torrentServerService', function($http, $resource, $log, $upload, $q) {
 
         var loading = null;
         var data = {
@@ -376,7 +376,7 @@ angular.module('ngTorrentUiApp')
             }
         };
 
-        var uTorrentService = {
+        var torrentServerService = {
             cacheMap: {},
             conf: data,
             init: function() {
@@ -561,12 +561,12 @@ angular.module('ngTorrentUiApp')
                                 };
                                 settings.push(val);
                             }
-                            uTorrentService.settings = settings;
-                            uTorrentService.supports = {};
+                            torrentServerService.settings = settings;
+                            torrentServerService.supports = {};
                             if (parseInt(data.build) > 25406) { //Features supported from uTorrent 3+
-                                uTorrentService.supports.getDownloadDirectories = true;
-                                uTorrentService.supports.torrentAddedDate = true;
-                                uTorrentService.supports.torrentCompletedDate = true;
+                                torrentServerService.supports.getDownloadDirectories = true;
+                                torrentServerService.supports.torrentAddedDate = true;
+                                torrentServerService.supports.torrentCompletedDate = true;
                             }
                             return settings;
                         }
@@ -586,7 +586,7 @@ angular.module('ngTorrentUiApp')
                 });
             },
             setSetting: function(setting, value) {
-                return uTorrentService.setSettings([
+                return torrentServerService.setSettings([
                     [setting, value]
                 ]);
             },
@@ -646,5 +646,5 @@ angular.module('ngTorrentUiApp')
 
             }
         };
-        return uTorrentService;
+        return torrentServerService;
     });
