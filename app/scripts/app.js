@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name utorrentNgwebuiApp
+ * @name ngTorrentUiApp
  * @description
- * # utorrentNgwebuiApp
+ * # ngTorrentUiApp
  *
  * Main module of the application.
  */
 angular
-    .module('utorrentNgwebuiApp', [
+    .module('ngTorrentUiApp', [
         'templates-views',
         'ngAnimate',
         'ngCookies',

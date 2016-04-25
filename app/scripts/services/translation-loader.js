@@ -7,7 +7,7 @@
  * # translationLoader
  * Factory in the ngTorrentUiApp.
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .factory('translationsLoader', function($http, $q) {
         var languages, constants;
         // var loading = false;

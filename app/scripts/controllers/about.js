@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name utorrentNgwebuiApp.controller:AboutCtrl
+ * @name ngTorrentUiApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the utorrentNgwebuiApp
+ * Controller of the ngTorrentUiApp
  */
- angular.module('utorrentNgwebuiApp')
+ angular.module('ngTorrentUiApp')
  .controller('AboutCtrl', function ($scope,uTorrentService) {
  	$scope.url = uTorrentService.url;
  });

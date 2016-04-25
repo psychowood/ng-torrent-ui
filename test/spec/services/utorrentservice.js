@@ -3,7 +3,7 @@
 describe('Service: uTorrentService', function () {
 
   // load the service's module
-  beforeEach(module('utorrentNgwebuiApp'));
+  beforeEach(module('ngTorrentUiApp'));
 
   // instantiate service
   var uTorrentService;

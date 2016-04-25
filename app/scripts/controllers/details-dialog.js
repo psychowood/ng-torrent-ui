@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name utorrentNgwebuiApp.controller:DetailsDialogCtrl
+ * @name ngTorrentUiApp.controller:DetailsDialogCtrl
  * @description
  * # DetailsDialogCtrl
- * Controller of the utorrentNgwebuiApp
+ * Controller of the ngTorrentUiApp
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .controller('DetailsDialogCtrl', function($scope, torrent, uTorrentService, toastr, $translate, $window) {
         $scope.hasSelection = false;
 

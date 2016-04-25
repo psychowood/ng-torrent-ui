@@ -7,7 +7,7 @@
  * # IssueReporterCtrl
  * Controller of the ngTorrentUiApp
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .controller('IssueReporterCtrl', function($scope, uTorrentService, $window) {
         var newIssueBaseUrl = 'https://github.com/psychowood/ng-torrent-ui/issues/new/';
         var newMailBaseUrl = 'mailto:ng' + 'torrent' + 'ui' + '@' + 'gmail.com';

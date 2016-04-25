@@ -3,12 +3,12 @@
 
 /**
  * @ngdoc function
- * @name utorrentNgwebuiApp.controller:MainCtrl
+ * @name ngTorrentUiApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the utorrentNgwebuiApp
+ * Controller of the ngTorrentUiApp
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, uTorrentService, Torrent, toastr, $cookies) {
 
         $scope.headerHeight = 350;

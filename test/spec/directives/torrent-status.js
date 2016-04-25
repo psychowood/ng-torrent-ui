@@ -3,7 +3,7 @@
 describe('Directive: torrentStatus', function () {
 
   // load the directive's module
-  beforeEach(module('utorrentNgwebuiApp'));
+  beforeEach(module('ngTorrentUiApp'));
 
   var element,
     scope;

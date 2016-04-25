@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name utorrentNgwebuiApp.directive:torrentStatus
+ * @name ngTorrentUiApp.directive:torrentStatus
  * @description
  * # torrentStatus
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .directive('torrentRow', function() {
         return {
             priority: 1000,

@@ -8,7 +8,7 @@
  * # formatBytes
  * Filter in the ngTorrentUiApp.
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .filter('formatBytes', function() {
         return function(bytes) {
             var val;

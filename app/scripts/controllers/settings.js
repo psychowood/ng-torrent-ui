@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name utorrentNgwebuiApp.controller:SettingsCtrl
+ * @name ngTorrentUiApp.controller:SettingsCtrl
  * @description
  * # SettingsCtrl
- * Controller of the utorrentNgwebuiApp
+ * Controller of the ngTorrentUiApp
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .controller('SettingsCtrl', function($scope, uTorrentService, $log, $translate, toastr, $timeout, $cookies) {
 
         var settings = {

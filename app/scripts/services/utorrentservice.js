@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name utorrentNgwebuiApp.uTorrentService
+ * @name ngTorrentUiApp.uTorrentService
  * @description
  * # uTorrentService
- * Factory in the utorrentNgwebuiApp.
+ * Factory in the ngTorrentUiApp.
  */
-angular.module('utorrentNgwebuiApp')
+angular.module('ngTorrentUiApp')
     .factory('Torrent', function($window, $log) {
 
         /**
