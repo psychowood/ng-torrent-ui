@@ -8,7 +8,7 @@
  * Controller of the utorrentNgwebuiApp
  */
 angular.module('utorrentNgwebuiApp')
-    .controller('DetailsDialogCtrl', function($scope, $modalInstance, torrent, uTorrentService, toastr, $translate, $window) {
+    .controller('DetailsDialogCtrl', function($scope, torrent, uTorrentService, toastr, $translate, $window) {
         $scope.hasSelection = false;
 
         $scope.filters = {
