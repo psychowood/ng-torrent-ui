@@ -5,11 +5,11 @@
             <li><a ng-href="#/"><span class="glyphicon glyphicon-th-list visible-xs-inline"></span><span class="hidden-xs">{{ 'STM_TORRENTS' | translate }}</span></a></li>
             <li><a ng-href="#/settings"><span class="glyphicon glyphicon-cog visible-xs-inline"></span><span class="hidden-xs">{{ 'OV_TB_PREF' | translate }}</span></a></li>
             <li><a ng-href="#/about"><span class="glyphicon glyphicon-info-sign visible-xs-inline"></span><span class="hidden-xs">{{ 'MM_HELP' | translate }}</span></a></li>
-            <li><div class="btn-group pull-right languages" dropdown>
-              <button type="button" class="btn dropdown-toggle flag" dropdown-toggle>
+            <li><div class="btn-group pull-right languages" uib-dropdown>
+              <button type="button" class="btn uib-dropdown-toggle flag" uib-dropdown-toggle>
                 <span class="glyphicon glyphicon-globe visible-xs-inline"></span><span class="hidden-xs">{{languageDesc}} <span class="caret"></span><span>
               </button>
-              <ul class="dropdown-menu" role="menu">
+              <ul class="uib-dropdown-menu" role="menu">
                 <li ng-repeat="lang in languages" >
                   <a href="javascript:void(0)" ng-click="changeLanguage(lang)">
                     {{lang.desc}}

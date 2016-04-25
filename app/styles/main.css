@@ -368,8 +368,8 @@ select[disabled] {
   cursor: default;
 }
 
-.action-toolbar .dropdown-menu,
-.actions-form .dropdown-menu {
+.action-toolbar .uib-dropdown-menu,
+.actions-form .uib-dropdown-menu {
   background: transparent;
   border: none;
   padding: 0;
@@ -380,7 +380,7 @@ select[disabled] {
   right: 0;
 }
 
-.dropdown-menu a {
+.uib-dropdown-menu a {
   width: 100%;
   text-align: left;
   margin: -1px;
@@ -404,15 +404,15 @@ fieldset.action-toolbar .middle {
   border-radius: 0;
 }
 
-.filter-autoreload .dropdown,
-.filter-label .dropdown,
-.filter-status .dropdown {
+.filter-autoreload .uib-dropdown,
+.filter-label .uib-dropdown,
+.filter-status .uib-dropdown {
   width: 100%;
 }
 
-.filter-autoreload .dropdown-toggle,
-.filter-label .dropdown-toggle,
-.filter-status .dropdown-toggle {
+.filter-autoreload .uib-dropdown-toggle,
+.filter-label .uib-dropdown-toggle,
+.filter-status .uib-dropdown-toggle {
   display: block;
   width: 100%;
 }
@@ -461,7 +461,7 @@ fieldset.action-toolbar .middle {
 
 .torrent .selected,
 .torrent .torrent-header,
-.torrent .dropdown-menu,
+.torrent .uib-dropdown-menu,
 .gray-background {
   background-color: #eee;
 }

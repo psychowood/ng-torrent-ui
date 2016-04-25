@@ -37,11 +37,11 @@
       <div class="input-group input-group-sm filter-autoreload">
         <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
 
-        <div class="btn-group btn-group-sm dropdown" title="{{'AUTORELOAD' | translate}}" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="autoreloadEnabled === false">
+        <div class="btn-group btn-group-sm uib-dropdown" title="{{'AUTORELOAD' | translate}}" uib-dropdown>
+          <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle ng-disabled="autoreloadEnabled === false">
             {{autoreloadTimeout/1000}} sec <span class="caret"></span>
           </a>
-          <div class="dropdown-menu btn-group-sm" role="menu">
+          <div class="uib-dropdown-menu btn-group-sm" role="menu">
             <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 1000;reload()">
               1 sec</a>
             <a role="button" class="btn btn-default" ng-click="autoreloadTimeout = 5000;reload()">
@@ -69,15 +69,15 @@
     </div>
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-label">
-        <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-switch="filters.label">
+        <div class="btn-group btn-group-sm uib-dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" uib-dropdown>
+          <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle ng-switch="filters.label">
             <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;&nbsp;
               <span ng-switch-when="undefined">{{'DLG_RSSDOWNLOADER_06' | translate}} {{'ML_LABEL' | translate}}</span>
               <span ng-switch-when="">{{'OV_CAT_NOLABEL' | translate}}</span>
               <span ng-switch-default>{{filters.label}}</span>
             <span class="caret"></span>
           </a>
-            <div class="dropdown-menu btn-group-sm" role="menu">
+            <div class="uib-dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
                 <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate) + ' (' + label[1] + ')' }}
               </a>
@@ -90,8 +90,8 @@
     </div>
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-status">
-        <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-switch="filters.status">
+        <div class="btn-group btn-group-sm uib-dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" uib-dropdown>
+          <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle ng-switch="filters.status">
             <span class="glyphicon glyphicon-dashboard"></span>&nbsp;&nbsp;&nbsp;
             <span ng-switch-when="completed">{{'OV_FL_FINISHED' | translate}}</span>
             <span ng-switch-when="downloading">{{'OV_FL_DOWNLOADING' | translate}}</span>
@@ -102,7 +102,7 @@
             <span ng-switch-default>{{'DLG_RSSDOWNLOADER_06' | translate}}  {{'OV_COL_STATUS' | translate}}</span>
             <span class="caret"></span>
           </a>
-            <div class="dropdown-menu btn-group-sm" role="menu">
+            <div class="uib-dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-click="filters.status = 'completed';doFilter()">
                 <span class="glyphicon glyphicon-check text-success"></span>&nbsp;&nbsp;&nbsp;{{'OV_FL_FINISHED' | translate}}</a>
               <a role="button" class="btn btn-default" ng-click="filters.status = 'downloading';doFilter()">
@@ -162,11 +162,11 @@
       <div class="btn-group btn-group-sm btn-group-justified">
         <a role="button" class="btn btn-default" ng-click="doAction('forcestart')" title="{{'ML_FORCE_START' | translate}}"><span class="glyphicon glyphicon-play-circle"></span> </a>
         <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')" title="{{'ML_FORCE_RECHECK' | translate}}"><span class="glyphicon glyphicon-repeat"></span> </a>
-        <div class="btn-group btn-group-sm dropdown" dropdown>
-          <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle title="{{'ML_REMOVE' | translate}}">
+        <div class="btn-group btn-group-sm uib-dropdown" uib-dropdown>
+          <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle title="{{'ML_REMOVE' | translate}}">
             <span class="glyphicon glyphicon-remove"></span> <span class="caret"></span>
           </a>
-          <div class="dropdown-menu btn-group-sm" role="menu">
+          <div class="uib-dropdown-menu btn-group-sm" role="menu">
             <a class="btn btn-default" ng-click="doAction('remove')" title="{{'ML_REMOVE' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
             <a class="btn btn-default" ng-click="doAction('removedata')" title="{{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
             <a class="btn btn-default" ng-click="doAction('removetorrent')" title="{{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_TORRENT' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_TORRENT' | translate}}</a>
@@ -185,11 +185,11 @@
 
       <fieldset class="form-group btn-toolbar action-toolbar col-lg-2 col-sm-3 col-xs-2" ng-disabled="selectedtorrents.length < 1">
         <div class="btn-group btn-group-sm btn-group-justified">
-          <div class="btn-group btn-group-sm dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" dropdown>
-            <a role="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+          <div class="btn-group btn-group-sm uib-dropdown" title="{{'OV_NEWLABEL_CAPTION' | translate}}" uib-dropdown>
+            <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle>
               <span class="glyphicon glyphicon-tags"></span><span class="hidden-xs">&nbsp;&nbsp;&nbsp;{{'OV_NEWLABEL_CAPTION' | translate}}</span> <span class="caret"></span>
             </a>
-              <div class="dropdown-menu btn-group-sm" role="menu">
+              <div class="uib-dropdown-menu btn-group-sm" role="menu">
                 <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;&nbsp;{{'OV_REMOVE_LABEL' | translate}}</a>
                 <a role="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;{{'OV_NEW_LABEL' | translate}}</a>
                 <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="setLabel(label[0])">
@@ -325,11 +325,11 @@
               <li role="presentation"><a class="btn btn-default" ng-click="doAction('stop',item)"><span class="glyphicon glyphicon-stop"></span> {{'ML_STOP' | translate}}</a></li>
               <li role="presentation" class="divider"></li>
               
-              <li role="presentation" class="dropdown" dropdown>
-                  <a class="btn btn-default" role="button" dropdown-toggle >
+              <li role="presentation" class="uib-dropdown" uib-dropdown>
+                  <a class="btn btn-default" role="button" uib-dropdown-toggle >
                     <span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}} <span class="caret"></span>
                   </a>
-                  <div class="dropdown-menu" role="presentation">
+                  <div class="uib-dropdown-menu" role="presentation">
                     <a class="btn btn-default" ng-click="doAction('remove',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
                     <a class="btn btn-default" ng-click="doAction('removedata',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_DATA' | translate}}</a>
                     <a class="btn btn-default" ng-click="doAction('removetorrent',item)" ><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE_AND' | translate}} {{'ML_DELETE_TORRENT' | translate}}</a>
