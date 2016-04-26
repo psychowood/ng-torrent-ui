@@ -303,14 +303,20 @@ angular.module('ngTorrentUiApp')
         };
 
         $scope.searchSimilar = function(torrent) {
+            var filter = '';
+            var fuzzy = false;
             var starredName = $scope.starredNamesStrings[torrent.decodedName];
-            if (starredName) {
-                $scope.filters.name = starredName;
-                $scope.filters.fuzzy = false;
-            } else {
-                $scope.filters.name = torrent.cleanedName;
-                $scope.filters.fuzzy = true;
+            
+            if (starredName && $scope.filters.name !== starredName) {
+                filter = starredName;
+                fuzzy = false;
+            } else if (!starredName && $scope.filters.name !== torrent.cleanedName){ 
+                filter = torrent.cleanedName;
+                fuzzy = true;
             }
+            
+            $scope.filters.name = filter;
+            $scope.filters.fuzzy = fuzzy;
             $scope.doFilter();
         };
         $scope.showActions = function(torrent) {
