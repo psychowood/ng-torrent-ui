@@ -51,7 +51,7 @@
         </div>
     <div class="form-group">
       <div class="input-group input-group-sm action-priority">
-          <select ng-model="priorityToSet" class="form-control squared" ng-disabled="hasSelection === false" ng-change="setPriority()">
+          <select ng-model="priorityToSet" class="form-control squared" ng-disabled="hasSelection === false" ng-change="setPriority(priorityToSet)">
             <option value="" disabled selected>{{'FI_COL_PRIO' | translate}} </option>
             <option value="0">{{'MF_DONT' | translate}}</option>
             <option value="1">{{'MF_LOW' | translate}}</option>

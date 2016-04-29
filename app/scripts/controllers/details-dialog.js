@@ -52,7 +52,7 @@ angular.module('ngTorrentUiApp')
 
         };
 
-        $scope.setPriority = function() {
+        $scope.setPriority = function(priorityToSet) {
             var i;
             var fileIndexes = [];
             for (i = 0; i < torrent.files.length; i++) {
@@ -62,13 +62,12 @@ angular.module('ngTorrentUiApp')
             }
             torrentServerService.filePriority().set({
                 hash: torrent.hash,
-                priority: $scope.priorityToSet,
+                priority: priorityToSet,
                 f: fileIndexes
             }).$promise.then(function() {
                 toastr.info('Priority changed succesfully', null, {
                     timeOut: 1000
                 });
-                $scope.priorityToSet = '';
             });
         };
         
