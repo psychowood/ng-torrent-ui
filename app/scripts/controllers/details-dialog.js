@@ -8,7 +8,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('DetailsDialogCtrl', function($scope, torrent, torrentServerService, toastr, $translate, $window) {
+    .controller('DetailsDialogCtrl', ['$scope', 'torrent', 'torrentServerService', 'toastr', '$translate', '$window', function($scope, torrent, torrentServerService, toastr, $translate, $window) {
         $scope.hasSelection = false;
 
         $scope.filters = {
@@ -33,20 +33,23 @@ angular.module('ngTorrentUiApp')
             }
             $scope.hasSelection = false;
         };
+        $scope.selectCheckbox = false;
+        $scope.forceSelection = function(sel,filteredFiles) {
+            var i;
+            $scope.hasSelection = sel;
+            filteredFiles = filteredFiles || $scope.torrent.files;
+            for (i = 0; i < filteredFiles.length; i++) {
+                filteredFiles[i].selected = sel;
+            }
+        };
+        
         $scope.toggleSelection = function(file) {
             $scope.hasSelection = true;
             var i;
-            if (file) {
-                for (i = 0; i < torrent.files.length; i++) {
-                    torrent.files[i].selected = (torrent.files[i] === file);
-                }
-            } else {
-                var sel = ($scope.selectCheckbox === true);
-                $scope.hasSelection = sel;
-                for (i = 0; i < $scope.filteredFiles.length; i++) {
-                    $scope.filteredFiles[i].selected = sel;
-                }
+            for (i = 0; i < torrent.files.length; i++) {
+                torrent.files[i].selected = (torrent.files[i] === file);
             }
+
         };
 
         $scope.setPriority = function() {
@@ -101,4 +104,4 @@ angular.module('ngTorrentUiApp')
             };
         });
         
-    });
+    }]);

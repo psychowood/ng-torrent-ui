@@ -65,7 +65,7 @@
   <div class="torrent">
   <div class="input-group input-group-sm torrent-header details-files-header">
     <span class="input-group-addon">
-      <input type="checkbox" ng-model="selectCheckbox" ng-change="toggleSelection()" >
+      <input type="checkbox" ng-model="selectCheckbox" ng-change="forceSelection(selectCheckbox,(torrent.files | filter:{name:filters.name} | orderBy:sorter.field:sorter.descending))" >
     </span>
     <span class="form-control name sorter text-center" ng-click="sorter.field = 'name'; sorter.descending=!sorter.descending">{{'FI_COL_NAME' | translate}}
       <span class="glyphicon" ng-show="sorter.field === 'name'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.descending,'glyphicon-sort-by-attributes':!sorter.descending}"></span>
@@ -87,7 +87,7 @@
 <p></p>
 
 <div vs-repeat="30" vs-autoresize class="repeater-container" ng-style="{ height: listHeight + 'px'}">
-  <div ng-repeat="file in ($parent.filteredFiles = (torrent.files | filter:{name:filters.name} | orderBy:sorter.field:sorter.descending))" class="torrent" data-toggle="context" >
+  <div ng-repeat="file in (torrent.files | filter:{name:filters.name} | orderBy:sorter.field:sorter.descending)" class="torrent" data-toggle="context" >
     <div class="input-group input-group-sm torrent-row selectable" ng-class="{'selected':file.selected}" ng-click="toggleSelection(file)">
       <span class="input-group-addon">
         <input type="checkbox" ng-model="file.selected" ng-click="checkSelected();$event.stopPropagation()" >
