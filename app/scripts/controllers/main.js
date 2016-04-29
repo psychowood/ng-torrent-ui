@@ -283,10 +283,10 @@ angular.module('ngTorrentUiApp')
 
         $scope.showStar = function(name, currentStarred) {
             var modalInstance = $uibModal.open({
-                controller: function($scope) {
+                controller: ['$scope', function($scope) {
                     $scope.starredItems = currentStarred;
                     $scope.newStarred = name;
-                },
+                }],
                 templateUrl: 'starredModal.html',
                 backdrop: true
             });
@@ -322,7 +322,7 @@ angular.module('ngTorrentUiApp')
         $scope.showActions = function(torrent) {
             var $parentScope = $scope;
             var modalInstance = $uibModal.open({
-                controller: function($scope) {
+                controller: ['$scope', function($scope) {
                     $scope.item = torrent;
                     $scope.starredNamesStrings = $parentScope.starredNamesStrings;
                     $scope.doAction = function(action,torrent) {
@@ -335,7 +335,7 @@ angular.module('ngTorrentUiApp')
                       $scope.$close();  
                     };
                     
-                },
+                }],
                 windowClass: 'actionsModal',
                 backdropClass: 'gray-background',
                 templateUrl: 'actionsModal.html',
