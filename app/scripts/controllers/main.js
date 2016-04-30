@@ -9,7 +9,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, Torrent, toastr, $cookies) {
+    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, toastr, $cookies) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -614,7 +614,7 @@ angular.module('ngTorrentUiApp')
 
                     for (i = 0; i < ts.torrents.length; i++) {
                         decodedName = cleanName(ts.torrents[i][2]);
-                        torrent = Torrent.build(ts.torrents[i], null /* ptn(ts.torrents[i][2]) */ , decodedName, isStarred(decodedName));
+                        torrent = torrentServerService.build(ts.torrents[i], null /* ptn(ts.torrents[i][2]) */ , decodedName, isStarred(decodedName));
                         if (torrentsMap[torrent.hash]) {
                             torrent.selected = torrentsMap[torrent.hash].selected;
                             torrent.files = torrentsMap[torrent.hash].files;
@@ -629,7 +629,7 @@ angular.module('ngTorrentUiApp')
                     $log.debug('"torrentp" key with ' + ts.torrentp.length + ' elements');
                     for (i = 0; i < ts.torrentp.length; i++) {
                         decodedName = cleanName(ts.torrentp[i][2]);
-                        torrent = Torrent.build(ts.torrentp[i], null /* ptn(ts.torrentp[i][2]) */ , decodedName, isStarred(decodedName));
+                        torrent = torrentServerService.build(ts.torrentp[i], null /* ptn(ts.torrentp[i][2]) */ , decodedName, isStarred(decodedName));
                         if (torrentsMap[torrent.hash]) {
                             torrent.selected = torrentsMap[torrent.hash].selected;
                             torrent.files = torrentsMap[torrent.hash].files;
