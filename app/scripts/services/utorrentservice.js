@@ -84,6 +84,25 @@ angular.module('ngTorrentUiApp')
                 });
             },
             torrents: function() {
+                var ret = $q.defer();
+                var torrents = {
+                    labels: [],
+                    all:[],
+                    changed: [],
+                    deleted: []
+                };
+                var utorrentRes = this._torrents().list();
+                utorrentRes.$promise.then(function() {
+                    torrents.labels = utorrentRes.label;
+                    torrents.all = utorrentRes.torrents;
+                    torrents.changed = utorrentRes.torrentp;
+                    torrents.deleted = utorrentRes.torrentm;
+                    ret.resolve(torrents);
+                });
+                
+                return ret.promise;  
+            },
+            _torrents: function() {
                 return $resource(data.url + '.' + '?:action:data&token=:token&cid=:cid:opt&t=:t', {
                     token: data.token,
                     cid: data.cid,
