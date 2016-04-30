@@ -8,7 +8,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('SettingsCtrl', function($scope, torrentServerService, $log, $translate, toastr, $timeout, $cookies) {
+    .controller('SettingsCtrl', function($scope, torrentServerService, $log, $translate, toastr, $timeout, $cookies, ntuConst) {
 
         var settings = {
             conf: [],
@@ -16,9 +16,9 @@ angular.module('ngTorrentUiApp')
             map: {}
         };
 
-        var STARRED_ITEMS = 'starredItems';
-        var DECODE_NAMES = 'decodeNames';
-
+        var STARRED_ITEMS = ntuConst.starredItems;
+        var DECODE_NAMES = ntuConst.decodeNames;
+        $scope.ntuConst = ntuConst;
 
         $scope.exportSetting = function(name /* ,value */ ) {
             var webcookie = readWebUiCookie();

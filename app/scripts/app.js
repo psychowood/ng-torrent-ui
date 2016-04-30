@@ -26,7 +26,12 @@ angular
         'pr.longpress',
         'monospaced.qrcode',
         '720kb.socialshare'
-    ]).config(function( $compileProvider ) {   
+    ]).constant('ntuConst', {
+        lastUpdateCheck: 'lastUpdateCheck',
+        language: 'language',
+        decodeNames: 'decodeNames',
+        starredItems: 'starredItems'
+    }).config(function( $compileProvider ) {   
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|magnet):/);   
     }).config(function($routeProvider) {
         $routeProvider
@@ -76,7 +81,7 @@ angular
         };
       })
     */
-    .controller('NavController', function($scope, torrentServerService, $http, $cookies, $log, $translate, translationsLoader, $rootScope) {
+    .controller('NavController', function($scope, torrentServerService, $http, $cookies, $log, $translate, translationsLoader, $rootScope, ntuConst) {
 
         translationsLoader('getoptions').then(function(options) {
             var langId, lang;
@@ -93,7 +98,7 @@ angular
 
             $scope.languages = sortable;
 
-            langId = $cookies.get('language');
+            langId = $cookies.get(ntuConst.language);
             if (langId) {
                 $translate.use(langId);
             } else {
@@ -107,7 +112,7 @@ angular
                 if (lang.id !== $translate.use()) {
                     $translate.use(lang.id);
                     $scope.languageDesc = lang.desc;
-                    $cookies.put('language', lang.id);
+                    $cookies.put(ntuConst.language, lang.id);
                 }
             };
         });
@@ -116,7 +121,7 @@ angular
         $scope.closeAlert = function(index) {
             $scope.alerts.splice(index, 1);
         };
-        var lastUpdateCheck = $cookies.get('lastUpdateCheck');
+        var lastUpdateCheck = $cookies.get(ntuConst.lastUpdateCheck);
         var now = new Date().getTime();
 
         var isNewVersion = function(installed, required) {
@@ -168,7 +173,7 @@ angular
             if ($cookies.get('currentVersion') !== currentVersion) {
                 lastUpdateCheck = undefined;
                 $cookies.remove('updatedVersion');
-                $cookies.remove('lastUpdateCheck');
+                $cookies.remove(ntuConst.lastUpdateCheck);
                 delete $scope.updatedVersion;
                 delete $scope.lastUpdateCheck;
             }
@@ -184,7 +189,7 @@ angular
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 }).then(function(response) {
-                    $cookies.put('lastUpdateCheck', now);
+                    $cookies.put(ntuConst.lastUpdateCheck, now);
                     if (response.data && response.data.length > 0) {
                         var data = response.data[0];
                         var versionAttr = 'tag_name';

@@ -9,7 +9,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, Torrent, toastr, $cookies) {
+    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, Torrent, toastr, $cookies, ntuConst) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -44,8 +44,8 @@ angular.module('ngTorrentUiApp')
         $scope.newtorrentfiles = [];
         $scope.uploadDropSupported = true;
 
-        if ($cookies.get('starredItems')) {
-            $scope.starredItems = angular.fromJson($cookies.get('starredItems'));
+        if ($cookies.get(ntuConst.starredItems)) {
+            $scope.starredItems = angular.fromJson($cookies.get(ntuConst.starredItems));
         }
 
         var labelColors = ['#B0C4DE', '#B0E0E6', '#87CEEB', '#87CEFA', '#00BFFF', '#1E90FF', '#6495ED', '#4682B4', '#4169E1', '#0000FF', '#0000CD', '#6A5ACD', '#7B68EE', '#00008B', '#000080', '#191970'];
@@ -257,8 +257,7 @@ angular.module('ngTorrentUiApp')
 
             modalInstance.result.then(function(starredItems) {
                 var obj = angular.toJson(starredItems);
-                $cookies.put('starredItems', obj);
-                //torrentServerService.setSetting('webui.ngtorrentui.favorites',obj);
+                $cookies.put(ntuConst.starredItems, obj);
                 $scope.starredItems = starredItems;
             }, function() {
 
@@ -514,8 +513,8 @@ angular.module('ngTorrentUiApp')
             $scope.doFilter();
         };
 
-        if ($cookies.get('decodeNames')) {
-            $scope.decodeNames = $cookies.get('decodeNames') === 'true';
+        if ($cookies.get(ntuConst.decodeNames)) {
+            $scope.decodeNames = $cookies.get(ntuConst.decodeNames) === 'true';
         } else {
             $scope.decodeNames = true;
         }
@@ -571,7 +570,6 @@ angular.module('ngTorrentUiApp')
                     changed = true;
                     $log.debug('"torrents.all" key with ' + torrents.all.length + ' elements');
                     var newTorrentsMap = {};
-
 
                     for (i = 0; i < torrents.all.length; i++) {
                         decodedName = cleanName(torrents.all[i][2]);
