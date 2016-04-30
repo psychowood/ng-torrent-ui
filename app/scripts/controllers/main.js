@@ -26,42 +26,6 @@ angular.module('ngTorrentUiApp')
         // Initiate the resize function default values
         $scope.setListHeight();
 
-        /*
- 	{
-		"build": BUILD NUMBER (integer),
-		"label": [
-		[
-		LABEL (string),
-		TORRENTS IN LABEL (integer)		],
-		...
-		],
-		"torrents": [
-		[
-		HASH (string),
-		STATUS* (integer),
-		NAME (string),
-		SIZE (integer in bytes),
-		PERCENT PROGRESS (integer in per mils),
-		DOWNLOADED (integer in bytes),
-		UPLOADED (integer in bytes),
-		RATIO (integer in per mils),
-		UPLOAD SPEED (integer in bytes per second),
-		DOWNLOAD SPEED (integer in bytes per second),
-		ETA (integer in seconds),
-		LABEL (string),
-		PEERS CONNECTED (integer),
-		PEERS IN SWARM (integer),
-		SEEDS CONNECTED (integer),
-		SEEDS IN SWARM (integer),
-		AVAILABILITY (integer in 1/65535ths),
-		TORRENT QUEUE ORDER (integer),
-		REMAINING (integer in bytes)		],
-		...
-		],
-		"torrentc": CACHE ID** (string integer)
-	}
-	*/
-
         $scope.equals = angular.equals;
 
         $scope.labels = [];
@@ -589,10 +553,7 @@ angular.module('ngTorrentUiApp')
             $scope.refreshing = true;
             $timeout.cancel(reloadTimeout);
             $log.info('reload torrents');
-            //var reloadingMsg = toastr.info('Refreshing torrents...',null,{timeOut: 0});
             var ts = torrentServerService.torrents().list();
-
-            //var ptn = $window.ptn;
 
             ts.$promise.then(function() {
                 var changed = false;
