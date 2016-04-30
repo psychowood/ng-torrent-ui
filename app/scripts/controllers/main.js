@@ -9,7 +9,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, toastr, $cookies) {
+    .controller('TorrentsCtrl', function($scope, $window, $uibModal, $filter, $timeout, $log, torrentServerService, Torrent, toastr, $cookies) {
 
         $scope.headerHeight = 350;
         // On window resize => resize the app
@@ -71,7 +71,7 @@ angular.module('ngTorrentUiApp')
         $scope.filteredtorrents = [];
         $scope.selectedtorrents = [];
 
-        var torrentsMap = torrentServerService.cacheMap;
+        var torrentsMap = Torrent.cache;
         var reloadTimeout;
         $scope.autoreloadTimeout = 5000;
         $scope.autoreloadEnabled = ($scope.autoreloadTimeout > 0);
@@ -652,7 +652,7 @@ angular.module('ngTorrentUiApp')
                         $scope.torrents.push(value);
                     });
                     $scope.doFilter();
-                    torrentServerService.cacheMap = torrentsMap;
+                    Torrent.cache = torrentsMap;
                     $scope.selectedtorrents = getSelectedAndUpdateGlobals($scope.torrents);
                 } else {
                     $log.debug('no changes');

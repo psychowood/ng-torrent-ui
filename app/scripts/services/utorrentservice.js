@@ -29,7 +29,6 @@ angular.module('ngTorrentUiApp')
         };
 
         var torrentServerService = {
-            cacheMap: {},
             conf: data,
             init: function() {
                 if (data.token) {

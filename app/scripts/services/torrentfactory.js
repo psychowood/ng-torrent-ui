@@ -310,7 +310,9 @@ angular.module('ngTorrentUiApp')
             }
         };
 
-        /**
+        Torrent.cache = {};
+
+         /**
          * Return the constructor function
          */
         return Torrent;
