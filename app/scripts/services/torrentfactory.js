@@ -8,7 +8,26 @@
  * Factory in the ngTorrentUiApp.
  */
 angular.module('ngTorrentUiApp')
-    .factory('Torrent', function($window, $log) {
+    .factory('Torrent', function($window, $log, ntuConst, $cookies) {
+
+        var decodeNames = true;
+        if ($cookies.get(ntuConst.decodeNames)) {
+            decodeNames = $cookies.get(ntuConst.decodeNames) === 'true';
+        } else {
+            decodeNames = true;
+        }
+
+        var decodeName = function(name) {
+            if (decodeNames) {
+                return name.replace(/[\._]/g, ' ').replace(/(\[[^\]]*\])(.*)$/, '$2 $1').trim();
+            } else {
+                return name;
+            }
+        };
+        
+        var cleanName = function(name) {
+            return name.toLowerCase().replace(/s?([0-9]{1,2})[x|e|-]([0-9]{1,2})/,'').replace(/(bdrip|brrip|cam|dttrip|dvdrip|dvdscr|dvd|fs|hdtv|hdtvrip|hq|pdtv|satrip|dvbrip|r5|r6|ts|tc|tvrip|vhsrip|vhsscr|ws|aac|ac3|dd|dsp|dts|lc|ld|md|mp3|xvid|720p|1080p|fs|internal|limited|proper|stv|subbed|tma|tnz|silent|tls|gbm|fsh|rev|trl|upz|unrated|webrip|ws|mkv|avi|mov|mp4|mp3|iso|x264|x265|h264|h265)/g,'').trim();
+        };
 
         /**
         hash (string),
@@ -62,9 +81,7 @@ angular.module('ngTorrentUiApp')
             dateCompleted,
             appUpdateUrl,
             savePath,
-            additionalData,
-            decodedName,
-            isStarred) {
+            additionalData) {
 
             this.selected = false;
 
@@ -96,14 +113,11 @@ angular.module('ngTorrentUiApp')
             this.appUpdateUrl = appUpdateUrl;
             this.savePath = savePath;
             this.additionalData = additionalData;
-            if (decodedName) {
-                this.decodedName = decodedName;
-            } else {
-                this.decodedName = this.name;
-            }
+            
+            this.decodedName = decodeName(this.name);
             this.getStatuses();
-            this.isStarred = isStarred === true;
-            this.cleanedName = this.decodedName.toLowerCase().replace(/s?([0-9]{1,2})[x|e|-]([0-9]{1,2})/,'').replace(/(bdrip|brrip|cam|dttrip|dvdrip|dvdscr|dvd|fs|hdtv|hdtvrip|hq|pdtv|satrip|dvbrip|r5|r6|ts|tc|tvrip|vhsrip|vhsscr|ws|aac|ac3|dd|dsp|dts|lc|ld|md|mp3|xvid|720p|1080p|fs|internal|limited|proper|stv|subbed|tma|tnz|silent|tls|gbm|fsh|rev|trl|upz|unrated|webrip|ws|mkv|avi|mov|mp4|mp3|iso|x264|x265|h264|h265)/g,'').trim();
+            this.isStarred = false;
+            this.cleanedName = cleanName(this.decodedName);
         }
 
 
@@ -215,10 +229,6 @@ angular.module('ngTorrentUiApp')
 
         Torrent.prototype.getPercentStr = function() {
             return (this.percent / 10).toFixed(0) + '%';
-        };
-
-        Torrent.prototype.getData = function() {
-            return this.additionalData;
         };
 
         var formatBytesCache = {};

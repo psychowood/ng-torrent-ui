@@ -513,20 +513,6 @@ angular.module('ngTorrentUiApp')
             $scope.doFilter();
         };
 
-        if ($cookies.get(ntuConst.decodeNames)) {
-            $scope.decodeNames = $cookies.get(ntuConst.decodeNames) === 'true';
-        } else {
-            $scope.decodeNames = true;
-        }
-
-        var cleanName = function(name) {
-            if ($scope.decodeNames) {
-                return name.replace(/[\._]/g, ' ').replace(/(\[[^\]]*\])(.*)$/, '$2 $1').trim();
-            } else {
-                return name;
-            }
-        };
-
         $scope.starredNamesStrings = {};
         var starredNamesStrings = $scope.starredNamesStrings;
          
@@ -564,16 +550,13 @@ angular.module('ngTorrentUiApp')
                     torrentsMap = {};
                 }
 
-                var decodedName = null;
-
                 if (torrents.all && torrents.all.length > 0) {
                     changed = true;
                     $log.debug('"torrents.all" key with ' + torrents.all.length + ' elements');
                     var newTorrentsMap = {};
 
                     for (i = 0; i < torrents.all.length; i++) {
-                        decodedName = cleanName(torrents.all[i][2]);
-                        torrent = torrentServerService.build(torrents.all[i], null /* ptn(torrents.all[i][2]) */ , decodedName, isStarred(decodedName));
+                        torrent = torrentServerService.build(torrents.all[i]);
                         if (torrentsMap[torrent.hash]) {
                             torrent.selected = torrentsMap[torrent.hash].selected;
                             torrent.files = torrentsMap[torrent.hash].files;
@@ -587,8 +570,7 @@ angular.module('ngTorrentUiApp')
                     changed = true;
                     $log.debug('"torrentp" key with ' + torrents.changed.length + ' elements');
                     for (i = 0; i < torrents.changed.length; i++) {
-                        decodedName = cleanName(torrents.changed[i][2]);
-                        torrent = torrentServerService.build(torrents.changed[i], null /* ptn(torrents.changed[i][2]) */ , decodedName, isStarred(decodedName));
+                        torrent = torrentServerService.build(torrents.changed[i]);
                         if (torrentsMap[torrent.hash]) {
                             torrent.selected = torrentsMap[torrent.hash].selected;
                             torrent.files = torrentsMap[torrent.hash].files;
@@ -607,8 +589,9 @@ angular.module('ngTorrentUiApp')
 
                 if (changed) {
                     $scope.torrents = [];
-                    angular.forEach(torrentsMap, function(value /* , key */ ) {
-                        $scope.torrents.push(value);
+                    angular.forEach(torrentsMap, function(torrent /* , key */ ) {
+                        torrent.isStarred = isStarred(torrent.decodedName);
+                        $scope.torrents.push(torrent);
                     });
                     $scope.doFilter();
                     Torrent.cache = torrentsMap;

@@ -315,7 +315,7 @@ angular.module('ngTorrentUiApp')
                 return buildVersionStr();
 
             },
-            build: function(array, additionalData, decodedName, isStarred) {
+            build: function(array, additionalData) {
                 var torrent = new Torrent(
                     array[0],
                     array[1],
@@ -344,9 +344,7 @@ angular.module('ngTorrentUiApp')
                     array[24],
                     array[25],
                     array[26],
-                    additionalData,
-                    decodedName,
-                    isStarred
+                    additionalData
                 );
                 //torrent._base = array;
                 return torrent;
