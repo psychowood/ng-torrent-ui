@@ -1,5 +1,5 @@
-https://github.com/psychowood/ng-torrent-ui/releases/download/v0.6.6/webui.zip: 9 downloads
-https://github.com/psychowood/ng-torrent-ui/releases/download/v0.6.5/webui.zip: 30 downloads
+https://github.com/psychowood/ng-torrent-ui/releases/download/v0.6.6/webui.zip: 47 downloads
+https://github.com/psychowood/ng-torrent-ui/releases/download/v0.6.5/webui.zip: 31 downloads
 https://github.com/psychowood/ng-torrent-ui/releases/download/v0.6.0/webui.zip: 34 downloads
 https://github.com/psychowood/ng-torrent-ui/releases/download/v0.5.6/webui.zip: 96 downloads
 https://github.com/psychowood/ng-torrent-ui/releases/download/v0.5.5/webui.zip: 4 downloads
