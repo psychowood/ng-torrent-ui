@@ -9,6 +9,9 @@ It is mainly focused on remote controlling the download list instead of trying t
 
 If you want to discuss or get support, [here's](https://plus.google.com/communities/102445612191587383590) the Google Community.
 
+What if I'm not using uTorrent?
+===============================
+
 I'm looking for new servers to support besides uTorrent: if you want to give your opinion, you can use [this poll](https://plus.google.com/+GiacomoGiustozzi/posts/2udpwANgmnx).
 
 Installation
@@ -29,6 +32,7 @@ There's a bug, you'll see the "offline" version number in the header instead of 
 
 Demo
 ====
+
 If you want to see it in action, you can test it on the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/).
 It's just a demo with a randomly generated download queue, without a real backend. You can play with the frontend, just don't expect the downloads to change status or to complete :)
 
