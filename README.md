@@ -3,11 +3,13 @@
 =============
 
 ng-torrent-ui is born as a replacement for the uTorrent WebUI, focusing on download management and responsiveness instead of covering each and every functionality.
-The use of virtual scrolling removes the need for paging even on a huge list (tested with ~7k torrents), also on a mobile device.
+The use of virtual scrolling removes the need for paging even on a huge list (tested with ~15k torrents and growing... I'm too lazy to clean up the queue), also on a mobile device.
 
 It is mainly focused on remote controlling the download list instead of trying to replicate each and every feature of the desktop application.
 
 If you want to discuss or get support, [here's](https://plus.google.com/communities/102445612191587383590) the Google Community.
+
+I'm looking for new servers to support besides uTorrent: if you want to give your opinion, you can use [this poll](https://plus.google.com/+GiacomoGiustozzi/posts/2udpwANgmnx).
 
 Installation
 ============
