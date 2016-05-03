@@ -107,7 +107,7 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 ## Release History
 
 ### v0.6.7
-- [x] Minor (Major?) compatibility issues with non-Chrome browsers.
+- Fixe: minor (major?) compatibility issues with non-Chrome browsers.
 
 ### v0.6.6
 - [x] Added: a second tap on lens icon (direct search) toggles between filter active/not active
