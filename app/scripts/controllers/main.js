@@ -618,6 +618,11 @@ angular.module('ngTorrentUiApp')
 
                 $scope.refreshing = false;
 
+            }, function(err) {
+                $scope.refreshing = false;
+                toastr.error('Cannot load torrents', null, {
+                    timeOut: 30000
+                });
             });
         };
 

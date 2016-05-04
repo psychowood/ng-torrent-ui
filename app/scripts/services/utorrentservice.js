@@ -91,14 +91,18 @@ angular.module('ngTorrentUiApp')
                     changed: [],
                     deleted: []
                 };
-                var utorrentRes = this._torrents().list();
-                utorrentRes.$promise.then(function() {
-                    torrents.labels = utorrentRes.label;
-                    torrents.all = utorrentRes.torrents;
-                    torrents.changed = utorrentRes.torrentp;
-                    torrents.deleted = utorrentRes.torrentm;
-                    ret.resolve(torrents);
-                });
+                var utorrentRes = this._torrents().list(
+                    function() {
+                        torrents.labels = utorrentRes.label;
+                        torrents.all = utorrentRes.torrents;
+                        torrents.changed = utorrentRes.torrentp;
+                        torrents.deleted = utorrentRes.torrentm;
+                        ret.resolve(torrents);
+                    },
+                    function(err) {
+                        ret.reject(err);
+                    }
+                );
                 
                 return ret.promise;  
             },
