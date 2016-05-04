@@ -92,7 +92,7 @@ angular.module('ngTorrentUiApp')
             this.percent = percent;
             this.downloaded = downloaded;
             this.uploaded = uploaded;
-            this.ratio = ratio;
+            this.ratio = (ratio/1000).toFixed(2);
             this.uploadSpeed = uploadSpeed;
             this.downloadSpeed = downloadSpeed;
             this.eta = eta;

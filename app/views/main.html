@@ -244,7 +244,11 @@
       </span>
     </span>
     <span class="input-group-addon selectable sorter text-center peers hidden-sm hidden-xs" >
-      <span ng-click="sortBy('availability')">{{'OV_COL_AVAIL' | translateMultiLabel:1}}
+      <span ng-click="sortBy('ratio')">{{'OV_COL_SHARED' | translate}}
+        <span class="glyphicon" ng-show="sorter.field === 'ratio'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
+      </span>
+      /
+      <span ng-click="sortBy('availability')">{{'OV_COL_AVAIL' | translateMultiLabel:0}}
         <span class="glyphicon" ng-show="sorter.field === 'availability'" ng-class="{'glyphicon-sort-by-attributes-alt':sorter.ascending,'glyphicon-sort-by-attributes':!sorter.ascending}"></span>
       </span>
       <br/>

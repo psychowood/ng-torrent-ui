@@ -252,13 +252,8 @@ select[disabled] {
 }
 
 .torrent .peers {
-  padding-left: 2px;
-  padding-right: 2px;
+  padding: 2px;
   width: 100px;
-}
-
-.torrent .peers .availability {
-
 }
 
 .torrent .queue {

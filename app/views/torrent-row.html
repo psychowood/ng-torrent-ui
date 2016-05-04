@@ -37,8 +37,10 @@
       <span class="byte-value">{{item.getDownSpeedStrArr()[0]}}</span> <span class="byte-uom">{{item.getDownSpeedStrArr()[1]}}</span>
     </span>
     <span class="input-group-addon selectable peers hidden-sm hidden-xs">
+      <span class="availability">{{item.ratio}}%</span>
+      /
       <span class="availability">{{item.availability}}</span>
-      <span class="byte-uom">{{item.seedsInSwarm}} - {{item.peersInSwarm}}</span>
+      <div class="byte-uom">{{item.seedsInSwarm}} - {{item.peersInSwarm}}</div>
     </span>
     <span class="input-group-addon selectable dateAdded hidden-sm hidden-xs feature-addedDate" ng-if="features.torrentAddedDate === true">
       <span class="byte-value">{{item.dateAdded | date:'dd/MM/yyyy hh:mm'}}</span>

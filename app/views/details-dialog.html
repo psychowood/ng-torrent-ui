@@ -18,7 +18,7 @@
   <div><b>{{'PRS_COL_CLIENT' | translate}}:</b>
     {{'GN_TP_03' | translate}} {{torrent.seedsConnected}} <span ng-if="torrent.seedsInSwarm > 0"> / {{torrent.seedsInSwarm}}</span>,
     {{'GN_TP_07' | translate}} {{torrent.peersConnected}} <span ng-if="torrent.seedsInSwarm > 0"> / {{torrent.peersInSwarm}}</span>,
-    {{'GN_TP_08' | translate}} {{torrent.ratio/1000}}%
+    {{'GN_TP_08' | translate}} {{torrent.ratio}}%
   </div>
   <div><b>{{'GN_TRANSFER' | translate}}:</b>
     {{'GN_TP_02' | translate}} {{torrent.formatBytes(torrent.uploaded)}} ({{torrent.getUpSpeedStrArr()[0]}}{{torrent.getUpSpeedStrArr()[1]}}),
