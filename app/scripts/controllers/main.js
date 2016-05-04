@@ -618,7 +618,7 @@ angular.module('ngTorrentUiApp')
 
                 $scope.refreshing = false;
 
-            }, function(err) {
+            }, function() {
                 $scope.refreshing = false;
                 toastr.error('Cannot load torrents', null, {
                     timeOut: 30000
