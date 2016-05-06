@@ -280,6 +280,8 @@ The main page includes a Google Analytics tag. It is just a counter for statisti
 This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :)
 You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84LH348H27CN6) or [usd](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z88PRASGESGQ).
 
+Thanks to the ones that contributed! :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer:
+
 Screenshots
 ===========
 
