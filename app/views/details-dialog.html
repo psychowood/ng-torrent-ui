@@ -40,6 +40,7 @@
   <uib-tabset>
     <uib-tab heading="{{'OV_TABS' | translateMultiLabel:4}}">
     <p></p>
+    <!-- div id="jwPlayer"></div -->
       <form role="form" ng-submit="doFilter()" class="form-inline actions-form action-toolbar">
         <div class="form-group">
           <div class="input-group input-group-sm filter-name">
@@ -94,7 +95,10 @@
       </span>
       <div class="form-control selectable name" >{{ file.name }}
       </div>
-      <span class="input-group-addon status" title="" ng-if="file.url">
+      <!-- span class="input-group-addon" title="{{'MF_GETFILE' | translate}}" ng-if="file.url">
+          <button class="btn btn-default btn-xs" ng-click="preview(file)"><span class="glyphicon glyphicon-eye-open"></span></button>
+      </span -->
+      <span class="input-group-addon" title="{{'MF_GETFILE' | translate}}" ng-if="file.url">
           <a class="btn btn-default btn-xs" href="{{file.url}}" target="_BLANK"><span class="glyphicon glyphicon-download-alt"></span></a>
       </span>
       <div class="input-group-addon size">

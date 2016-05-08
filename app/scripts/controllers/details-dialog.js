@@ -71,6 +71,16 @@ angular.module('ngTorrentUiApp')
             });
         };
         
+        /* Not ready yet
+        $scope.preview = function(file) {
+            var playerInstance = $window.jwplayer('jwPlayer');
+            playerInstance.setup({
+                file: file.url + '&_e=' + file.name,
+                type: 'mp4'
+            });
+        };
+        */
+        
         $translate('SHARE_MAGNET_PAGE').then(function (translation) {
             $scope.socialshareUrl = translation + torrent.hash;
         });
