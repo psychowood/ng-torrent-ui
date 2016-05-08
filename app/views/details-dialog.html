@@ -94,6 +94,9 @@
       </span>
       <div class="form-control selectable name" >{{ file.name }}
       </div>
+      <span class="input-group-addon status" title="" ng-if="file.url">
+          <a class="btn btn-default btn-xs" href="{{file.url}}" target="_BLANK"><span class="glyphicon glyphicon-download-alt"></span></a>
+      </span>
       <div class="input-group-addon size">
         <span class="byte-value">{{ torrent.formatBytesStrArr(file.size)[0] }}</span> <span class="byte-uom">{{ torrent.formatBytesStrArr(file.size)[1] }}</span><div class="download-progress" ng-style="{'width':file.percent+'%'}" ng-class="{'btn-warning':(file.percent < 25), 'btn-info':(file.percent < 99), 'btn-success':(file.percent > 98)}"></div>
       </div>
