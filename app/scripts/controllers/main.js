@@ -528,10 +528,6 @@ angular.module('ngTorrentUiApp')
             }
         };
 
-        $scope.filterBy = function( /* field, query */ ) {
-            $scope.doFilter();
-        };
-
         $scope.starredNamesStrings = {};
         var starredNamesStrings = $scope.starredNamesStrings;
          
