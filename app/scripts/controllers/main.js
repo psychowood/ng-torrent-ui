@@ -48,11 +48,11 @@ angular.module('ngTorrentUiApp')
             var obj = angular.toJson(value);
             $cookies.put(cookieName, obj);
             return value;
-        }
+        };
         
         var loadCookie = function(cookieName) {
             return angular.fromJson($cookies.get(cookieName));
-        }
+        };
 
         if ($cookies.get(ntuConst.starredItems)) {
             $scope.starredItems = loadCookie(ntuConst.starredItems);

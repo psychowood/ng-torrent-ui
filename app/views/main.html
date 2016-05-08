@@ -36,7 +36,6 @@
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-autoreload">
         <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
-
         <div class="btn-group btn-group-sm uib-dropdown" title="{{'AUTORELOAD' | translate}}" uib-dropdown>
           <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle ng-disabled="autoreloadEnabled === false">
             {{autoreloadTimeout/1000}} sec <span class="caret"></span>
