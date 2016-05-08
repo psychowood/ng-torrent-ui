@@ -44,10 +44,20 @@ angular.module('ngTorrentUiApp')
         $scope.newtorrentfiles = [];
         $scope.uploadDropSupported = true;
 
-        if ($cookies.get(ntuConst.starredItems)) {
-            $scope.starredItems = angular.fromJson($cookies.get(ntuConst.starredItems));
+        var saveCookie = function(cookieName,value) {
+            var obj = angular.toJson(value);
+            $cookies.put(cookieName, obj);
+            return value;
+        }
+        
+        var loadCookie = function(cookieName) {
+            return angular.fromJson($cookies.get(cookieName));
         }
 
+        if ($cookies.get(ntuConst.starredItems)) {
+            $scope.starredItems = loadCookie(ntuConst.starredItems);
+        }
+        
         var labelColors = ['#B0C4DE', '#B0E0E6', '#87CEEB', '#87CEFA', '#00BFFF', '#1E90FF', '#6495ED', '#4682B4', '#4169E1', '#0000FF', '#0000CD', '#6A5ACD', '#7B68EE', '#00008B', '#000080', '#191970'];
         var updateLabelColorsMap = function(labels) {
             if (labels) {
