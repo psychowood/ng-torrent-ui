@@ -266,8 +266,7 @@ angular.module('ngTorrentUiApp')
             });
 
             modalInstance.result.then(function(starredItems) {
-                var obj = angular.toJson(starredItems);
-                $cookies.put(ntuConst.starredItems, obj);
+                saveCookie(ntuConst.starredItems, starredItems);
                 $scope.starredItems = starredItems;
             }, function() {
 
@@ -327,13 +326,21 @@ angular.module('ngTorrentUiApp')
             fuzzy: false
         };
 
-        $scope.filters = angular.copy($scope.emptyFilters);
+        if ($cookies.get(ntuConst.lastFilters)) {
+            $scope.filters = loadCookie(ntuConst.lastFilters);
+        } else {
+            $scope.filters = angular.copy($scope.emptyFilters);
+        }
 
-        $scope.sorter = {
-            field: 'torrentQueueOrder',
-            secondField: 'name',
-            ascending: true
-        };
+        if ($cookies.get(ntuConst.lastSorter)) {
+            $scope.sorter = loadCookie(ntuConst.lastSorter);
+        } else {
+            $scope.sorter = {
+                field: 'torrentQueueOrder',
+                secondField: 'name',
+                ascending: true
+            };
+        }
 
         $scope.doSort = function() {
             $log.info('sorting');
@@ -388,6 +395,7 @@ angular.module('ngTorrentUiApp')
                 }
             };
             $scope.filteredtorrents = $scope.filteredtorrents.sort(sortFunc);
+            saveCookie(ntuConst.lastSorter,$scope.sorter);
         };
 
         $scope.sortBy = function(field) {
@@ -508,6 +516,7 @@ angular.module('ngTorrentUiApp')
                         return matches;
                     }
                 );
+                saveCookie(ntuConst.lastFilters,$scope.filters);
                 //Filtering does not preserve order
                 $scope.doSort();
             };

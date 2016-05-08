@@ -30,7 +30,9 @@ angular
         lastUpdateCheck: 'lastUpdateCheck',
         language: 'language',
         decodeNames: 'decodeNames',
-        starredItems: 'starredItems'
+        starredItems: 'starredItems',
+        lastFilters: 'lastFilters',
+        lastSorter: 'lastSorter'
     }).config(function( $compileProvider ) {   
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|magnet):/);   
     }).config(function($routeProvider) {
