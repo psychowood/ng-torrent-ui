@@ -369,7 +369,6 @@ select[disabled] {
   border: none;
   padding: 0;
   max-height: 350px;
-  margin-right: -30px;
   overflow-y: scroll;
   padding: 1px;
   right: 0;
