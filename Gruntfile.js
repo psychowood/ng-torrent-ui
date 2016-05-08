@@ -175,7 +175,15 @@ module.exports = function (grunt) {
         port: torrentPort,
         https: false,
         xforward: false
+      },
+      {
+        context: '/proxy',
+        host: torrentHost,
+        port: torrentPort,
+        https: false,
+        xforward: false
       }
+
       ],
       livereload: {
         options: {
