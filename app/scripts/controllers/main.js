@@ -640,6 +640,11 @@ angular.module('ngTorrentUiApp')
                         }
                     }
                     torrent.files = files;
+                    if (torrentServerService.getFileDownloadUrl) {
+                        for (i = 0; i < torrent.files.length; i++) {
+                            torrent.files[i].url = torrentServerService.getFileDownloadUrl(torrent,torrent.files[i]);
+                        }
+                    }
                 });
             }
         };

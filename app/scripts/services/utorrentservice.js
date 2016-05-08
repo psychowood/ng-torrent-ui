@@ -201,13 +201,15 @@ angular.module('ngTorrentUiApp')
                             var files = [];
                             for (i = 0; i < fileArr.length; i++) {
                                 file = fileArr[i];
-                                files.push({
+                                file = {
                                     hash: i,
                                     name: file[0],
                                     size: file[1],
+                                    sizeDownloaded: file[2],
                                     percent: (file[2] / file[1] * 100).toFixed(2),
                                     priority: file[3]
-                                });
+                                };
+                                files.push(file);
                             }
                             return {
                                 files: files
@@ -224,6 +226,7 @@ angular.module('ngTorrentUiApp')
                             data.build = responseData.build;
                             responseData = responseData.settings;
                             var settings = [];
+                            var settingsMap = {};
                             var i, val;
                             var types = ['int', 'bool', 'string'];
                             for (i = 0; i < responseData.length; i++) {
@@ -234,8 +237,10 @@ angular.module('ngTorrentUiApp')
                                     others: (responseData[i].length > 2) ? responseData[i][3] : undefined
                                 };
                                 settings.push(val);
+                                settingsMap[val.name] = val;
                             }
                             torrentServerService.settings = settings;
+                            torrentServerService.settingsMap = settingsMap;
                             torrentServerService.supports = {};
                             if (parseInt(data.build) > 25406) { //Features supported from uTorrent 3+
                                 torrentServerService.supports.getDownloadDirectories = true;
@@ -246,6 +251,12 @@ angular.module('ngTorrentUiApp')
                         }
                     }
                 });
+            },
+            getFileDownloadUrl: function(torrent,file) {
+                if(torrent.streamId && torrentServerService.settingsMap['webui.uconnect_enable'] && file.size === file.sizeDownloaded) {
+                    return '/proxy?sid=' + torrent.streamId + '&file=' + file.hash + '&disposition=ATTACHMENT&service=DOWNLOAD&qos=0';
+                } 
+                return undefined;
             },
             setLabel: function(hashes, label) {
                 var encodedQuery = '';
