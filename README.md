@@ -112,6 +112,13 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.7.0
+- [x] Added: Persist filters and sort order when refreshing the page
+- [x] Added: Download button (for completed files) from details dialog (requires uTorrent 3). You can also copy (long tap or right click) the link and open it in a video player to stream the file without downloading it (tested with VLC) 
+- [x] Added: Ratio column
+- [x] Fixed: Reversed up/down queue buttons actions
+- [x] Added: Error message on torrent loading (usually when session expired)
+
 ### v0.6.7
 - [x] Fixed: minor (major?) compatibility issues with non-Chrome browsers.
 
@@ -255,7 +262,7 @@ Not in a specific order.
 - [ ] Unit tests
 - [ ] Better error handling
 - [ ] Apply multiple name filters at the same time
-- [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if pause -> resume, and so on)
+- [ ] Add a default action on each torrent in list (eg. If stopped -> start, if started -> pause, if paused -> resume, and so on)
 - [ ] Local storage (saving searches and webui settings)
 - [ ] Scene name parsing, estraction of tags (file format, languages, etc)
 - [ ] Use a fake-torrent in list to save client settings to the server
@@ -285,7 +292,7 @@ Thanks to the ones that contributed! :beer: :beer: :beer: :beer: :beer: :beer: :
 Screenshots
 ===========
 
-The following screenshots are partially outdated: the look'n'feel is quite similar but are not 100% accurate and missing some functionalities.
+The following screenshots are partially outdated: the look'n'feel is quite similar but are not 100% accurate and missing some functionalities. Please look at the [demo page](http://psychowood.github.io/ng-torrent-ui/dist/demo/) for an up-to-date version. 
 
 ### High res view (>1600px)
 ![High res view](screenshots/desktop-xl.png?raw=true "High res view")
