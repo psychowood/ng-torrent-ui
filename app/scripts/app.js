@@ -33,7 +33,12 @@ angular
         starredItems: 'starredItems',
         lastFilters: 'lastFilters',
         lastSorter: 'lastSorter'
-    }).config(function( $compileProvider ) {   
+    }).config(function(toastrConfig) {
+        angular.extend(toastrConfig, {
+            allowHtml: true
+        });
+    })
+    .config(function( $compileProvider ) {   
             $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|mailto|magnet):/);   
     }).config(function($routeProvider) {
         $routeProvider

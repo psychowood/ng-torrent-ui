@@ -150,20 +150,23 @@ angular.module('ngTorrentUiApp')
 
         $scope.addTorrentFilesChanged = function(files, event, rejectedFiles) {
             var rejected = 0;
+            var rejectedFilesNamesStr = '';
             var i;
             if (rejectedFiles && rejectedFiles.length > 0) {
                 for (i = 0; i < rejectedFiles.length; i++) {
                     rejected++;
+                    rejectedFilesNamesStr += '<br/>' + rejectedFiles[i].name;
                 }
             }
             for (i = 0; i < files.length; i++) {
                 if (files[i].name.search(/^.*\.torrent$/i) === -1) {
                     rejected++;
+                    rejectedFilesNamesStr += '<br/>' + files[i].name;
                 }
             }
             if (rejected > 0) {
-                toastr.warning(rejected + ' files ignored (not .torrent files)', null, {
-                    timeOut: 2500
+                toastr.warning(rejected + ' files ignored (not .torrent files): ' + rejectedFilesNamesStr, null, {
+                    timeOut: 5000
                 });
             }
         };
