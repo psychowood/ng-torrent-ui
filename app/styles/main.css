@@ -354,6 +354,10 @@ select[disabled] {
   background-color: #eee;
 }
 
+.sorted {
+  font-weight: bold;
+}
+
 .torrent-header .actions {
   width:33px;
   cursor: default;
