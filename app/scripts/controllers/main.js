@@ -162,6 +162,8 @@ angular.module('ngTorrentUiApp')
                 if (files[i].name.search(/^.*\.torrent$/i) === -1) {
                     rejected++;
                     rejectedFilesNamesStr += '<br/>' + files[i].name;
+                    files.splice(i, 1);
+                    i--;
                 }
             }
             if (rejected > 0) {

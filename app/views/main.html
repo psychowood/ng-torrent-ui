@@ -5,8 +5,8 @@
       <div class="input-group input-group-sm upload-file" >
         <div ng-file-drop ng-model="newtorrentfiles" class="drop-box form-control"
             drag-over-class="{accept:'alert-success', reject:'alert-danger', delay:100}"
-            multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" accept="application/x-bittorrent" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
-            <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" accept="application/x-bittorrent" ng-file-change="addTorrentFilesChanged($files, $event, [])">
+            multiple="true" ng-multiple="true" hideOnDropNotAvailable="false" dropAvailable="uploadDropSupported" ng-file-change="addTorrentFilesChanged($files, $event, $rejectedFiles)">
+            <div ng-file-select ng-model="newtorrentfiles" ng-multiple="true" ng-file-change="addTorrentFilesChanged($files, $event, [])">
                 <span>{{'OV_TB_ADDTORR' | translate}} ({{'CLICKORDRAG' | translate}})</span>
                 <span ng-hide="newtorrentfiles === null || newtorrentfiles.length === 0">({{newtorrentfiles.length}} {{'SELECTED' | translate}})</span>
             </div>
