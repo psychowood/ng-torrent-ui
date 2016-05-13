@@ -479,6 +479,10 @@ fieldset.action-toolbar .middle {
   background-color: #C2E0FF;
 }
 
+.selected.highlighted {
+    background-color: #D9EDF7;
+}
+
 .details-header {
   padding-bottom: 0px;
 }
