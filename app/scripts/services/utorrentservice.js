@@ -252,6 +252,11 @@ angular.module('ngTorrentUiApp')
                     }
                 });
             },
+            removeTorrent: function() {
+                var actions = ['remove','removedata','removetorrent','removedatatorrent'];
+                var defaultRemove = parseInt(torrentServerService.settingsMap['gui.default_del_action'].value);
+                return torrentServerService.actions()[actions[defaultRemove]];
+            },
             getFileDownloadUrl: function(torrent,file) {
                 if(torrent.streamId && torrentServerService.settingsMap['webui.uconnect_enable'] && file.size === file.sizeDownloaded) {
                     return '/proxy?sid=' + torrent.streamId + '&file=' + file.hash + '&disposition=ATTACHMENT&service=DOWNLOAD&qos=0';

@@ -199,8 +199,14 @@ angular.module('ngTorrentUiApp')
                 return;
             }
 
-            var service = torrentServerService.actions()[action];
-
+            var service;
+            
+            if (action === 'removeDefault') {
+                service = torrentServerService.removeTorrent(); 
+            } else {
+                service = torrentServerService.actions()[action];
+            }
+            
             if (service) {
                 var ts = service({
                     hash: hashes
