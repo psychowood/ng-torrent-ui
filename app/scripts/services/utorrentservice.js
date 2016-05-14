@@ -216,7 +216,7 @@ angular.module('ngTorrentUiApp')
                             };
                         }
                     },
-                    getsettings: {
+                    _getsettings: {
                         params: {
                             action: 'getsettings'
                         },
@@ -274,6 +274,9 @@ angular.module('ngTorrentUiApp')
                         t: Date.now()
                     }
                 });
+            },
+            getSettings: function() {
+                return this.actions()._getsettings().$promise;  
             },
             setSetting: function(setting, value) {
                 return torrentServerService.setSettings([

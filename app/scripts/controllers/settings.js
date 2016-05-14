@@ -172,8 +172,7 @@ angular.module('ngTorrentUiApp')
         };
 
         torrentServerService.init().then(function() {
-            var set = torrentServerService.actions().getsettings();
-            set.$promise.then(function() {
+            torrentServerService.getSettings().then(function(set) {
                 var i;
                 var values = set.sort(function(a, b) {
                     if (a.name === b.name) {

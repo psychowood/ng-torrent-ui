@@ -228,12 +228,16 @@ angular
         $scope.updatedVersion = $cookies.get('updatedVersion');
 
         torrentServerService.init().then(function() {
-            var ts = torrentServerService.actions().getsettings();
-            ts.$promise.then(function() {
-                $rootScope.features = torrentServerService.supports;
-                $rootScope.serverVersion = torrentServerService.getVersion();
-            });
-            return ts;
+            torrentServerService.getSettings().then(
+                function() {
+                    $rootScope.features = torrentServerService.supports;
+                    $rootScope.serverVersion = torrentServerService.getVersion();
+                }, function() {
+                    $scope.alerts.push({
+                        type: 'danger',
+                        msg: 'Service unavailable'
+                    });
+                });
         }, function() {
             $scope.alerts.push({
                 type: 'danger',
