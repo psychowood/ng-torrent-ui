@@ -8,7 +8,7 @@
  * Controller of the ngTorrentUiApp
  */
 angular.module('ngTorrentUiApp')
-    .controller('IssueReporterCtrl', function($scope, torrentServerService, $window) {
+    .controller('IssueReporterCtrl', function($scope, torrentServerService, $window, $cookies) {
         var newIssueBaseUrl = 'https://github.com/psychowood/ng-torrent-ui/issues/new/';
         var newMailBaseUrl = 'mailto:ng' + 'torrent' + 'ui' + '@' + 'gmail.com';
         $scope.newIssueUrl = newIssueBaseUrl;
@@ -22,7 +22,7 @@ angular.module('ngTorrentUiApp')
                 '%0A' +
                 '------------------------' +
                 '%0A' +
-                $window.encodeURIComponent('**Version:** ' + $window.document.title) +
+                $window.encodeURIComponent('**Version:** ' + $cookies.get('currentVersion')) +
                 '%0A' +
                 $window.encodeURIComponent('**Server:** ' + version) +
                 '%0A' +
