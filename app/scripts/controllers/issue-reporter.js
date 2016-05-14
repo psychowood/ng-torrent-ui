@@ -12,8 +12,6 @@ angular.module('ngTorrentUiApp')
         var newIssueBaseUrl = 'https://github.com/psychowood/ng-torrent-ui/issues/new/';
         var newMailBaseUrl = 'mailto:ng' + 'torrent' + 'ui' + '@' + 'gmail.com';
         $scope.newIssueUrl = newIssueBaseUrl;
-        // torrentServerService.init().then(function(){
-        // });
 
         var getBody = function() {
             var version = torrentServerService.getVersion();
