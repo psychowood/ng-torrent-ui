@@ -10,7 +10,7 @@
 angular.module('ngTorrentUiApp')
     .factory('translationsLoader', function($http, $q) {
         var languages, constants;
-        // var loading = false;
+        var loadingPromise;
 
         return function(options) {
             var deferred = $q.defer();
@@ -56,16 +56,11 @@ angular.module('ngTorrentUiApp')
             if (languages && constants) {
                 load(options);
             } else {
-                // if (loading) {
-                //   if (isGetOptions){
-                //     return loading.promise;
-                //   } else {
-                //
-                //   }
-                // }
-                // loading = $q.defer();
+                if (!loadingPromise) {
+                    loadingPromise = $http.get('langs/utorrent/!base.js');    
+                }
 
-                $http.get('langs/utorrent/!base.js').then(
+                loadingPromise.then(
                     function(response) {
                         var invertDefine = 'Array.prototype.invert = function() { var h = {}; for (var g = 0, f = this.length; g < f; ++g) { h[this[g]] = g } return h; };';
                         /*jslint evil: true */
