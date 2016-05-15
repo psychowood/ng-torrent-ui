@@ -112,6 +112,14 @@ There are parts not translated yet, and I'll need help because I don't speak nor
 
 ## Release History
 
+### v0.7.1
+- [x] Added: Highlight sorted value
+- [x] Fixed: Drag'n'drop supported file types (some platforms did not accept .torrent files)
+- [x] Fixed: Version not reported when opening a new issue
+- [x] Fixed: Correct version number not shown when using Live version
+- [x] Fixed: Load translations only once
+- [x] First version distributed also via torrent
+
 ### v0.7.0
 - [x] Added: Persist filters and sort order when refreshing the page
 - [x] Added: Download button (for completed files) from details dialog (requires uTorrent 3). You can also copy (long tap or right click) the link and open it in a video player to stream the file without downloading it (tested with VLC) 
