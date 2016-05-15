@@ -33,7 +33,10 @@ angular
         starredItems: 'starredItems',
         lastFilters: 'lastFilters',
         lastSorter: 'lastSorter'
-    }).config(function(toastrConfig) {
+    }).run(['ntuConst', function(ntuConst) {
+      // don't touch the line below, version will be injected
+      ntuConst.version = undefined;
+    }]).config(function(toastrConfig) {
         angular.extend(toastrConfig, {
             allowHtml: true
         });
@@ -174,9 +177,8 @@ angular
             return true;
         };
 
-
-        $http.get('bower.json').then(function(res) {
-            var currentVersion = 'v' + res.data.version;
+        var versionChecker = function(version) {
+            var currentVersion = 'v' + version;
             if ($cookies.get('currentVersion') !== currentVersion) {
                 lastUpdateCheck = undefined;
                 $cookies.remove('updatedVersion');
@@ -222,8 +224,15 @@ angular
             } else {
                 $log.info('Version already checked in the last hour');
             }
+        };
 
-        });
+        if(ntuConst.version) {
+            versionChecker(ntuConst.version);
+        }  else {
+            $http.get('bower.json').then(function(res) {
+               versionChecker(res.data.version);
+            });
+        }
 
         $scope.updatedVersion = $cookies.get('updatedVersion');
 

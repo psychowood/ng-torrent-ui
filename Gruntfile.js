@@ -239,6 +239,17 @@ module.exports = function (grunt) {
             replacement: 'href="http://psychowood.github.io/ng-torrent-ui/dist/remoted-resources/styles/'
           }]
         }
+      },
+      version:  {
+        files: {
+          '.tmp/concat/scripts/scripts.js': '.tmp/concat/scripts/scripts.js'
+        },
+        options: {
+          replacements: [{
+            pattern: 'ntuConst.version = undefined',
+            replacement: 'ntuConst.version = "' + appConfig.version + '"'
+          }]
+        }
       }
     },
 
@@ -636,6 +647,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'string-replace:version',
     'cdnify',
     'cssmin',
     'uglify'
