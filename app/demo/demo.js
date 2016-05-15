@@ -85,6 +85,14 @@ angular.module('ngTorrentUiAppDemo', ['ngTorrentUiApp','ngMockE2E','ipsum']).run
       }), {}];
   });
 
+  $httpBackend.whenGET(new RegExp('/gui/.*[?&]action=getsettings&*.*')).respond(function(method, url, data) {
+    $log.info('mocking action=getsettings');
+    return [200, angular.toJson({
+      build: mock.build,
+      settings: []
+      }), {}];
+  });
+
   $httpBackend.whenGET(new RegExp('/gui/.*[?&]list=1&*.*')).respond(function(method, url, data) {
     $log.info('mocking list=1');
     var i,j;
