@@ -62,14 +62,6 @@
         <span class="input-group-addon"><input type="checkbox" ng-model="filters.fuzzy" ng-change="doFilter()"> Fuzzy</span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
         <span class="input-group-btn">
-          <!-- div class="btn-group btn-group-sm uib-dropdown star-search" uib-dropdown>
-            <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle title="{{'ML_REMOVE' | translate}}">
-              <span class="glyphicon glyphicon-star-empty"></span> <span class="caret"></span>
-            </a>
-            <div class="uib-dropdown-menu btn-group-sm" role="menu">
-              <a class="btn btn-default" ng-repeat="starredItem in starredItems" ng-click="filters.name = starredItem.text;doFilter()"> {{starredItem.text}} </a>
-            </div>
-          </div -->
           <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>
         </span>
       </div>
@@ -169,9 +161,10 @@
       <div class="btn-group btn-group-sm btn-group-justified">
         <a role="button" class="btn btn-default" ng-click="doAction('forcestart')" title="{{'ML_FORCE_START' | translate}}"><span class="glyphicon glyphicon-play-circle"></span> </a>
         <a role="button" class="btn btn-default middle" ng-click="doAction('recheck')" title="{{'ML_FORCE_RECHECK' | translate}}"><span class="glyphicon glyphicon-repeat"></span> </a>
+        <a role="button" class="btn btn-default" ng-click="doAction('removeDefault')" title="{{'ML_REMOVE' | translate}}" ><span class="glyphicon glyphicon-remove"></span> </a>
         <div class="btn-group btn-group-sm uib-dropdown" uib-dropdown>
-          <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle title="{{'ML_REMOVE' | translate}}">
-            <span class="glyphicon glyphicon-remove"></span> <span class="caret"></span>
+          <a role="button" class="btn btn-default" uib-dropdown-toggle>
+            <span class="caret"></span>
           </a>
           <div class="uib-dropdown-menu btn-group-sm" role="menu">
             <a class="btn btn-default" ng-click="doAction('remove')" title="{{'ML_REMOVE' | translate}}"><span class="glyphicon glyphicon-remove"></span> {{'ML_REMOVE' | translate}}</a>
