@@ -293,7 +293,9 @@ The main page includes a Google Analytics tag. It is just a counter for statisti
 
 ### Donations
 This is developed during my free time so, if you are willing to offer me a beer and support this project, you are welcome :)
-You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84LH348H27CN6) or [usd](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z88PRASGESGQ).
+You can donate with paypal in [eur](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=84LH348H27CN6) or [usd](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7Z88PRASGESGQ), or sending bitcoins @ 39iyJpmhkc3ZC66CNMERcu9N4HA1fdMxtB.
+
+<center><img src="resources/39iyJpmhkc3ZC66CNMERcu9N4HA1fdMxtB.png?raw=true" alt="bitcoin address" width=100 /></center>
 
 Thanks to the ones that contributed! :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer: :beer:
 
