@@ -253,7 +253,7 @@ angular.module('ngTorrentUiApp')
                 });
             },
             removeTorrent: function() {
-                var actions = ['remove','removedata','removetorrent','removedatatorrent'];
+                var actions = ['remove','removetorrent','removedata','removedatatorrent'];
                 var defaultRemove = parseInt(torrentServerService.settingsMap['gui.default_del_action'].value);
                 return torrentServerService.actions()[actions[defaultRemove]];
             },
