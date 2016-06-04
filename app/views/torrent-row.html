@@ -37,7 +37,7 @@
       <span ng-class="{'sorted':sorter.field === 'downloadSpeed'}"><span class="byte-value">{{item.getDownSpeedStrArr()[0]}}</span> <span class="byte-uom">{{item.getDownSpeedStrArr()[1]}}</span></span>
     </span>
     <span class="input-group-addon selectable peers hidden-sm hidden-xs">
-      <span ng-class="{'sorted':sorter.field === 'ratio'}"><span class="availability">{{item.ratio}}%</span></span>
+      <span ng-class="{'sorted':sorter.field === 'ratio'}"><span class="ratio">{{item.ratio}}%</span></span>
       /
       <span ng-class="{'sorted':sorter.field === 'availability'}"><span class="availability">{{item.availability}}</span></span>
       <div class="byte-uom"><span ng-class="{'sorted':sorter.field === 'seedsInSwarm'}">{{item.seedsInSwarm}}</span> - <span ng-class="{'sorted':sorter.field === 'peersInSwarm'}">{{item.peersInSwarm}}</span></div>

@@ -225,7 +225,7 @@ select[disabled] {
 .torrent .name {
   padding-left: 5px;
   padding-right: 0px;
-  padding-top: 0px;
+  padding-top: 2px;
   line-height: 30px;
   overflow: hidden;
 }
@@ -273,8 +273,8 @@ select[disabled] {
   height: 3px;
 }
 
-.byte-value {
-
+.byte-value, .availability, .ratio {
+    font-size: 1em;
 }
 
 .version {
@@ -573,7 +573,8 @@ fieldset.action-toolbar .middle {
 }
 
 .input-group-addon {
-  font-size: 10px !important;  
+    font-size: 11px !important;
+    padding-bottom: 2px !important;  
 }
 
 .actionsModal .modal-dialog {
