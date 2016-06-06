@@ -42,6 +42,9 @@ angular.module('ngTorrentUiApp')
 
         $scope.newtorrent = '';
         $scope.newtorrentfiles = [];
+        var labelarrayfornewtorrents = [];
+        var maxQueuePosition = 0;
+        
         $scope.uploadDropSupported = true;
 
         var saveCookie = function(cookieName,value) {
@@ -97,23 +100,47 @@ angular.module('ngTorrentUiApp')
         }
 
         $scope.addTorrentFilesOrUrl = function(urlOrFiles) {
-            var add = function(dir, subpath) {
+            var add = function(dir, subpath, label, minQueue) {
+                var queueLabels = function(label, minQueue, numOfNewTorrents) {
+                    if (label && label.length > 0) {
+                        while(numOfNewTorrents > 0) {
+                            labelarrayfornewtorrents.push({
+                                minQueue: minQueue,
+                                label:label
+                            });
+                            numOfNewTorrents--;
+                        }
+                    }
+                };
                 if (typeof urlOrFiles === 'string') {
                     torrentServerService.addTorrentUrl(urlOrFiles, dir, subpath).then(function() {
-                        toastr.info('Torrent added succesfully', null, {
-                            timeOut: 1000
+                        toastr.info('Link sent to server succesfully', null, {
+                            timeOut: 2500
                         });
                         $scope.newtorrent = '';
+                        queueLabels(label,minQueue,1);
                     });
                 } else {
                     if (torrentServerService.uploadTorrent) {
-                        var i, success = 0;
-                        var callback = function( /* data, status, headers, config */ ) {
-                            success++;
-                            if (success === urlOrFiles.length) {
-                                toastr.info(success + ' torrent added succesfully', null, {
-                                    timeOut: 2500
-                                });
+                        var i, success = 0, fails = 0;
+                        var callback = function( data /* , status, headers, config */ ) {
+                            if (data.error) {
+                                fails++;
+                            } else {
+                                success++;
+                            }
+                            if ((success + fails) === urlOrFiles.length) {
+                                if (success > 0) {
+                                    toastr.info(success + ' torrents added succesfully', null, {
+                                        timeOut: 2500
+                                    });
+                                    queueLabels(label,minQueue,success);
+                                }
+                                if (fails > 0) {
+                                    toastr.warning('Error adding ' + fails + ' torrents', null, {
+                                        timeOut: 2500
+                                    });
+                                }
                                 $scope.newtorrentfiles = [];
                             }
                         };
@@ -128,22 +155,25 @@ angular.module('ngTorrentUiApp')
                     }
                 }
             };
-            if (torrentServerService.supports.getDownloadDirectories === true) {
-                torrentServerService.getDownloadDirectories().then(function(directories) {
-                    $scope.directories = directories;
+            
+            var openAddDialog = function(directories) {
+                $scope.directories = directories;
 
-                    var modalInstance = $uibModal.open({
-                        templateUrl: 'downloadLocationModal.html',
-                        backdrop: true,
-                        scope: $scope
-                    });
-
-                    modalInstance.result.then(function(res) {
-                        add(res.dir, res.path);
-                    });
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'downloadOptionsModal.html',
+                    backdrop: true,
+                    scope: $scope
                 });
+
+                modalInstance.result.then(function(res) {
+                    add(res.dir?res.dir:'0', res.path?res.path:'', res.label, maxQueuePosition);
+                });
+            };
+            
+            if (torrentServerService.supports.getDownloadDirectories === true) {
+                torrentServerService.getDownloadDirectories().then(openAddDialog);
             } else {
-                add('0', '');
+                openAddDialog([]);
             }
 
         };
@@ -568,7 +598,7 @@ angular.module('ngTorrentUiApp')
 
             ts.then(function(torrents) {
                 var changed = false;
-                var i, torrent;
+                var i, j, torrent;
                 $scope.labels = torrents.labels;
                 updateLabelColorsMap($scope.labels);
 
@@ -595,6 +625,8 @@ angular.module('ngTorrentUiApp')
                 if (torrents.changed && torrents.changed.length > 0) {
                     changed = true;
                     $log.debug('"torrentp" key with ' + torrents.changed.length + ' elements');
+                    var applyLabel = labelarrayfornewtorrents.length > 0;
+                    var labelToAddIndex;
                     for (i = 0; i < torrents.changed.length; i++) {
                         torrent = torrentServerService.build(torrents.changed[i]);
                         if (torrentsMap[torrent.hash]) {
@@ -602,6 +634,19 @@ angular.module('ngTorrentUiApp')
                             torrent.files = torrentsMap[torrent.hash].files;
                         }
                         torrentsMap[torrent.hash] = torrent;
+                        if (applyLabel) {
+                            if (torrent.getMainLabel() === '' && torrent.torrentQueueOrder > labelarrayfornewtorrents[0].minQueue) {
+                                labelToAddIndex = undefined;
+                                for (j=labelarrayfornewtorrents.length-1;j>-1; j--) {
+                                    if (torrent.torrentQueueOrder > labelarrayfornewtorrents[j].minQueue) {
+                                        labelToAddIndex = j;
+                                    }
+                                }
+                                var labelToAdd = labelarrayfornewtorrents[labelToAddIndex].label;
+                                labelarrayfornewtorrents.splice(labelToAddIndex, 1);
+                                $scope.setLabel(labelToAdd,torrent);
+                            } 
+                        }
                     }
                 }
 
@@ -615,10 +660,13 @@ angular.module('ngTorrentUiApp')
 
                 if (changed) {
                     $scope.torrents = [];
+                    var currentMaxQueue = 0;
                     angular.forEach(torrentsMap, function(torrent /* , key */ ) {
                         torrent.isStarred = isStarred(torrent.decodedName);
                         $scope.torrents.push(torrent);
+                        currentMaxQueue = Math.max(currentMaxQueue,torrent.torrentQueueOrder);
                     });
+                    maxQueuePosition = currentMaxQueue;
                     $scope.doFilter();
                     Torrent.cache = torrentsMap;
                     $scope.selectedtorrents = getSelectedAndUpdateGlobals($scope.torrents);

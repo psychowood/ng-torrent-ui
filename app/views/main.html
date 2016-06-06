@@ -78,7 +78,7 @@
           </a>
             <div class="uib-dropdown-menu btn-group-sm" role="menu">
               <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="filters.label = label[0];doFilter()">
-                <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate) + ' (' + label[1] + ')' }}
+                <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate)}} ({{label[1]}})
               </a>
           </div>
         </div>
@@ -193,7 +193,7 @@
                 <a role="button" class="btn btn-default" ng-click="setLabel('')"><span class="glyphicon glyphicon-remove-circle"></span>&nbsp;&nbsp;&nbsp;{{'OV_REMOVE_LABEL' | translate}}</a>
                 <a role="button" class="btn btn-default" ng-click="setNewLabel()"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;{{'OV_NEW_LABEL' | translate}}</a>
                 <a role="button" class="btn btn-default" ng-repeat="label in labels" ng-click="setLabel(label[0])">
-                  <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ label[0] + ' (' + label[1] + ')' }}
+                  <span class="glyphicon glyphicon-tag" ng-style="{color:labelColorMap[label[0]]}"></span>&nbsp;&nbsp;&nbsp;{{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate) }} ({{label[1]}})
                 </a>
             </div>
           </div>
@@ -305,19 +305,29 @@
         </div>
     </script>
 
-    <script type="text/ng-template" id="downloadLocationModal.html">
+    <script type="text/ng-template" id="downloadOptionsModal.html">
         <div class="modal-header">
-            <h3 class="modal-title">{{'DLG_SETTINGS_3_PATHS_01' | translate}}</h3>
+            <h3 class="modal-title">{{'MM_FILE_ADD_TORRENT' | translate}}</h3>
         </div>
         <div class="modal-body">
-        {{'PATH' | translate}}:
-          <select ng-model="downloadDirId" class="form-control" ng-init="downloadDirId = '0'">
-            <option ng-repeat="dir in directories" value="{{$index}}">{{dir.path}} ({{dir.available}} MB free)</option>
-          </select>
-        {{'SUBPATH' | translate}}: <input type="text" class="form-control" ng-model="subPath" ng-init="subPath = ''"/>
+          <div ng-if="directories.length > 0">
+            {{'DLG_SETTINGS_3_PATHS_01' | translate}}:
+              <select ng-model="downloadDirId" class="form-control" ng-init="downloadDirId = '0'">
+                <option ng-repeat="dir in directories" value="{{$index}}">{{dir.path}} ({{dir.available}} MB free)</option>
+              </select>
+            {{'SUBPATH' | translate}}: <input type="text" class="form-control" ng-model="subPath" ng-init="subPath = ''"/>
+          </div>
+          <div>
+            {{'ML_LABEL' | translate}}:
+            <select ng-model="downloadLabelId" class="form-control" ng-init="downloadLabelId = undefined">
+              <option ng-repeat="label in labels" value="{{label[0]}}">
+                {{ (label[0]?label[0]:'OV_CAT_NOLABEL' | translate) }} ({{label[1]}})
+              </option>
+            </select>
+            </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="$close({dir:downloadDirId,path:subPath})" >{{'DLG_BTN_OK' | translate}}</button>
+            <button class="btn btn-primary" ng-click="$close({dir:downloadDirId, path:subPath, label: downloadLabelId})" >{{'DLG_BTN_OK' | translate}}</button>
             <button class="btn btn-default" ng-click="$dismiss()">{{'DLG_BTN_CANCEL' | translate}}</button>
         </div>
     </script>
