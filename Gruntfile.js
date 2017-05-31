@@ -17,7 +17,6 @@ module.exports = function (grunt) {
 
   // Require the proxy package  https://github.com/drewzboto/grunt-connect-proxy
   // to test locally outside uTorrent
-
   grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Replaces strings on files by using string or regex patterns. Used to inject
@@ -44,6 +43,9 @@ module.exports = function (grunt) {
 
   // Typscript support
   grunt.loadNpmTasks('grunt-typescript');
+
+  //serve static files
+  var serveStatic = require('serve-static');
 
   // Configurable paths for the application
   var appConfig = {
@@ -191,12 +193,12 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
             require('grunt-connect-proxy/lib/utils').proxyRequest,
-            connect.static('.tmp'),
+            serveStatic('.tmp'),
             connect().use(
               '/bower_components',
-              connect.static('./bower_components')
+              serveStatic('./bower_components')
             ),
-            connect.static(appConfig.app)
+            serveStatic(appConfig.app)
             ];
           }
         }
@@ -206,13 +208,13 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-            connect.static('.tmp'),
-            connect.static('test'),
+            serveStatic('.tmp'),
+            serveStatic('test'),
             connect().use(
               '/bower_components',
-              connect.static('./bower_components')
+              serveStatic('./bower_components')
             ),
-            connect.static(appConfig.app)
+            serveStatic(appConfig.app)
             ];
           }
         }
