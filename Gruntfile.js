@@ -648,7 +648,7 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'copy:dist',
     'string-replace:version',
-    'cdnify',
+//    'cdnify',
     'cssmin',
     'uglify'
     ]);
@@ -703,7 +703,7 @@ module.exports = function (grunt) {
     'copy:demo',
     'processhtml:demodist',
     'processhtml:analytics',
-    'cdnify',
+//    'cdnify',
     'cssmin',
     'uglify',
     'filerev',
