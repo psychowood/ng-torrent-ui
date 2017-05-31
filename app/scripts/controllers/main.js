@@ -586,6 +586,29 @@ angular.module('ngTorrentUiApp')
             return false;
         };
 
+        var updateTorrentDetails = function(torrent) {
+            if (torrent) {
+                $scope.doAction('getprops', torrent).$promise.then(function(res) {
+                    torrent.props = res.props[0];
+                });
+                $scope.doAction('getfiles', torrent).$promise.then(function(res) {
+                    var i;
+                    var files = res.files;
+                    if (torrent.files) {
+                        for (i = 0; i < torrent.files.length; i++) {
+                            files[i].selected = torrent.files[i].selected;
+                        }
+                    }
+                    torrent.files = files;
+                    if (torrentServerService.getFileDownloadUrl) {
+                        for (i = 0; i < torrent.files.length; i++) {
+                            torrent.files[i].url = torrentServerService.getFileDownloadUrl(torrent,torrent.files[i]);
+                        }
+                    }
+                });
+            }
+        };
+
         $scope.reload = function(manual) {
             if ($scope.refreshing) {
                 return;
@@ -698,29 +721,6 @@ angular.module('ngTorrentUiApp')
                     timeOut: 30000
                 });
             });
-        };
-
-        var updateTorrentDetails = function(torrent) {
-            if (torrent) {
-                $scope.doAction('getprops', torrent).$promise.then(function(res) {
-                    torrent.props = res.props[0];
-                });
-                $scope.doAction('getfiles', torrent).$promise.then(function(res) {
-                    var i;
-                    var files = res.files;
-                    if (torrent.files) {
-                        for (i = 0; i < torrent.files.length; i++) {
-                            files[i].selected = torrent.files[i].selected;
-                        }
-                    }
-                    torrent.files = files;
-                    if (torrentServerService.getFileDownloadUrl) {
-                        for (i = 0; i < torrent.files.length; i++) {
-                            torrent.files[i].url = torrentServerService.getFileDownloadUrl(torrent,torrent.files[i]);
-                        }
-                    }
-                });
-            }
         };
 
         $scope.showSearch = function() {

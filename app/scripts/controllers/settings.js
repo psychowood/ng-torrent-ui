@@ -16,9 +16,29 @@ angular.module('ngTorrentUiApp')
             map: {}
         };
 
+        var conf = [];
+
         var STARRED_ITEMS = ntuConst.starredItems;
         var DECODE_NAMES = ntuConst.decodeNames;
         $scope.ntuConst = ntuConst;
+
+        var readWebUiCookie = function() {
+            try {
+                return angular.fromJson(settings.map['webui.cookie'].value);
+            } catch (error) {
+                toastr.error('Error reading webui.cookie setting', null, {
+                    timeOut: 5000
+                });
+            }
+        };
+
+        var readCookie = function() {
+            $scope[STARRED_ITEMS] = angular.fromJson($cookies.get(STARRED_ITEMS));
+        };
+
+        var saveCookie = function() {
+            $cookies.put(STARRED_ITEMS, angular.toJson($scope[STARRED_ITEMS]));
+        };
 
         $scope.exportSetting = function(name /* ,value */ ) {
             var webcookie = readWebUiCookie();
@@ -50,24 +70,6 @@ angular.module('ngTorrentUiApp')
         if ($cookies.get(STARRED_ITEMS)) {
             $scope[STARRED_ITEMS] = angular.fromJson($cookies.get(STARRED_ITEMS));
         }
-
-        var readWebUiCookie = function() {
-            try {
-                return angular.fromJson(settings.map['webui.cookie'].value);
-            } catch (error) {
-                toastr.error('Error reading webui.cookie setting', null, {
-                    timeOut: 5000
-                });
-            }
-        };
-
-        var readCookie = function() {
-            $scope[STARRED_ITEMS] = angular.fromJson($cookies.get(STARRED_ITEMS));
-        };
-
-        var saveCookie = function() {
-            $cookies.put(STARRED_ITEMS, angular.toJson($scope[STARRED_ITEMS]));
-        };
 
         $scope.starredItemsChanged = function(items) {
             $scope[STARRED_ITEMS] = items;
@@ -237,7 +239,7 @@ angular.module('ngTorrentUiApp')
             $scope.loaded = true;
         };
 
-        var conf = [
+        conf.push(
             ['ST_CAPT_GENERAL', [
                 ['DLG_SETTINGS_1_GENERAL_10', [
                     ['check_update', 'DLG_SETTINGS_1_GENERAL_11'],
@@ -468,7 +470,6 @@ angular.module('ngTorrentUiApp')
                     ['state_cmd', 'DLG_SETTINGS_C_ADV_RUN_04'],
                 ]],
                 ['DLG_SETTINGS_C_ADV_RUN_06', []]
-            ]]
-        ];
+            ]]);
 
     });
