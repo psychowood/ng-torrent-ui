@@ -16,7 +16,8 @@ angular.module('ngTorrentUiApp')
             password: null,
             token: null,
             cid: 0,
-            build: -1
+            build: -1,
+            batchLimit: 20
         };
 
         var updateCidInterceptor = {

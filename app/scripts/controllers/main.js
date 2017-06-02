@@ -238,15 +238,65 @@ angular.module('ngTorrentUiApp')
             }
             
             if (service) {
-                var ts = service({
-                    hash: hashes
-                });
-                ts.$promise.then(function() {
-                    if(callback) {
-                        callback();
+                var ts;
+                
+                var total = hashes.length;
+                var progress = 0;
+                var batchLimit = torrentServerService.conf.batchLimit;
+                var isAutoreloadEnabled = $scope.autoreloadEnabled;
+                var isbatchMode = total > batchLimit;
+
+                var progressModalInstance = null;
+
+                var batchStatus = {
+                    min: 0,
+                    current: progress,
+                    max: total    
+                };
+
+                if (isbatchMode) {
+                    $log.info('batch mode');
+                    $scope.autoreloadEnabled = false;
+                    
+                    progressModalInstance = $uibModal.open({
+                        controller: ['$scope', function($scope) {
+                            $scope.status = batchStatus;
+                        }],
+                        templateUrl: 'progressModal.html',
+                        backdrop: 'static'
+                    });
+                }
+
+                var doBatchStep = function(progress) {
+                    var curHashes = hashes.splice(0,batchLimit);
+                    progress += curHashes.length;
+                    if (curHashes.length > 0) {
+                        batchStatus.current = progress;
+                        ts = service({
+                            hash: curHashes
+                        });
+                        ts.$promise.then(function() {
+                            doBatchStep(progress);                
+                        });
+                        if (hashes.length === 0) {
+                            ts.$promise.then(function() {
+                                $log.info('callback if needed');
+                                if (callback){
+                                    callback();
+                                }
+                            });
+                        }
+
+                    } else {
+                        if (isbatchMode) {
+                            $scope.autoreloadEnabled = isAutoreloadEnabled;
+                            $timeout(function() {progressModalInstance.close();},1000);
+                        }
+                        $scope.reload();
                     }
-                });
-                return ts;
+                };
+                ts = doBatchStep(progress);
+            
             } else {
                 toastr.warning('Action ' + action + ' not yet supported', null, {
                     timeOut: 1000
