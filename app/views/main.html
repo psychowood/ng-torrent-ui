@@ -364,4 +364,20 @@
         </ul>
     </script>
 
+    <script type="text/ng-template" id="progressModal.html">
+        <div class="modal-body">
+          <br/>
+            <div class="progress progress-popup">
+              <div class="progress-bar progress-bar-striped active" 
+                role="progressbar" aria-valuenow="{{status.current}}" aria-valuemin="{{status.min}}" 
+                aria-valuemax="{{status.max}}" ng-style="{width : ( (status.current/status.max)*100 + '%' ) }">
+                <center>{{status.current}}/{{status.max}}</center>
+              </div>
+                                
+            </div>
+        </div>
+    </script>
+
+
+
 </div>
