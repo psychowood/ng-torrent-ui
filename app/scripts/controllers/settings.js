@@ -181,20 +181,20 @@ angular.module('ngTorrentUiApp')
             torrentServerService.getSettings().then(function(set) {
                 var i;
                 var values = set.sort(function(a, b) {
-                    if (a.name === b.name) {
+                    if (a.id === b.id) {
                         return 0;
                     }
-                    if (a.name > b.name) {
+                    if (a.id > b.id) {
                         return 1;
                     }
                     return -1;
                 });
                 settings.values = set;
                 for (i = 0; i < values.length; i++) {
-                    var setting = settings.map[values[i].name];
+                    var setting = settings.map[values[i].id];
                     if (angular.isUndefined(setting)) {
                         setting = {
-                            id: values[i].name
+                            id: values[i].id
                         };
                         settings.map[setting.id] = setting;
                     }

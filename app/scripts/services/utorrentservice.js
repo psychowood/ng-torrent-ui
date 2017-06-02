@@ -232,13 +232,13 @@ angular.module('ngTorrentUiApp')
                             var types = ['int', 'bool', 'string'];
                             for (i = 0; i < responseData.length; i++) {
                                 val = {
-                                    name: responseData[i][0],
+                                    id: responseData[i][0],
                                     type: types[responseData[i][1]],
                                     value: responseData[i][2],
                                     others: (responseData[i].length > 2) ? responseData[i][3] : undefined
                                 };
                                 settings.push(val);
-                                settingsMap[val.name] = val;
+                                settingsMap[val.id] = val;
                             }
                             torrentServerService.settings = settings;
                             torrentServerService.settingsMap = settingsMap;

@@ -66,11 +66,11 @@
         <form class="form-horizontal" > <!-- class="repeater-container" vs-repeat="45" vs-excess="10" ng-style="{ height: listHeight + 'px'}" -->
           <div ng-repeat="setting in settings.values | filter: settingSearch" class="form-group" ng-init="setting.oldvalue = setting.value">
 
-              <label class="col-sm-3 control-label">{{setting.name}}</label>
+              <label class="col-sm-3 control-label">{{setting.id}}</label>
 
               <div class="col-sm-8 input-group input-group-sm">
-                <span class="input-group-addon" ng-if="settings.map[setting.name].label">
-                  <span class="glyphicon glyphicon-question-sign" title="{{settings.map[setting.name].label}}"></span>
+                <span class="input-group-addon" ng-if="settings.map[setting.id].label">
+                  <span class="glyphicon glyphicon-question-sign" title="{{settings.map[setting.id].label}}"></span>
                 </span>
 
                 <input type="text" ng-model="setting.value" class="form-control">
