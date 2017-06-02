@@ -86,10 +86,22 @@ angular.module('ngTorrentUiAppDemo', ['ngTorrentUiApp','ngMockE2E','ipsum']).run
   });
 
   $httpBackend.whenGET(new RegExp('/gui/.*[?&]action=getsettings&*.*')).respond(function(method, url, data) {
-    $log.info('mocking action=getsettings');
+    $log.info('mocking action getsettings' + url);
     return [200, angular.toJson({
       build: mock.build,
-      settings: []
+      settings: [
+        ["gui.default_del_action",0,"0",{"access":"Y"}]
+      ]
+      }), {}];
+  });
+
+  $httpBackend.whenGET(new RegExp('/gui/.*[?&]action=&*.*')).respond(function(method, url, data) {
+    $log.info('mocking action ' + url);
+    return [200, angular.toJson({
+      build: mock.build,
+      settings: [
+        ["gui.default_del_action",0,"0",{"access":"Y"}]
+      ]
       }), {}];
   });
 
