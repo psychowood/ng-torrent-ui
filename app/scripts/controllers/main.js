@@ -263,6 +263,7 @@ angular.module('ngTorrentUiApp')
             if (service) {
                 var ts = service(hashes, value);
                 ts.success(function() {
+                    toastr.remove();
                     if (value === '') {
                         toastr.info('Label removed', null, {
                             timeOut: 2500
