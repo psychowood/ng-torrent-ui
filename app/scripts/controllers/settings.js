@@ -24,7 +24,11 @@ angular.module('ngTorrentUiApp')
 
         var readWebUiCookie = function() {
             try {
-                return angular.fromJson(settings.map['webui.cookie'].value);
+                var webcookie = angular.fromJson(settings.map['webui.cookie'].value);
+                if (!webcookie.ngtorrentui) {
+                    webcookie.ngtorrentui = {};
+                }
+                return webcookie;
             } catch (error) {
                 toastr.error('Error reading webui.cookie setting', null, {
                     timeOut: 5000
