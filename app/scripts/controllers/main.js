@@ -244,7 +244,7 @@ angular.module('ngTorrentUiApp')
                 var progress = 0;
                 var batchLimit = torrentServerService.conf.batchLimit;
                 var isAutoreloadEnabled = $scope.autoreloadEnabled;
-                var isbatchMode = total > batchLimit;
+                var isbatchMode = total > 1;
 
                 var progressModalInstance = null;
 
@@ -286,6 +286,7 @@ angular.module('ngTorrentUiApp')
                                 }
                             });
                         }
+                        return ts;
 
                     } else {
                         if (isbatchMode) {
