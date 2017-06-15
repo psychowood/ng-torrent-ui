@@ -297,6 +297,7 @@ angular.module('ngTorrentUiApp')
                     }
                 };
                 ts = doBatchStep(progress);
+                return ts;
             
             } else {
                 toastr.warning('Action ' + action + ' not yet supported', null, {
