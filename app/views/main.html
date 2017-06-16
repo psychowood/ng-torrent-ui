@@ -73,8 +73,8 @@
           <button type="button" class="input-group-addon" ng-model="filters.fuzzy" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
             Fuzzy
           </button>
-          <button disabled class="input-group-addon separator"/>
-          <button type="button" class="input-group-addon" ng-model="filters.inSavePath" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
+          <button ng-hide="!serverSupports.savePaths" disabled class="input-group-addon separator" />
+          <button ng-hide="!serverSupports.savePaths" type="button" class="input-group-addon" ng-model="filters.inSavePath" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
             Path
           </button>
         </span>

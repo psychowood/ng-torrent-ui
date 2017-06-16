@@ -244,6 +244,7 @@ angular.module('ngTorrentUiApp')
                             torrentServerService.settingsMap = settingsMap;
                             torrentServerService.supports = {};
                             if (parseInt(data.build) > 25406) { //Features supported from uTorrent 3+
+                                torrentServerService.supports.savePathsInTorrents = true;
                                 torrentServerService.supports.getDownloadDirectories = true;
                                 torrentServerService.supports.torrentAddedDate = true;
                                 torrentServerService.supports.torrentCompletedDate = true;

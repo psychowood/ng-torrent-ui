@@ -35,6 +35,10 @@ angular.module('ngTorrentUiApp')
         $scope.filteredtorrents = [];
         $scope.selectedtorrents = [];
 
+        $scope.serverSupports = {
+            savePaths: false
+        };
+
         var torrentsMap = Torrent.cache;
         var reloadTimeout;
         $scope.autoreloadTimeout = 5000;
@@ -668,6 +672,8 @@ angular.module('ngTorrentUiApp')
             }
         };
 
+        var isFirstLoad = true;
+
         $scope.reload = function(manual) {
             if ($scope.refreshing) {
                 return;
@@ -679,6 +685,11 @@ angular.module('ngTorrentUiApp')
             var ts = torrentServerService.torrents();
             
             ts.then(function(torrents) {
+                if (isFirstLoad) {
+                    $scope.serverSupports.savePaths = (torrentServerService.supports.savePathsInTorrents === true);
+                    isFirstLoad = false;
+                }
+
                 var changed = false;
                 var i, j, torrent;
                 $scope.labels = torrents.labels;
