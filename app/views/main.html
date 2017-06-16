@@ -73,6 +73,10 @@
           <button type="button" class="input-group-addon" ng-model="filters.fuzzy" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
             Fuzzy
           </button>
+          <button disabled class="input-group-addon separator"/>
+          <button type="button" class="input-group-addon" ng-model="filters.inSavePath" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
+            Path
+          </button>
         </span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
         <span class="input-group-btn">

@@ -417,7 +417,8 @@ angular.module('ngTorrentUiApp')
             l33t: true,
             selected: false,
             status: '',
-            fuzzy: false
+            fuzzy: false,
+            inSavePath: false
         };
 
         if ($cookies.get(ntuConst.lastFilters)) {
@@ -531,6 +532,7 @@ angular.module('ngTorrentUiApp')
 
                 filters.selected = $scope.filters.selected;
                 filters.fuzzy = $scope.filters.fuzzy;
+                filters.inSavePath = $scope.filters.inSavePath;
 
                 if ($scope.filters.name === null || $scope.filters.name === '') {
                     delete filters.name;
@@ -601,6 +603,10 @@ angular.module('ngTorrentUiApp')
                             var name = torrent.name;
                             matches = name.search(new RegExp(filters.name, 'i')) > -1;
                         
+                            if (!matches && filters.inSavePath) {
+                                matches = torrent.savePath.search(new RegExp(filters.name, 'i')) > -1;
+                            }
+
                             if (!matches && filters.fuzzy) {
                                 name = torrent.decodedName;
                                 var subStrscore = name.subCompare($scope.filters.name);
@@ -671,7 +677,7 @@ angular.module('ngTorrentUiApp')
             $timeout.cancel(reloadTimeout);
             $log.info('reload torrents');
             var ts = torrentServerService.torrents();
-
+            
             ts.then(function(torrents) {
                 var changed = false;
                 var i, j, torrent;
