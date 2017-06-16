@@ -35,7 +35,14 @@
   <form role="form" ng-submit="doFilter()" class="form-inline actions-form row" id="filters-form">
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-autoreload">
-        <span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span>
+
+        <span class="input-group-addon btn-group">
+          <button type="button" class="input-group-addon" ng-model="autoreloadEnabled" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="reload()">
+             {{'AUTORELOAD' | translate}}
+          </button>
+        </span>
+
+        <!-- span class="input-group-addon"><input type="checkbox" ng-model="autoreloadEnabled" ng-checked="autoreloadEnabled === true" ng-true-value="true" ng-false-value="false" ng-change="reload()"> {{'AUTORELOAD' | translate}}</span -->
         <div class="btn-group btn-group-sm uib-dropdown" title="{{'AUTORELOAD' | translate}}" uib-dropdown>
           <a role="button" class="btn btn-default uib-dropdown-toggle" uib-dropdown-toggle ng-disabled="autoreloadEnabled === false">
             {{autoreloadTimeout/1000}} sec <span class="caret"></span>
@@ -58,8 +65,15 @@
     </div>
     <div class="form-group col-lg-2 col-sm-3">
       <div class="input-group input-group-sm filter-name">
-        <span class="input-group-addon"><input ng-disabled="notL33table" type="checkbox" ng-model="filters.l33t" ng-change="doFilter()"> l33t</span>
-        <span class="input-group-addon"><input type="checkbox" ng-model="filters.fuzzy" ng-change="doFilter()"> Fuzzy</span>
+        <span class="input-group-addon btn-group">
+          <button type="button" class="input-group-addon" ng-model="filters.l33t" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
+            l33t
+          </button>
+          <button disabled class="input-group-addon separator"/>
+          <button type="button" class="input-group-addon" ng-model="filters.fuzzy" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false"  ng-change="doFilter()">
+            Fuzzy
+          </button>
+        </span>
         <input class="form-control" type="text" ng-model="filters.name" ng-change="doFilter(true)" placeholder="{{'DLG_RSSDOWNLOADER_06' | translate}} {{'FI_COL_NAME' | translate}}">
         <span class="input-group-btn">
           <button class="btn" type="button" ng-disabled="filters.name === ''" ng-click="filters.name = '';doFilter()" ><span class="glyphicon glyphicon-remove-circle"></span></button>

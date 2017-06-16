@@ -584,3 +584,30 @@ fieldset.action-toolbar .middle {
 .actionsModal .divider {
   height: 5px;
 }
+
+.filter-name .input-group-addon, 
+.filter-autoreload .input-group-addon {
+  padding:0px;
+}
+
+.filter-name .input-group-addon button {
+  margin: 0px;
+  margin-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  height: 100%;
+}
+
+.input-group-addon button.input-group-addon {
+  outline: none;
+  border: 0px;
+}
+
+.input-group-addon.active {
+  text-shadow: 0.5px 0.5px 0px black;
+}
+
+.filter-name .input-group-addon .separator {
+    border-left: 1px solid #ccc;  
+}
+
