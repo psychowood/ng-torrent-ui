@@ -292,8 +292,8 @@ angular.module('ngTorrentUiApp')
                         if (isbatchMode) {
                             $scope.autoreloadEnabled = isAutoreloadEnabled;
                             $timeout(function() {progressModalInstance.close();},1000);
+                            $scope.reload();
                         }
-                        $scope.reload();
                     }
                 };
                 ts = doBatchStep(progress);
