@@ -1,0 +1,25 @@
+{
+    "SETTINGS_UT": "uTorrent",
+    "SETTINGS_NTU": "ng-torrent-ui",
+    "NTU_HOME": "https://github.com/psychowood/ng-torrent-ui",
+
+    "CLICKORDRAG": "点击或拖拽文件到此处",
+    "SELECTED": "选中",
+    "AUTORELOAD": "自动刷新",
+    "MATCHING_FILTERS": "符合过滤选项",
+    "NO_FILTERS_APPLIED": "未应用过滤",
+    "SHOW_SELECTED": "显示",
+    "CLEAR_SELECTED": "取消选中",
+    "PATH": "路径",
+    "SUBPATH": "子路径",
+    "ERROR": "错误",
+    "SETTINGS_NTU_DECODE_NAME": "解码种子名并移除特殊字符",
+    "LOAD_SETTINGS_FROM_SERVER": "从服务器加载设置",
+    "SAVE_SETTINGS_TO_SERVER": "保存设置至服务器",
+    "SHARE": "分享",
+    "SHARE_PREFIX_TEXT": "我给你分享了一个种子!",
+    "SHARED_VIA": "Shared via ",
+    "SHARE_MAGNET_PAGE": "http://psychowood.github.io/ng-torrent-ui/magnet/?hash=",
+    "SHARE_WARNING": "有些分享方式只能通过手机进行分享.",
+    "SHARE_RESPONSIBLY": "请谨慎分享."
+}
